@@ -1,5 +1,5 @@
-import React from 'react';
-import { Stethoscope, Moon, Sun, Printer, ZoomIn, ZoomOut, Sparkles } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Stethoscope, Moon, Sun, Printer, ZoomIn, ZoomOut, Menu, X, ChevronDown, Check, Sparkles } from 'lucide-react';
 import { EXAM_YEARS } from '../data/categories';
 
 export function Header({
@@ -10,80 +10,144 @@ export function Header({
   fontSize,
   onIncreaseFontSize,
   onDecreaseFontSize,
-  onOpenExport
+  onOpenExport,
+  isMobileMenuOpen,
+  onToggleMobileMenu
 }) {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const currentYearObj = EXAM_YEARS.find((y) => y.id === selectedYear) || EXAM_YEARS[1] || EXAM_YEARS[0];
+
   return (
     <header className="main-header" id="serums-main-header">
       <div className="header-inner">
+        {/* Brand */}
         <div className="brand-section">
-          <div className="brand-logo">
-            <Stethoscope size={26} strokeWidth={2.2} />
+          <div className="brand-logo" aria-hidden="true">
+            <Stethoscope size={22} strokeWidth={2.5} />
           </div>
           <div className="brand-info">
-            <h1>
-              CODESOFT
+            <div className="brand-title-row">
+              <span className="brand-name">CODESOFT</span>
               <span className="brand-badge">SERUMS 2026</span>
-            </h1>
+            </div>
             <p className="brand-subtitle">
-              Plataforma Médica de Alto Rendimiento • Examen Nacional SERUMS (MINSA)
+              Plataforma Médica • Examen Nacional SERUMS (MINSA)
             </p>
           </div>
         </div>
 
+        {/* Controls */}
         <div className="header-controls">
-          {/* Exam Process Selector */}
-          <select
-            id="exam-process-select"
-            className="exam-selector-select"
-            value={selectedYear}
-            onChange={(e) => onSelectYear(e.target.value)}
-            title="Seleccionar proceso de examen oficial"
-          >
-            {EXAM_YEARS.map((y) => (
-              <option key={y.id} value={y.id}>
-                {y.name}
-              </option>
-            ))}
-          </select>
+          {/* Custom Exam Process Dropdown */}
+          <div className="custom-dropdown-container" ref={dropdownRef}>
+            <button
+              id="custom-exam-select-trigger"
+              className={`custom-dropdown-trigger ${isDropdownOpen ? 'open' : ''}`}
+              onClick={() => setIsDropdownOpen((prev) => !prev)}
+              aria-haspopup="listbox"
+              aria-expanded={isDropdownOpen}
+              title="Seleccionar proceso oficial"
+            >
+              <span className="selected-process-text">
+                {selectedYear === 'ai' ? 'Examen IA Personalizado' : currentYearObj.short || currentYearObj.name}
+              </span>
+              <ChevronDown size={15} className={`dropdown-chevron ${isDropdownOpen ? 'rotate' : ''}`} />
+            </button>
 
-          {/* Font Size Adjusters */}
-          <button
-            id="btn-font-decrease"
-            className="action-btn-sm"
-            onClick={onDecreaseFontSize}
-            title="Disminuir tamaño de letra"
-          >
-            <ZoomOut size={16} />
-          </button>
-          <button
-            id="btn-font-increase"
-            className="action-btn-sm"
-            onClick={onIncreaseFontSize}
-            title="Aumentar tamaño de letra"
-          >
-            <ZoomIn size={16} />
-          </button>
+            {isDropdownOpen && (
+              <div className="custom-dropdown-menu" role="listbox">
+                <div className="dropdown-menu-header">
+                  <span>PROCESO OFICIAL SERUMS</span>
+                </div>
+                <div className="dropdown-options-list">
+                  {EXAM_YEARS.map((y) => {
+                    const isSelected = selectedYear === y.id;
+                    return (
+                      <button
+                        key={y.id}
+                        className={`dropdown-option-item ${isSelected ? 'active' : ''}`}
+                        onClick={() => {
+                          onSelectYear(y.id);
+                          setIsDropdownOpen(false);
+                        }}
+                        role="option"
+                        aria-selected={isSelected}
+                      >
+                        <div className="option-info">
+                          <span className="option-name">{y.name}</span>
+                          <span className="option-count">
+                            {y.id === 'all' ? '500 preguntas' : '100 preguntas'}
+                          </span>
+                        </div>
+                        {isSelected && <Check size={16} className="option-check-icon" />}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
 
-          {/* Print / Export */}
-          <button
-            id="btn-open-export"
-            className="action-btn-sm"
-            onClick={onOpenExport}
-            title="Imprimir o Exportar Examen"
-          >
-            <Printer size={16} />
-            <span>Imprimir</span>
-          </button>
+          {/* Desktop Utilities */}
+          <div className="desktop-controls-group">
+            <button
+              id="btn-font-decrease"
+              className="icon-circle-btn"
+              onClick={onDecreaseFontSize}
+              title="Reducir fuente"
+            >
+              <ZoomOut size={15} />
+            </button>
+            <button
+              id="btn-font-increase"
+              className="icon-circle-btn"
+              onClick={onIncreaseFontSize}
+              title="Aumentar fuente"
+            >
+              <ZoomIn size={15} />
+            </button>
+            <button
+              id="btn-open-export"
+              className="icon-circle-btn"
+              onClick={onOpenExport}
+              title="Imprimir / Exportar"
+            >
+              <Printer size={15} />
+            </button>
+          </div>
 
-          {/* Theme Toggle */}
+          {/* Theme Toggle Button */}
           <button
             id="btn-theme-toggle"
-            className="theme-toggle-btn"
+            className="theme-toggle-circle-btn"
             onClick={onToggleTheme}
             title={theme === 'dark' ? 'Cambiar a modo Claro' : 'Cambiar a modo Oscuro'}
+            aria-label="Cambiar tema"
           >
-            {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
-            <span>{theme === 'dark' ? 'Claro' : 'Oscuro'}</span>
+            {theme === 'dark' ? <Sun size={17} className="sun-icon" /> : <Moon size={17} className="moon-icon" />}
+          </button>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            id="btn-mobile-menu"
+            className="mobile-menu-btn"
+            onClick={onToggleMobileMenu}
+            aria-label="Abrir menú"
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>

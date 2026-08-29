@@ -4,138 +4,73 @@ description: >-
   Guía maestra, marco normativo, matriz de competencias, normas técnicas (NTS) y banco de preguntas verificadas para la preparación y resolución experta del Examen Nacional SERUMS de Medicina del Ministerio de Salud del Perú (MINSA).
 ---
 
-# Examen Nacional SERUMS Medicina - Guía Integral y Solucionario Experto
+# Examen Nacional SERUMS Medicina 2026 - Guía Integral y Solucionario Experto
 
-Este skill proporciona el marco teórico, metodológico, normativo y clínico para la preparación y resolución de preguntas del **Examen de Evaluación para el Servicio Rural y Urbano Marginal de Salud (SERUMS)** del Ministerio de Salud (MINSA) del Perú, regulado por la **Ley N° 23330** y sus modificatorias.
-
----
-
-## 1. Marco Normativo y Estructura del Examen
-
-### 1.1. Fundamentos Legales
-- **Ley N° 23330**: Ley del Servicio Rural y Urbano Marginal de Salud (SERUMS).
-- **Decreto Supremo N° 007-2008-SA**: Reglamento de la Ley del SERUMS.
-- **Resolución Ministerial MINSA (Evaluación SERUMS)**: Dispone la implementación de la prueba nacional estructurada de 100 preguntas de opción múltiple con única respuesta correcta, diseñada para medir competencias clínicas y de salud pública en el primer nivel de atención (I-1, I-2, I-3, I-4).
-
-### 1.2. Parámetros de Evaluación
-- **Número de preguntas**: 100 preguntas.
-- **Tiempo asignado**: 2 horas y 30 minutos a 3 horas (1.5 min por pregunta).
-- **Sistema de calificación**: Escala vigesimal (0.00 a 20.00). Cada acierto equivale a 0.20 puntos.
-- **Puntaje aprobatorio referencial**: Nota mínima de 11.00 (55 aciertos) para plazas remuneradas de alta prioridad.
-- **Estructura de las preguntas**: Casos clínicos integrados y preguntas directas de gestión/normativa con 4 opciones (A, B, C, D) o 5 opciones (A, B, C, D, E).
+Este skill proporciona el marco teórico, metodológico, normativo y clínico para la preparación y resolución de preguntas del **Examen de Evaluación para el Servicio Rural y Urbano Marginal de Salud (SERUMS)** del Ministerio de Salud (MINSA) del Perú, regulado por la **Ley N° 23330**, sus modificatorias y el **Temario Oficial SERUMS 2026-II**.
 
 ---
 
-## 2. Matriz de Competencias y Áreas Temáticas MINSA
+## 1. Marco Normativo y Parámetros del Examen 2026
 
-El examen prioriza los problemas de salud más frecuentes en el Perú y las funciones del médico serumista en el primer nivel de atención:
+- **Normativa Base**: Ley N° 23330, DS N° 007-2008-SA, RM de convocatoria y evaluación anual SERUMS.
+- **Estructura**: 100 preguntas de opción múltiple con 4 o 5 distractores y única respuesta correcta.
+- **Tiempo**: 2 horas (120 minutos) a 2.5 horas.
+- **Sistema de Calificación**: Escala vigesimal (0.00 a 20.00). Cada acierto = 0.20 puntos.
+- **Nota Aprobatoria Referencial**: 11.00 (55 aciertos mínimos).
+- **Enfoque Evaluativo**: Casos clínicos contextualizados en el Primer Nivel de Atención (I-1, I-2, I-3, I-4), salud pública comunitaria, programas presupuestales y normatividad sanitaria vigente al 2026.
+
+---
+
+## 2. Temario Oficial SERUMS 2026-II (MINSA) - 5 Bloques Temáticos
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                 DISTRIBUCIÓN TEMÁTICA SERUMS               │
-├─────────────────────────────────────────────────────────────┤
-│ 1. Salud Pública y Epidemiología                 (20% - 25%)│
-│ 2. Gestión en Salud y Atención Primaria (RIS/MAIS)(15% - 20%)│
-│ 3. Medicina Interna e Infectología Regional      (20% - 25%)│
-│ 4. Pediatría, CRED y Nutrición Infantil (Anemia) (15% - 20%)│
-│ 5. Ginecología, Obstetricia y Salud Materna      (15% - 20%)│
-│ 6. Cirugía General, Trauma y Emergencias         (5% - 10%) │
-│ 7. Ética, Bioética y Deontología Médica          (3% - 5%)  │
-└─────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────┐
+│                    BLOQUES TEMÁTICOS OFICIALES MINSA 2026                  │
+├────────────────────────────────────────────────────────────────────────────┤
+│ BLOQUE 1: SALUD PÚBLICA (FESP, Epidemiología, ASIS, Comunitaria, Bio)      │
+│ BLOQUE 2: CUIDADO INTEGRAL DE SALUD POR CURSO DE VIDA (Niño/Gestante/Adulto)│
+│ BLOQUE 3: ÉTICA E INTERCULTURALIDAD (Deontología, Parto Vertical, Enfoque) │
+│ BLOQUE 4: INVESTIGACIÓN EN SALUD (Metodología, Bioestadística, Publicación)│
+│ BLOQUE 5: GESTIÓN DE SERVICIOS DE SALUD (PEI/POI, ROF, Categorización, RIS)│
+└────────────────────────────────────────────────────────────────────────────┘
 ```
 
----
+### 2.1. Bloque 1: Salud Pública
+- **Métodos y Aplicaciones**: Funciones Esenciales de la Salud Pública (FESP), Indicadores epidemiológicos (Incidencia acumulada, densidad de incidencia, prevalencia, letalidad, mortalidad materna e infantil), Criterios de causalidad de Bradford Hill, Demografía (transición demográfica y epidemiológica), Historia natural de la enfermedad (Leavell y Clark), Niveles de Prevención (Primaria, Secundaria, Terciaria y Cuaternaria), Pruebas diagnósticas (Sensibilidad, Especificidad, VPP, VPN, Likelihood Ratio), Brotes, Epidemias y Endemias (Canal endémico: Éxito, Seguridad, Alerta, Epidemia).
+- **Salud Comunitaria**: Determinantes sociales intermedios y estructurales (OMS/Dahlgren-Whitehead), Sectorización, Ficha Familiar, Plan de Salud Local, Sistemas de Información (HIS-MINSA, SIS, Receta Electrónica), Manejo de Residuos Sólidos (NTS DIGESA: Rojo biocontaminado, Amarillo especial/químico, Negro común), Salud Ocupacional y Salud Mental Comunitaria.
+- **Promoción y Bioseguridad**: Estrategia IEC (Información, Educación, Comunicación), Bioseguridad y Gestión del Riesgo ante Emergencias y Desastres en Salud.
 
-## 3. Normas Técnicas de Salud (NTS) de Alta Rentabilidad
+### 2.2. Bloque 2: Cuidado Integral de Salud por Curso de Vida
+- **Cuidado del Niño y Adolescente**:
+  - **NTS N° 213-MINSA/DGIESP-2024 (Anemia)**: Suplementación preventiva con hierro elemental (2 mg/kg/día) desde los 4 meses (o 30 días en prematuros/bajo peso) hasta los 6 meses. Tratamiento de anemia: 3 mg/kg/día durante 6 meses continuos. Control de Hb al 1°, 3° y 6° mes. Factor de ajuste por altitud (Peña-Dallman).
+  - **NTS N° 196-MINSA/DGIESP-2022 (Vacunación 2024-2026)**: Recién nacido (BCG + HB <12h); 2 y 4 meses (Pentavalente + IPV + Rotavirus + Neumococo); 6 meses (Pentavalente + IPV + Influenza); 7 meses (Influenza 2da); 12 meses (SPR 1ra + Neumococo 3ra + Varicela + Influenza); 18 meses (SPR 2da + DPT 1er ref + IPV 1er ref + AMA); 4 años (DPT 2do ref + IPV 2do ref); VPH (dosis única en escolares 9-18 años). Cadena de frío estricta de +2°C a +8°C. Vigilancia de ESAVI.
+  - **CRED, Desnutrición Infantil, EDA (Planes A, B, C de Rehidratación Oral/IV) e IRA (AIEPI)**.
+- **Cuidado del Adulto y Adulto Mayor**:
+  - **NTS N° 221-MINSA/DGIESP-2024 (Tuberculosis 2025-2026)**: Sintomático respiratorio (tos ≥15 días), diagnóstico rápido molecular (GeneXpert MTB/RIF), esquema sensible 2HREZ (50 dosis) / 4H3R3 (54 dosis). Terapia Preventiva de TB (TPT): 3HP (Isoniazida + Rifapentina semanal x 12 dosis) o 6H/9H.
+  - **NTS N° 211-MINSA/DGIESP-2024 (Dengue y Arbovirosis)**: Clasificación (Sin signos de alarma A, Con signos de alarma B1/B2, Grave C por fuga plasmática/shock). Hidratación isotónica precoz con ClNa 0.9%. CONTRAINDICACIÓN ABSOLUTA: AINEs (metamizol, ibuprofeno, aspirina) y vía IM.
+  - **Enfermedades No Transmisibles**: HTA (Guía MINSA, metas <140/90 o <130/80 con riesgo CV), Diabetes Mellitus tipo 2 (tamizaje con glucemia en ayunas ≥126 mg/dL o HbA1c ≥6.5%), Prevención de cáncer (Próstata, Colon, Piel).
+  - **Intoxicaciones y Metales Pesados**: Plomo, mercurio, arsénico, intoxicación aguda por organofosforados (Atropina en bolos escalonados hasta atropinización + Pralidoxima).
+- **Cuidado de la Salud Materna y Neonatal**:
+  - **Control Prenatal Reenfocado**: Mínimo 6 controles; Tamizaje dual PRD (VIH + Sífilis) en 1er y 3er trimestre; Suplementación gestante: 60 mg hierro elemental + 400 ug ácido fólico desde la semana 14.
+  - **Preeclampsia Severa / Eclampsia**: Manejo antihipertensivo (Nifedipino 10-20 mg VO, Labetalol o Hidralazina) + Prevención de convulsiones con **Sulfato de Magnesio** (Esquema Zuspan: bolo 4 g IV en 20 min + infusión 1-2 g/h). Control estricto de reflejo rotuliano, FR ≥16 y diuresis ≥30 ml/h. Antídoto: **Gluconato de Calcio al 10%** (1 g IV lento).
+  - **Hemorragia Postparto (Código Rojo)**: Regla de las 4T (Tono 70%, Trauma 20%, Tejido 10%, Trombina 1%). Masaje uterino bimanual + Oxitocina (20-40 UI en 1000 cc) + Ergometrina (contraindicada en preeclampsia) / Misoprostol (800 ug rectal o sublingual) + Ácido Tranexámico 1 g IV (<3 horas del parto).
+  - **Prevención de Transmisión Materno-Infantil**: VIH (TARV triple a toda gestante, cesárea programada si carga viral >1000 copias, suspensión de lactancia materna + fórmula maternizada, profilaxis con Zidovudina al RN), Sífilis gestacional (Penicilina Benzatínica 2.4 millones UI IM semanal x 3 dosis).
 
-### 3.1. Anemia Infantil y Suplementación (NTS N° 213-MINSA/DGIESP-2024)
-- **Definición de Anemia en niños 6 a 59 meses a nivel del mar**: Hb < 11.0 g/dL.
-  - Leve: 10.0 - 10.9 g/dL.
-  - Moderada: 7.0 - 9.9 g/dL.
-  - Severa: < 7.0 g/dL.
-- **Factor de Corrección por Altitud**: Se resta a la Hb observada según la altitud sobre el nivel del mar (m.s.n.m.). A partir de los 1,000 m.s.n.m.
-- **Esquema de Suplementación Preventiva**:
-  - *Prematuros / Bajo peso al nacer (< 2500 g)*: Desde los 30 días de vida hasta los 6 meses, dosis de **2 mg/kg/día** de hierro elemental.
-  - *Nacidos a término con peso adecuado*: Desde los 4 meses hasta los 6 meses, dosis de **2 mg/kg/día** de hierro elemental en gotas.
-- **Tratamiento de Anemia (6 a 59 meses)**:
-  - Dosis terapéutica: **3 mg/kg/día** de hierro elemental por 6 meses consecutivos.
-  - Dosaje de Hb de control al mes, a los 3 meses y a los 6 meses.
+### 2.3. Bloque 3: Ética e Interculturalidad
+- **Bioética Médica**: Principios de Beauchamp y Childress (Autonomía, Beneficencia, No Maleficencia, Justicia). Consentimiento informado, secreto profesional y objeción de conciencia.
+- **Interculturalidad en Salud**: Enfoque de pertinencia cultural, adecuación cultural del parto (**Parto Vertical - NTS N° 030-MINSA**), diálogo intercultural con agentes tradicionales de salud (parteras, curanderos), respeto a la cosmovisión andino-amazónica.
 
-### 3.2. Dengue y Metaxénicas (NTS Dengue MINSA)
-- **Agente y Vector**: Virus Dengue (Flavivirus, 4 serotipos DENV 1-4) transmitido por *Aedes aegypti*.
-- **Clasificación Clínica**:
-  1. *Dengue sin signos de alarma*: Fiebre + cefalea, dolor retroocular, mialgias, artralgias, exantema (islas blancas en mar rojo), leucopenia.
-  2. *Dengue con signos de alarma*: Dolor abdominal intenso y continuo, vómitos persistentes, acumulación de líquidos (ascitis, derrame pleural), sangrado de mucosas, letargo/irritabilidad, hipotensión postural, hepatomegalia > 2 cm, aumento progresivo del hematocrito con rápida caída de plaquetas.
-  3. *Dengue grave*: Extravasación severa de plasma que lleva a choque por dengue o dificultad respiratoria, hemorragias graves, compromiso orgánico severo (miocarditis, hepatitis con transaminasas > 1000, encefalitis).
-- **Manejo Terapéutico Clave**:
-  - Hidratación oral con suero de rehidratación en Grupo A.
-  - Cristaloide isotónico IV (Cloruro de Sodio 0.9%) a 10 ml/kg en la 1ra hora en Grupo B2 (signos de alarma).
-  - Contraindicados absolutamente: AINEs (ibuprofeno, diclofenaco, metamizol intramuscular, aspirina) y corticoides. Uso exclusivo de Paracetamol.
+### 2.4. Bloque 4: Investigación en Salud
+- **Diseños Metodológicos**: Estudios observacionales (Descriptivos, Transversales, Casos y Controles con OR, Cohortes con RR) vs. Experimentales (Ensayos Clínicos Aleatorizados).
+- **Aspectos Éticos**: Declaración de Helsinki, CIOMS, Comité de Ética en Investigación, Prevención de plagio, fraude científico y publicación duplicada.
 
-### 3.3. Tuberculosis (NTS N° 104-MINSA/DGSP)
-- **Sintomático Respiratorio**: Persona con tos productiva por 15 días a más. En el establecimiento se solicita BK directo en esputo (2 muestras).
-- **Esquema Sensible (2HREZ / 4H3R3)**:
-  - Fase Inicial (2 meses - 50 dosis diario): Isoniazida (H), Rifampicina (R), Etambutol (E), Pirazinamida (Z).
-  - Fase de Consolidación (4 meses - 54 dosis 3 veces/semana): Isoniazida (H) y Rifampicina (R).
-- **Efectos Adversos Principales (RAM)**:
-  - *Isoniazida*: Neuritis periférica (prevenir con Piridoxina / Vit B6), hepatitis.
-  - *Rifampicina*: Coloración naranja de fluidos corporales, colestasis/hepatitis, trombocitopenia.
-  - *Pirazinamida*: Hiperuricemia (artralgias), mayor hepatotoxicidad.
-  - *Etambutol*: Neuritis óptica retrobulbar (disminución de agudeza visual y discriminación verde-rojo).
-
-### 3.4. Salud Materno-Perinatal y Emergencias Obstétricas
-- **Control Prenatal Reenfocado**: Mínimo 6 atenciones prenatales (idealmente primera atención antes de las 14 semanas).
-- **Preeclampsia / Eclampsia**:
-  - Criterio diagnóstico: PA ≥ 140/90 mmHg después de la semana 20 + proteinuria (≥ 300 mg/24h o índice proteinuria/creatininuria ≥ 0.3) o signos de daño de órgano blanco (criterios de severidad).
-  - Prevención de convulsiones (Eclampsia): **Sulfato de Magnesio** según esquema de Zuspan (4 g IV de carga en 20 min, luego 1 g/hora en infusión continua).
-  - Antídoto de intoxicación por Sulfato de Magnesio: **Gluconato de Calcio al 10%** (1 g IV lento).
-- **Hemorragia Posparto (Código Rojo)**:
-  - Definición: Pérdida hemática > 500 mL en parto vaginal o > 1000 mL en cesárea.
-  - Regla de las 4T:
-    1. *Tono (70%)*: Atonía uterina. Tratamiento: Masaje bimanual + Oxitocina (20-40 UI en 1000 cc ClNa 0.9%) + Ergometrina / Misoprostol / Ácido Tranexámico 1g IV dentro de las primeras 3 horas.
-    2. *Trauma (20%)*: Desgarro de canal de parto, rotura uterina, inversión uterina.
-    3. *Tejido (10%)*: Restos placentarios o membranas ovulares.
-    4. *Trombina (1%)*: Coagulopatías.
-
----
-
-## 4. Gestión en Salud, Epidemiología y Atención Primaria
-
-### 4.1. Indicadores Epidemiológicos
-- **Incidencia Acumulada**: Proporción de individuos sanos que desarrollan la enfermedad en un periodo determinado (Casos nuevos / Población en riesgo al inicio).
-- **Tasa de Incidencia (Densidad)**: Casos nuevos / Personas-tiempo de observación.
-- **Prevalencia**: Proporción de la población que presenta la enfermedad en un punto en el tiempo (Casos existentes / Población total). Mide la carga de la enfermedad.
-- **Sensibilidad**: Capacidad de una prueba para identificar correctamente a los enfermos (Verdaderos Positivos / Total Enfermos).
-- **Especificidad**: Capacidad para identificar a los sanos (Verdaderos Negativos / Total Sanos).
-- **Valor Predictivo Positivo (VPP)**: Probabilidad de estar enfermo teniendo prueba positiva. A mayor prevalencia en la población, mayor VPP.
-
-### 4.2. Niveles de Prevención de Leavell y Clark
-- **Prevención Primordial**: Modificación de condiciones socioeconómicas y patrones de vida para evitar la emergencia de factores de riesgo.
-- **Prevención Primaria**: Protección específica (vacunación, uso de preservativos, fluoración del agua) y promoción de la salud antes de que aparezca la enfermedad.
-- **Prevención Secundaria**: Diagnóstico precoz y tratamiento oportuno (screening/tamizaje, mamografía, PAP, dosaje de glucosa) en fase preclínica.
-- **Prevención Terciaria**: Rehabilitación, prevención de complicaciones y secuelas (fisioterapia post-ACV, control estricto de pie diabético).
-- **Prevención Cuaternaria**: Prevención de la iatrogenia y del sobrediagnóstico/sobretratamiento médico innecesario.
-
-### 4.3. Categorización de Establecimientos de Salud (NTS N° 021-MINSA)
-- **I-1 (Puesto de Salud)**: Personal técnico de enfermería / sanitario, médico no permanente.
-- **I-2 (Puesto de Salud con Médico)**: Médico general, enfermera, obstetra. Consulta médica ambulatoria.
-- **I-3 (Centro de Salud sin Internamiento)**: Médico general, odontólogo, laboratorio clínico básico, farmacia.
-- **I-4 (Centro de Salud con Internamiento / Centro Materno Infantil)**: Médico general y especialistas básicos (Gineco-obstetra / Pediatra / Médico de Familia), internamiento de corta estancia (hasta 48h), sala de partos 24 horas, atención de urgencias y emergencias las 24 horas.
-
----
-
-## 5. Estrategia y Heurísticas para Responder Preguntas MINSA
-
-1. **Jerarquía Normativa MINSA**: Si una pregunta menciona un protocolo peruano o NTS vigente, la respuesta correcta es la que indica la norma técnica peruana, incluso si guías internacionales (AHA, ADA, NICE) presentan valores ligeramente distintos.
-2. **Contexto de Primer Nivel de Atención**: En escenarios del serumista en puestos I-1 a I-3, la conducta inicial siempre prioriza la estabilización, el inicio precoz de tratamiento básico normado y la **referencia oportuna** en cadena de frío o con vía segura.
-3. **Descarte de Opciones Extremas**: Descartar opciones con palabras categóricas como "siempre", "nunca", "en el 100% de los casos" a menos que se trate de contraindicaciones absolutas normadas (ej. AINEs en sospecha de Dengue).
-4. **Enfoque de Curso de Vida y Determinantes Sociales**: Reconocer el Modelo de Cuidado Integral de Salud por Curso de Vida (Niño, Adolescente, Joven, Adulto, Adulto Mayor).
-
----
-
-## 6. Historial de Procesos Evaluados
-
-- **SERUMS 2024-II**: 100 preguntas evaluadas (Medicina I / II). Énfasis en Salud Pública, Anemia Infantil, ASIS y Enfermedades Metaxénicas.
-- **SERUMS 2025-I**: 100 preguntas evaluadas (Medicina Tipo A / B). Énfasis en Prevención Cuaternaria, Programas Presupuestales, Manejo Obstétrico y Salud Mental en APS.
-- **SERUMS 2025-II**: 100 preguntas evaluadas. Énfasis en Emergencias Pediátricas, Manejo de Brotes, Farmacovigilancia y Gestión SISMED.
-- **SERUMS 2026-I**: 100 preguntas evaluadas. Énfasis en Guías Clínicas Actualizadas, Normas Técnicas 2024-2025, Enfoque Familiar y Comunitario.
+### 2.5. Bloque 5: Gestión de Servicios de Salud
+- **Planeamiento y Presupuesto**: Planes Estratégicos (PEI), Planes Operativos Institucionales (POI), Análisis FODA, Programas Presupuestales por Resultados (PpR: Salud Materno-Neonatal, Articulado Nutricional, TBC/VIH, Metaxénicas).
+- **Categorización de Establecimientos (NTS N° 021-MINSA)**:
+  - **I-1**: Puesto de salud sin médico permanente (Técnico de enfermería / Enfermera / Obstetra).
+  - **I-2**: Puesto de salud con Médico general permanente.
+  - **I-3**: Centro de salud con Médico general, Odontología, Laboratorio de análisis clínicos, atención de 12 horas.
+  - **I-4**: Centro de salud con Camas de internamiento de corta estancia, Sala de Partos y atención médica continua de 24 horas.
+  - **II-1 a III-2**: Hospitales generales e Institutos especializados de alta complejidad.
+- **Redes Integradas de Salud (RIS - DL 1497 / RM 826-MINSA)**: 4 Dimensiones de articulación: Gobernanza, Prestación, Gestión, Financiamiento.
+- **Sistemas de Gestión**: SISMED (suministro de medicamentos esenciales, trazabilidad y stock mínimo), Sistema de Referencia y Contrarreferencia (criterios de oportunidad y traslado asistido), Garantía de la Calidad y Seguridad del Paciente (Rondas de seguridad, eventos adversos e incidentes).

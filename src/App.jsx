@@ -93,6 +93,8 @@ export function App() {
     return QUESTIONS_DATA.filter((q) => q.year === selectedYear);
   }, [selectedYear, customAiExam]);
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className="app-container">
       <Header
@@ -107,6 +109,8 @@ export function App() {
         onIncreaseFontSize={handleIncreaseFontSize}
         onDecreaseFontSize={handleDecreaseFontSize}
         onOpenExport={() => setShowExportModal(true)}
+        isMobileMenuOpen={isMobileMenuOpen}
+        onToggleMobileMenu={() => setIsMobileMenuOpen((prev) => !prev)}
       />
 
       <NavigationBar
@@ -114,9 +118,13 @@ export function App() {
         onSelectTab={(tab) => {
           if (tab !== 'exam') setCustomAiExam(null);
           setActiveTab(tab);
+          setIsMobileMenuOpen(false);
         }}
         mistakesCount={mistakes.length}
         savedCount={Object.keys(savedQuestions).length}
+        isMobileMenuOpen={isMobileMenuOpen}
+        onCloseMobileMenu={() => setIsMobileMenuOpen(false)}
+        onOpenMobileMenu={() => setIsMobileMenuOpen(true)}
       />
 
       <div className="content-wrapper">

@@ -1,4 +1,4 @@
-// Service to communicate with NVIDIA NIM API for Medical AI question generation
+import AI_PROMPTS from '../data/aiPrompts.json';
 
 const DEFAULT_API_KEY = import.meta.env.VITE_NVIDIA_API_KEY || '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';
 const MODEL_NAME = 'meta/llama-3.2-11b-vision-instruct';
@@ -10,16 +10,6 @@ function getEndpoint() {
   }
   return 'https://integrate.api.nvidia.com/v1/chat/completions';
 }
-
-const CATEGORY_DESCRIPTIONS = {
-  salud_publica: 'Área Salud Pública (Temario 2026-II): FESP, Epidemiología, Criterios de Bradford Hill, Demografía, Historia Natural, Prevención 1°-4°, Pruebas diagnósticas (S/E/VPP/VPN), Brotes/Epidemias/Endemias, Vigilancia en Salud Pública, ASIS/Sala Situacional, Determinantes Sociales/Ambientales, Sectorización y Ficha Familiar, Residuos Sólidos, Salud Mental Comunitaria y Bioseguridad',
-  gestion_aps: 'Área Gestión de Servicios de Salud (Temario 2026-II): PEI/POI, ROF/MOP, Categorización EESS (I-1 a I-4), UPSS y Cartera de Servicios, Referencia y Contrarreferencia, Gestión de Historia Clínica, Redes Integradas de Salud (RIS), Telesalud, Recursos Humanos, Control de Inventario SISMED, Seguridad del Paciente, Clima y Cultura Organizacional',
-  medicina_interna: 'Área Cuidado Integral del Adulto (Temario 2026-II): Prevención y Control de TBC (NTS 221, GeneXpert, 2HREZ/4H3R3, TPT), Dengue y Arbovirosis (NTS, hidratación isotónica, contraindicación AINEs), ITS/VIH (Prevención combinada, tamizaje PRD, TARV), Diabetes, Hipertensión, Metales Pesados/Intoxicaciones agudas, IAAS y Prevención de Cáncer en el Adulto (próstata, colon, piel)',
-  pediatria: 'Área Cuidado Integral del Niño y Adolescente (Temario 2026-II): NTS Anemia 2024 (3 mg/kg/d tratamiento, 2 mg/kg/d prevención), Esquema Nacional de Vacunación (BCG, Pentavalente, IPV, Rotavirus, Neumococo, SPR, Varicela, DPT, VPH), Vigilancia de ESAVI, Cadena de Frío (+2°C a +8°C), CRED, Desnutrición Infantil, IRA, EDA y Detección Temprana de Cáncer Infantil',
-  gineco_obstetricia: 'Área Cuidado Integral Salud Materna (Temario 2026-II): Control Prenatal (mínimo 6, PRD VIH/Sífilis, 60mg Fe + 400ug ácido fólico), Preeclampsia Severa (Sulfato de Magnesio / Esquema Zuspan / Gluconato de calcio), Emergencias Obstétricas y Código Rojo (4T, masaje bimanual, oxitocina, ergometrina, misoprostol, ácido tranexámico), Parto Vertical, Climaterio y Tamizaje de Cáncer de Cuello Uterino (PAP/VPH) y Mama',
-  cirugia_trauma: 'Área Urgencias y Manejo Inicial (Temario 2026-II): Evaluación y estabilización inicial de Urgencias y Emergencias en Primer Nivel, Abdomen Agudo, Trauma Inicial, Quemaduras, Heridas, Criterios de Referencia y Traslado Seguro',
-  etica_legal: 'Área Ética, Bioética, Interculturalidad e Investigación (Temario 2026-II): Código de Ética y Deontología, Trato Digno, Consentimiento Informado, Derechos del Usuario, Diálogo e Inclusión Intercultural, Medicina Tradicional/Complementaria, Metodología de Investigación (enfoques cuali/cuanti/mixto, estudios descriptivo/analítico/experimental, procesamiento de datos, fraude científico y conflicto de intereses)'
-};
 
 export async function generateSingleQuestion({
   category = 'all',
@@ -35,26 +25,15 @@ export async function generateSingleQuestion({
   let promptTopic = '';
   if (topic && topic.trim()) {
     promptTopic = `específicamente sobre el tema: "${topic.trim()}"`;
-  } else if (category && category !== 'all' && CATEGORY_DESCRIPTIONS[category]) {
-    promptTopic = `obligatoriamente sobre el bloque oficial: "${CATEGORY_DESCRIPTIONS[category]}"`;
+  } else if (category && category !== 'all' && AI_PROMPTS.categoryTopics[category]) {
+    promptTopic = `obligatoriamente sobre el bloque oficial: "${AI_PROMPTS.categoryTopics[category]}"`;
   } else {
     promptTopic = `sobre cualquiera de los 5 Bloques Oficiales del Temario SERUMS 2026-II (Salud Pública, Cuidado Integral, Ética e Interculturalidad, Investigación, Gestión de Servicios de Salud)`;
   }
 
-  const systemPrompt = `Eres un docente médico senior evaluador del MINSA Perú y redactor oficial del Examen Nacional SERUMS 2026-II.
-Tu labor es generar preguntas inéditas de alta fidelidad, con rigor clínico y 100% alineadas al TEMARIO OFICIAL DEL SERUMS 2026-II DEL MINSA (Bloques: 1. Salud Pública, 2. Cuidado Integral de Salud por Curso de Vida, 3. Ética e Interculturalidad, 4. Investigación, 5. Gestión de Servicios de Salud) y sus Normas Técnicas (NTS Anemia 2024, NTS Tuberculosis 2024-2026, NTS Dengue, Esquema Nacional de Vacunación, NTS Salud Materna, RIS y MAIS-BFC).
-
-ESTRUCTURA DE RESPUESTA REQUERIDA (ÚNICAMENTE JSON VÁLIDO):
-{
-  "question": "Enunciado del caso clínico contextualizado en un establecimiento de salud del MINSA (I-1 a I-4) o pregunta técnica...",
-  "options": { "A": "Opción A", "B": "Opción B", "C": "Opción C", "D": "Opción D" },
-  "correctAnswer": "A",
-  "category": "${category !== 'all' ? category : 'salud_publica'}",
-  "pearl": "Perla de estudio de alto rendimiento citando el punto específico del Temario 2026-II y la NTS del MINSA aplicable.",
-  "explanation": "Justificación clínica precisa de la respuesta correcta y motivo de descarte de los distractores."
-}`;
-
-  const userPrompt = `Genera 1 pregunta inédita alineada al Temario Oficial SERUMS 2026-II ${promptTopic} (Nivel de Dificultad: ${difficulty}).`;
+  const difficultyDesc = AI_PROMPTS.difficultyDescriptions[difficulty] || difficulty;
+  const systemPrompt = AI_PROMPTS.systemPrompt;
+  const userPrompt = `Genera 1 pregunta inédita alineada al Temario Oficial SERUMS 2026-II ${promptTopic} (Nivel de Dificultad: ${difficulty} - ${difficultyDesc}).`;
 
   let response;
   try {
