@@ -1,0 +1,1202 @@
+[
+  {
+    "original_num": 1,
+    "question": "¿Cómo se denomina al caso nuevo de diabetes que fue diagnosticado en el establecimiento de salud, durante la atención a un adulto mayor?",
+    "options": {
+      "A": "Prevalente",
+      "B": "Incidente",
+      "C": "Confirmado",
+      "D": "Sospechoso"
+    },
+    "correct_answer": "B",
+    "page": 1
+  },
+  {
+    "original_num": 2,
+    "question": "La determinación de la valoración nutricional antropométrica durante la gestación debe realizarse en base a tres indicadores. ¿Cuál es el primer indicador que se debe aplicar?",
+    "options": {
+      "A": "Altura uterina según edad gestacional",
+      "B": "Índice de masa corporal durante la adolescencia",
+      "C": "Ganancia de peso en el primer trimestre",
+      "D": "Índice de masa corporal pre gestacional"
+    },
+    "correct_answer": "D",
+    "page": 1
+  },
+  {
+    "original_num": 3,
+    "question": "En la relación clínica médico-paciente de acuerdo a la ética. ¿Cuál es el principio que rige?",
+    "options": {
+      "A": "Jurisprudencia",
+      "B": "Autonomía",
+      "C": "Justicia",
+      "D": "No-maleficencia"
+    },
+    "correct_answer": "D",
+    "page": 1
+  },
+  {
+    "original_num": 4,
+    "question": "El hospital nacional docente de Lima, para optimizar la gestión de sus procesos administrativos, docentes, clínicos y de investigación requiere que se realice la programación en el Plan Operativo Institucional multianual, las actividades operativas y de Inversiones necesarias para implementar las Acciones Estratégicas Institucionales (AEI), definidas en el Plan Estratégico Institucional (PEI). ¿Cuál es el período de vigencia en años como máximo, del POI multianual?",
+    "options": {
+      "A": "10",
+      "B": "5",
+      "C": "2",
+      "D": "3"
+    },
+    "correct_answer": "D",
+    "page": 1
+  },
+  {
+    "original_num": 5,
+    "question": "¿Cuál es el criterio epidemiológico de causalidad, que define que la coherencia interna de la asociación depende de la existencia de una relación unidireccional de la curva de dosis-respuesta entre el factor y la enfermedad?",
+    "options": {
+      "A": "Evidencia experimental",
+      "B": "Ausencia de distorsiones metodológicas",
+      "C": "Consistencia de los resultados",
+      "D": "Gradiente biológico"
+    },
+    "correct_answer": "D",
+    "page": 1
+  },
+  {
+    "original_num": 6,
+    "question": "Gestante de 25 años G1P000; EG: 40 semanas por FUR, en período expulsivo hace 2 horas. Examen: FC: 84 X’; FR: 22X’; T°: 36.6 °C; PA: 100/60 mmHg. Examen: AU: 36 cm. Feto: LCD. FCF: 132 X’. MF: ++/++. TV: D:10 cm; I: 100%; AP: -2; M: rotas (LM Fluido); VPPF: OIIA. A la reevaluación: FC: 112 X’; FR: 25 X’; T°: 36.6 °C; PA: 80/50 mmHg. Las contracciones uterinas han cesado y se palpan partes fetales fácilmente. FCF: 86 X’. ¿Cuál es el diagnóstico más probable?",
+    "options": {
+      "A": "Ruptura uterina",
+      "B": "Parto obstruido",
+      "C": "Trabajo de parto disfuncional",
+      "D": "Muerte fetal"
+    },
+    "correct_answer": "A",
+    "page": 1
+  },
+  {
+    "original_num": 7,
+    "question": "Si se debe tomar decisiones con la media. ¿Cuál es la medida de dispersión asociada?",
+    "options": {
+      "A": "Curtosis",
+      "B": "Varianza",
+      "C": "Rango intercuartílico",
+      "D": "Desviación estándar"
+    },
+    "correct_answer": "D",
+    "page": 1
+  },
+  {
+    "original_num": 8,
+    "question": "Para conocer y saber cuáles son las funciones, objetivos y la necesidad de contar con determinado puesto, es necesario identificar el propósito del puesto con las preguntas siguientes:",
+    "options": {
+      "A": "¿Qué formación?, ¿Dónde?, ¿Para qué?, ¿De acuerdo a qué perfil?",
+      "B": "¿Qué sabe?, ¿Dónde?, ¿Para cuándo?, ¿De acuerdo con qué?",
+      "C": "¿Qué hace?, ¿Dónde?, ¿Para qué?, ¿De acuerdo con qué?",
+      "D": "¿Qué habilidades?, ¿Dónde?, ¿Para qué?, ¿De acuerdo con qué?"
+    },
+    "correct_answer": "C",
+    "page": 1
+  },
+  {
+    "original_num": 9,
+    "question": "Dentro de los modelos de salud. ¿Qué característica está relacionada con el modelo comunitario?",
+    "options": {
+      "A": "Tiene un monopolio estatal",
+      "B": "Prioriza la protección laboral",
+      "C": "Diferencia la población con y sin recursos",
+      "D": "Es centralizado"
+    },
+    "correct_answer": "D",
+    "page": 1
+  },
+  {
+    "original_num": 10,
+    "question": "Qué herramienta le permite poner en marcha las estrategias institucionales, detalla metas anuales de todos los objetivos y entregables y se precisan todas las actividades o tareas necesarias para alcanzar los productos a entregar, establece los recursos, plazos, costos por actividad, estándares de calidad, logística, planes de contingencia frente a los riesgos y finalmente indicadores que servirán para evaluar la gestión y determinar si se han alcanzado o no los indicadores de resultado e impacto establecidos.",
+    "options": {
+      "A": "Plan Operativo Institucional",
+      "B": "Plan de Gestión Institucional",
+      "C": "Plan Anual Institucional",
+      "D": "Plan Estratégico Institucional"
+    },
+    "correct_answer": "A",
+    "page": 2
+  },
+  {
+    "original_num": 11,
+    "question": "El jefe de logística de un establecimiento de salud realizará la compra de un dispositivo médico para la entidad. ¿Cuántas cotizaciones en su estudio de mercado como mínimo debe contar?",
+    "options": {
+      "A": "3",
+      "B": "5",
+      "C": "8",
+      "D": "1"
+    },
+    "correct_answer": "A",
+    "page": 2
+  },
+  {
+    "original_num": 12,
+    "question": "Gestante que acude a un establecimiento de salud, procedente de una comunidad de la costa norte, presenta fiebre alta, cefalea, dolor retro ocular, mialgias; después de la evaluación realiza su diagnóstico de dengue. ¿A qué grupo pertenecería para iniciar tratamiento?",
+    "options": {
+      "A": "A",
+      "B": "C",
+      "C": "B1",
+      "D": "B2"
+    },
+    "correct_answer": "C",
+    "page": 2
+  },
+  {
+    "original_num": 13,
+    "question": "Para determinar la magnitud de la faringoamigdalitis aguda en la población pediátrica de su localidad utilizando los criterios de Centor. ¿Qué tipo de estudio usaría?",
+    "options": {
+      "A": "Descriptivo transversal",
+      "B": "Analítico observacional",
+      "C": "Analítico experimentale",
+      "D": "Descriptivo longitudinal"
+    },
+    "correct_answer": "A",
+    "page": 2
+  },
+  {
+    "original_num": 14,
+    "question": "Toda medición o instrumento de recolección de datos debe reunir tres requisitos esenciales:",
+    "options": {
+      "A": "Confidencial, válido y objetivo",
+      "B": "Imparcial, equitativo y honesto",
+      "C": "Privado, secreto y reservado",
+      "D": "Seguro, reservado y protegido"
+    },
+    "correct_answer": "A",
+    "page": 2
+  },
+  {
+    "original_num": 15,
+    "question": "En el SERUMS, el profesional de salud al ingresar al establecimiento de salud. ¿Qué es lo primero que debe realizar para poder desarrollar el Plan Operativo Institucional?",
+    "options": {
+      "A": "Presentarse con el director",
+      "B": "Recoger el informe anterior",
+      "C": "Análisis situacional",
+      "D": "Análisis poblacional"
+    },
+    "correct_answer": "C",
+    "page": 2
+  },
+  {
+    "original_num": 16,
+    "question": "¿Cuáles son factores de riesgo de enfermedad hipertensiva no modificables?",
+    "options": {
+      "A": "Consumo excesivo de sal",
+      "B": "Sexo masculino, edad ≥55 años",
+      "C": "Persona adulta ≥ 30 Kg/m2",
+      "D": "Tabaquismo, sedentarismo"
+    },
+    "correct_answer": "B",
+    "page": 2
+  },
+  {
+    "original_num": 17,
+    "question": "En relación al abastecimiento de productos farmacéuticos, dispositivos médicos y productos sanitarios, para que se considere como un adecuado abastecimiento. ¿Cuántos meses de stock disponible debe tener?",
+    "options": {
+      "A": "12",
+      "B": "3",
+      "C": "8",
+      "D": "6"
+    },
+    "correct_answer": "D",
+    "page": 2
+  },
+  {
+    "original_num": 18,
+    "question": "Herramienta de gestión para los cuidados integrales en la RIS, que define las condiciones necesarias para asegurar la integralidad y longitudinalidad, de las personas, familias y comunidades en diferentes escenarios. ¿A qué corresponde?",
+    "options": {
+      "A": "Equipo multidisciplinario de salud",
+      "B": "Vías de cuidados integrales de salud",
+      "C": "Modelo de cuidado integral",
+      "D": "Modelo de atención integral"
+    },
+    "correct_answer": "B",
+    "page": 2
+  },
+  {
+    "original_num": 19,
+    "question": "En una comunidad se desea evaluar la incidencia de una determinada enfermedad. ¿Cuál de las medidas de efecto se debe aplicar?",
+    "options": {
+      "A": "Riesgo relativo",
+      "B": "Odds Ratio",
+      "C": "Número de pacientes necesario a tratar (NNT)",
+      "D": "Riesgo absoluto"
+    },
+    "correct_answer": "D",
+    "page": 2
+  },
+  {
+    "original_num": 20,
+    "question": "Es el subgrupo del universo del cual se recolectan los datos y que debe ser representativo de éste:",
+    "options": {
+      "A": "Muestra",
+      "B": "Parámetro",
+      "C": "Población",
+      "D": "Variable"
+    },
+    "correct_answer": "A",
+    "page": 3
+  },
+  {
+    "original_num": 21,
+    "question": "El director de la DIRIS descubre que un personal CAS contratado como técnico asistencial y estudiante de una carrera universitaria de salud, viene realizando actividades de un profesional; al ser descubierto indica que dichas funciones fueron otorgadas por su jefe inmediato superior. ¿A quién se debe sancionar?",
+    "options": {
+      "A": "Al responsable de recursos humanos",
+      "B": "Al jefe inmediato",
+      "C": "Al jefe del establecimiento de salud",
+      "D": "Al responsable de la DIRIS"
+    },
+    "correct_answer": "B",
+    "page": 3
+  },
+  {
+    "original_num": 22,
+    "question": "La leche de los primeros días se llama ...... y brinda protección a la mucosa intestinal del recién nacido, con inmunoglobulina A secretoria, impidiendo la colonización de gérmenes.",
+    "options": {
+      "A": "leche madura",
+      "B": "leche de transición",
+      "C": "calostro",
+      "D": "leche sucedánea"
+    },
+    "correct_answer": "C",
+    "page": 3
+  },
+  {
+    "original_num": 23,
+    "question": "Nos reportan casos de tos ferina en una comunidad de la selva hace 3 días, es el primer caso que es captado por el servicio de salud. ¿A qué tipo de caso corresponde?",
+    "options": {
+      "A": "Secundario",
+      "B": "Primario",
+      "C": "Índice",
+      "D": "Sospechoso"
+    },
+    "correct_answer": "C",
+    "page": 3
+  },
+  {
+    "original_num": 24,
+    "question": "¿Cuál es la cantidad de consumo de sodio recomendado por la Organización Mundial de la Salud (OMS) y la Organización de las Naciones Unidas para la Alimentación y la Agricultura (FAO)?",
+    "options": {
+      "A": ">7 g/día",
+      "B": "6 g/día",
+      "C": "8 mg/día",
+      "D": "<5 g/día"
+    },
+    "correct_answer": "D",
+    "page": 3
+  },
+  {
+    "original_num": 25,
+    "question": "Durante el inventario del año 2023, de la farmacia de un establecimiento de salud, se encontraron productos farmacéuticos, dispositivos médicos y productos sanitarios vencidos. Estos deben permanecer almacenados para su respectiva baja y destrucción final en el almacén:",
+    "options": {
+      "A": "Central",
+      "B": "De la farmacia",
+      "C": "De servicios generales",
+      "D": "Del SISMED"
+    },
+    "correct_answer": "A",
+    "page": 3
+  },
+  {
+    "original_num": 26,
+    "question": "¿Qué institución conduce el Centro Nacional de Farmacovigilancia y Tecnovigilancia?",
+    "options": {
+      "A": "DIGEMID",
+      "B": "CDC",
+      "C": "CENARES",
+      "D": "INS"
+    },
+    "correct_answer": "A",
+    "page": 3
+  },
+  {
+    "original_num": 27,
+    "question": "El establecimiento de salud asignado para realizar su SERUMS, pertenece a un área geográfica con presencia de casos autóctonos de dengue, que se limita a una unidad geográfica en un determinado tiempo. ¿Indique a qué tipo de escenario epidemiológico pertenece?",
+    "options": {
+      "A": "Escenario IV - endémico",
+      "B": "Escenario III - brote",
+      "C": "Escenario II - Epidémico",
+      "D": "Escenario I"
+    },
+    "correct_answer": "B",
+    "page": 3
+  },
+  {
+    "original_num": 28,
+    "question": "En toda medición o instrumento de recolección de datos; el grado en el que un instrumento produce resultados consistentes y coherentes. ¿A qué requisito esencial corresponde?",
+    "options": {
+      "A": "Honestidad",
+      "B": "Validez",
+      "C": "Confiabilidad",
+      "D": "Objetividad"
+    },
+    "correct_answer": "C",
+    "page": 3
+  },
+  {
+    "original_num": 29,
+    "question": "El equipo de gestión de la calidad de un establecimiento de salud, desea hacer un plan de mejora continua de los servicios del establecimiento. Para tal fin, indica a los jefes de cada servicio realizar un diagnóstico situacional de su área como línea de base; teniendo en cuenta aspectos de análisis de intorno, entorno. ¿Qué herramienta utilizaría Ud. para realizar el diagnóstico situacional?",
+    "options": {
+      "A": "Árbol de problemas",
+      "B": "FODA",
+      "C": "Matriz de la problematización",
+      "D": "Matriz de causa efecto"
+    },
+    "correct_answer": "B",
+    "page": 3
+  },
+  {
+    "original_num": 30,
+    "question": "¿Cuáles son los estudios prospectivos de mayor calidad de evidencia, donde el investigador controla el factor de estudio?",
+    "options": {
+      "A": "Analíticos",
+      "B": "Experimentales",
+      "C": "Cohortes",
+      "D": "Descriptivos"
+    },
+    "correct_answer": "B",
+    "page": 4
+  },
+  {
+    "original_num": 31,
+    "question": "La pre diabetes se puede identificar a través de la glicemia en ayunas con un valor entre ...... mg/dl.",
+    "options": {
+      "A": "100-125",
+      "B": "200 - 250",
+      "C": "60 - 80",
+      "D": "130-200"
+    },
+    "correct_answer": "A",
+    "page": 4
+  },
+  {
+    "original_num": 32,
+    "question": "En un establecimiento de salud, se decide la contratación de recursos humanos. Por lo que se requiere definir adecuadamente el perfil del cargo. ¿Cuál es el documento de gestión que va a guiar los elementos de contratación?",
+    "options": {
+      "A": "CAP",
+      "B": "POI",
+      "C": "MAPRO",
+      "D": "MOF"
+    },
+    "correct_answer": "D",
+    "page": 4
+  },
+  {
+    "original_num": 33,
+    "question": "Paciente de 20 años, HSH, presenta fiebre y rash hace una semana. Antecedente de secreción uretral amarillenta hace 2 semanas, le diagnosticaron descarga uretral y no tomó el tratamiento; luego tuvo RS. Examen: PA: 120/70 mmHg, FC: 90 X', T°: 38.5 °C; rash en el cuerpo; AR: MV pasa en ACP; CV: RC regulares y rítmicos; hígado: 13 cm de span hepático. ¿Cuál es el diagnóstico más probable?",
+    "options": {
+      "A": "Meningococemia",
+      "B": "VIH aguda",
+      "C": "Gonococemia",
+      "D": "Sífilis secundaria"
+    },
+    "correct_answer": "C",
+    "page": 4
+  },
+  {
+    "original_num": 34,
+    "question": "Mujer de 20 años procedente de Chosica, presenta fiebre hace 7 días, cefalea, dolor muscular; ingresa a emergencia por dolor abdominal. Examen: PA: 70/50 mmHg, Sat O2: 89%, FC: 102 X', FR: 27 X'; afebril, luce deshidratada y decaída. AR: MV pasa en ACP; CV: RC taquicárdicos de buena intensidad; abdomen: RHA presentes, hígado de 15 cm de span hepático; SNC: somnolienta. ¿Cuál es su diagnóstico probable?",
+    "options": {
+      "A": "Dengue con signos de alarma",
+      "B": "Dengue grave",
+      "C": "Dengue",
+      "D": "Dengue sin signos de alarma"
+    },
+    "correct_answer": "B",
+    "page": 4
+  },
+  {
+    "original_num": 35,
+    "question": "El modelo Bismark como modelo de salud se caracteriza por tener enfoque en...",
+    "options": {
+      "A": "acceso según recurso.",
+      "B": "grupos especiales.",
+      "C": "la comunidad.",
+      "D": "protección laboral y familiar."
+    },
+    "correct_answer": "D",
+    "page": 4
+  },
+  {
+    "original_num": 36,
+    "question": "Según la normatividad vigente, sobre manejo de residuos sólidos. Los medicamentos vencidos. ¿Cómo qué tipo de residuo se clasifica?",
+    "options": {
+      "A": "Punzocortantes",
+      "B": "Comunes",
+      "C": "Especiales",
+      "D": "Biocontaminados"
+    },
+    "correct_answer": "C",
+    "page": 4
+  },
+  {
+    "original_num": 37,
+    "question": "Una paciente con dengue acude a UVICLIN del centro de salud de su comunidad, se le clasifica en el grupo B2 de acuerdo a normativa vigente, el tratamiento con solución salina normal al 0.9% indicado es de ...... ml/Kg de peso en una hora.",
+    "options": {
+      "A": "15",
+      "B": "5",
+      "C": "10",
+      "D": "20"
+    },
+    "correct_answer": "C",
+    "page": 4
+  },
+  {
+    "original_num": 38,
+    "question": "Dentro del plan anual de calidad de salud en el establecimiento de salud está programada la apertura del buzón de sugerencias para saber la opinión de los usuarios con el objetivo de realizar los planes de mejora. ¿Cuál es la frecuencia de apertura del buzón de sugerencias?",
+    "options": {
+      "A": "Anual",
+      "B": "Mensual",
+      "C": "Trimestral",
+      "D": "Semestral"
+    },
+    "correct_answer": "B",
+    "page": 4
+  },
+  {
+    "original_num": 39,
+    "question": "¿Cuál de los siguientes fármacos atraviesa la barrera placentaria y tiene riesgo de alcanzar concentraciones elevadas en el feto?",
+    "options": {
+      "A": "Diazepam",
+      "B": "Amoxicilina",
+      "C": "Omeprazol",
+      "D": "Fluconazol"
+    },
+    "correct_answer": "A",
+    "page": 4
+  },
+  {
+    "original_num": 40,
+    "question": "Mujer de 30 años que, al día siguiente de recibir la vacuna contra la neumonía, refiere fiebre, cefalea y mialgias; dos días después presenta vómitos y diarrea. Sin evidencia de mejora, consulta en un centro de salud y se decide su internamiento. ¿Qué tipo de ESAVI es?",
+    "options": {
+      "A": "No grave",
+      "B": "Leve",
+      "C": "Moderado",
+      "D": "Grave"
+    },
+    "correct_answer": "D",
+    "page": 5
+  },
+  {
+    "original_num": 41,
+    "question": "Joven de 24 años, G2P1011, acude por presentar secreción vaginal líquida, grisácea, pegajosa, abundante y con mal olor; no uso de MAC. AMEU hace un año. Examen: FC: 72 X’; FR: 17 X’; T°: 36.5 °C; PA: 110/60 mmHg. Especuloscopía: hallazgos congruentes con los descritos. Prueba de aminas con KOH presente (a pescado). ¿Cuál es el diagnóstico?",
+    "options": {
+      "A": "Vaginosis bacteriana",
+      "B": "Candidiasis",
+      "C": "Tricomoniasis",
+      "D": "Uretritis"
+    },
+    "correct_answer": "A",
+    "page": 5
+  },
+  {
+    "original_num": 42,
+    "question": "¿Qué profesional debe tener la custodia de oxígeno medicinal en un establecimiento de salud?",
+    "options": {
+      "A": "Químico farmacéutico",
+      "B": "Médico",
+      "C": "Enfermera",
+      "D": "Técnico de farmacia"
+    },
+    "correct_answer": "A",
+    "page": 5
+  },
+  {
+    "original_num": 43,
+    "question": "¿Cuál de los siguientes enunciados es un indicador de estructura en la vigilancia epidemiológica en adolescentes?",
+    "options": {
+      "A": "% de adolescentes con consejería en salud sexual y reproductiva",
+      "B": "% de adolescentes con consejería en salud nutricional",
+      "C": "% de regiones que cuentan con un documento de análisis de situación de salud regional de adolescentes",
+      "D": "% de atenciones preventivas en adolescentes con SIS"
+    },
+    "correct_answer": "C",
+    "page": 5
+  },
+  {
+    "original_num": 44,
+    "question": "En una reunión de la Microred Pinchollo, se hace una evaluación de cumplimiento de indicadores FED; donde para el indicador \"porcentaje de niñas y niños de 12 a 18 meses, con diagnóstico de anemia entre los 6 y 11 meses, que se han recuperado\", del centro de salud de Agua Dura no se registra ningún niño con anemia como recuperado. ¿Dónde está el problema?",
+    "options": {
+      "A": "Perdida del DNI del niño",
+      "B": "Error en el registro de HIS",
+      "C": "Registro incorrecto de CVN",
+      "D": "Incorrecto registro de niños en los hospitales"
+    },
+    "correct_answer": "B",
+    "page": 5
+  },
+  {
+    "original_num": 45,
+    "question": "Paciente de 20 años procedente de Camporedondo - Amazonas, presenta fiebre, ictericia y decaimiento hace 10 días acude a emergencia por escalofríos. Examen: PA: 100/70 mmHg, FC: 90 X’, Sat O2: 96% T°: 37,8 °C; AR: MV pasa en ACP; hígado: 15 cm de span. Laboratorio: formas cocobacilares de Bartonella. ¿Cuál es su diagnóstico?",
+    "options": {
+      "A": "Leptospirosis",
+      "B": "Dengue",
+      "C": "Malaria Vivax",
+      "D": "Enfermedad de carrión"
+    },
+    "correct_answer": "D",
+    "page": 5
+  },
+  {
+    "original_num": 46,
+    "question": "Se desea investigar los efectos de los macrólidos en bronquiolitis aguda; ¿Qué tipo de estudio sería el adecuado?",
+    "options": {
+      "A": "Descriptivo longitudinal",
+      "B": "Descriptivo transversal",
+      "C": "Analítico experimental",
+      "D": "Analítico observacional"
+    },
+    "correct_answer": "C",
+    "page": 5
+  },
+  {
+    "original_num": 47,
+    "question": "¿Cuál es el recurso que utiliza el investigador para registrar información o datos sobre las variables estudiadas?",
+    "options": {
+      "A": "Instrumento de medición",
+      "B": "Medida de estabilidad",
+      "C": "Aparatos y equipos",
+      "D": "Recolección de datos"
+    },
+    "correct_answer": "A",
+    "page": 5
+  },
+  {
+    "original_num": 48,
+    "question": "¿Cuántos macroprocesos se evalúan para la acreditación de un establecimiento del primer nivel de atención I-4?",
+    "options": {
+      "A": "28",
+      "B": "20",
+      "C": "22",
+      "D": "18"
+    },
+    "correct_answer": "C",
+    "page": 5
+  },
+  {
+    "original_num": 49,
+    "question": "Dentro de la ración de alimentos del PCA-PANTBC. ¿Cuál es el porcentaje de los requerimientos nutricionales calórico- proteicos al mes?",
+    "options": {
+      "A": "50",
+      "B": "30",
+      "C": "40",
+      "D": "60"
+    },
+    "correct_answer": "A",
+    "page": 5
+  },
+  {
+    "original_num": 50,
+    "question": "¿Cuál de los siguientes enunciados está implicado en la gobernanza en salud pública?",
+    "options": {
+      "A": "Responsabilidad de los actores institucionales exclusivamente",
+      "B": "Visión estratégica y ética de la salud",
+      "C": "Formación de todo tipo de capital",
+      "D": "Transparencia sin rendición de cuentas"
+    },
+    "correct_answer": "B",
+    "page": 6
+  },
+  {
+    "original_num": 51,
+    "question": "Después de haber utilizado benzodiacepinas por varios meses y retirar el fármaco de forma abrupta, se desarrolla rápidamente ansiedad, taquicardia, pesadillas, náuseas, insomnio entre otros síntomas. ¿Qué tipo de reacción adversa se ha presentado?",
+    "options": {
+      "A": "RAM tipo B",
+      "B": "RAM tipo C",
+      "C": "RAM tipo E",
+      "D": "RAM tipo A"
+    },
+    "correct_answer": "C",
+    "page": 6
+  },
+  {
+    "original_num": 52,
+    "question": "Para recomendar la puesta en marcha de un programa de prevención secundaria respecto a un problema de salud determinado. ¿Cuál es uno de los tres grupos principales de factores a tener en cuenta?",
+    "options": {
+      "A": "Relativos al problema de salud",
+      "B": "Enfocados en rehabilitación",
+      "C": "Relacionados al contexto",
+      "D": "Enfocados en tratamiento"
+    },
+    "correct_answer": "A",
+    "page": 6
+  },
+  {
+    "original_num": 53,
+    "question": "Cuando nos referimos a toda acción o actividad que realizan los otros profesionales de la salud para la promoción, prevención, recuperación y rehabilitación de la salud, según corresponda, que se brinda al paciente, familia y comunidad, hablamos de:",
+    "options": {
+      "A": "Atención de salud",
+      "B": "Acto de salud",
+      "C": "Auditoría",
+      "D": "Acto médico"
+    },
+    "correct_answer": "B",
+    "page": 6
+  },
+  {
+    "original_num": 54,
+    "question": "¿Cuál es la gestión del proceso que permite a las entidades socializar y facilitar la interrelación y adaptación de manera planificada de las personas que ingresan a un puesto de la entidad, de forma que se le brinde la información relacionada al funcionamiento general del estado, a su institución, a sus normas internas y a su puesto?",
+    "options": {
+      "A": "Inducción",
+      "B": "Reunión",
+      "C": "Taller",
+      "D": "Capacitación"
+    },
+    "correct_answer": "A",
+    "page": 6
+  },
+  {
+    "original_num": 55,
+    "question": "Según el perímetro abdominal para la edad. ¿Qué valor determina riesgo alto para tener enfermedades cardiovasculares y metabólicas en adolescentes?",
+    "options": {
+      "A": "Percentil ≥90",
+      "B": "Circunferencia abdominal >80 cm",
+      "C": "Percentil ≥75 y <90",
+      "D": "Circunferencia abdominal ≥75 cm"
+    },
+    "correct_answer": "C",
+    "page": 6
+  },
+  {
+    "original_num": 56,
+    "question": "Un estudio de investigación, que no se realiza sobre datos primarios, sino que utiliza los datos recogidos previamente en otros estudios. ¿A qué tipo de estudio hace referencia?",
+    "options": {
+      "A": "Descriptivo",
+      "B": "Cohortes",
+      "C": "Analítico",
+      "D": "Revisión sistemática"
+    },
+    "correct_answer": "D",
+    "page": 6
+  },
+  {
+    "original_num": 57,
+    "question": "¿Cuál es la ciencia que nos proporciona la metodología apropiada para investigar y contextualizar los problemas y situaciones de salud?",
+    "options": {
+      "A": "Epistemología",
+      "B": "Epidemiología",
+      "C": "Ética",
+      "D": "Estadística"
+    },
+    "correct_answer": "B",
+    "page": 6
+  },
+  {
+    "original_num": 58,
+    "question": "¿Cuál es la etapa donde el curso de la enfermedad va desde el influjo de los factores causales hasta las primeras manifestaciones clínicas inespecíficas?",
+    "options": {
+      "A": "Subclínica",
+      "B": "Prodrómica",
+      "C": "Clínica",
+      "D": "Prepatogénica"
+    },
+    "correct_answer": "A",
+    "page": 6
+  },
+  {
+    "original_num": 59,
+    "question": "El jefe de un establecimiento de salud, revisa conjuntamente con su equipo de gestión los resultados de la encuesta de satisfacción del usuario e identifican que el problema principal es el tiempo de demora en la atención. Por lo tanto, evalúan la brecha de recursos humanos para hacer el requerimiento para tal fin. ¿Qué documento de gestión es necesario para evaluar la brecha?",
+    "options": {
+      "A": "MOF - CAP",
+      "B": "ROF – CAP",
+      "C": "CAP – POI",
+      "D": "PEI- MAPRO"
+    },
+    "correct_answer": "B",
+    "page": 6
+  },
+  {
+    "original_num": 60,
+    "question": "El responsable del establecimiento de salud, han identificado que tienen una gran población de mujeres en edad fértil procedentes de Venezuela. Con el fin de promover un mejor proceso de integración como sociedad de acogida y al uso de servicios de sanitarios, planifica capacitar a su personal. ¿Cuál sería el tema principal de la capacitación?",
+    "options": {
+      "A": "Respeto al usuario",
+      "B": "Empatía y buenas prácticas en salud",
+      "C": "Etnocentrismo y relativismo cultural",
+      "D": "Charla de drogas y violencia"
+    },
+    "correct_answer": "C",
+    "page": 7
+  },
+  {
+    "original_num": 61,
+    "question": "Durante la evaluación realizada de indicadores de gestión de medicamentos esenciales. ¿Cuál debe ser el valor de disponibilidad óptimo esperado que debe obtener la farmacia?",
+    "options": {
+      "A": "75% a 80%",
+      "B": "80% a 85%",
+      "C": "90% a 100%",
+      "D": "85% a 89%"
+    },
+    "correct_answer": "C",
+    "page": 7
+  },
+  {
+    "original_num": 62,
+    "question": "Se desea estimar la prevalencia de la neumonía adquirida en la comunidad en la población pediátrica de 2 a 5 años en las escuelas de su jurisdicción. Para controlar el sesgo de selección. ¿Qué tipo de muestreo se debe realizar?",
+    "options": {
+      "A": "No probabilístico",
+      "B": "Aleatorio simple",
+      "C": "Estratificado",
+      "D": "Por conglomerados"
+    },
+    "correct_answer": "B",
+    "page": 7
+  },
+  {
+    "original_num": 63,
+    "question": "¿Cómo se define cuando los pacientes reciben la medicación adecuada a sus necesidades clínicas, en las dosis correspondientes a sus requisitos individuales, durante un período de tiempo adecuado y al menor costo posible para ellos y para la comunidad?",
+    "options": {
+      "A": "Atención farmacéutica",
+      "B": "Estudios clínicos",
+      "C": "Seguimiento farmacoterapéutico",
+      "D": "Uso racional de medicamentos"
+    },
+    "correct_answer": "D",
+    "page": 7
+  },
+  {
+    "original_num": 64,
+    "question": "De los factores relativos a las pruebas; el que se relaciona con la operatividad de las pruebas es la…",
+    "options": {
+      "A": "aceptabilidad.",
+      "B": "susceptibilidad.",
+      "C": "validez.",
+      "D": "sensibilidad."
+    },
+    "correct_answer": "A",
+    "page": 7
+  },
+  {
+    "original_num": 65,
+    "question": "En el caso de tratamientos especiales, nuevas modalidades de atención, práctica de procedimiento o intervenciones que puedan afectar psíquica o físicamente al paciente; y la participación del paciente en actividades de docencia, debe realizarse y registrarse con el formato de...",
+    "options": {
+      "A": "autorización de atención.",
+      "B": "permiso del paciente.",
+      "C": "consentimiento informado.",
+      "D": "solicitud de atención."
+    },
+    "correct_answer": "C",
+    "page": 7
+  },
+  {
+    "original_num": 66,
+    "question": "Luego del proceso de evaluación SERUMS, se le asigna laborar en un establecimiento de salud I-2, con una población asignada de 2550 personas. De acuerdo a normativa vigente. ¿Con qué personal de salud debe contar el establecimiento?",
+    "options": {
+      "A": "Enfermera, obstetra y técnico de enfermería",
+      "B": "Médico, enfermera, obstetra y técnico de enfermería",
+      "C": "Médico, enfermera, biólogo, agentes comunitarios",
+      "D": "Médico, enfermera y auxiliar de enfermería"
+    },
+    "correct_answer": "B",
+    "page": 7
+  },
+  {
+    "original_num": 67,
+    "question": "Según la norma técnica de salud para la acreditación de establecimientos de salud y servicios médicos de apoyo, las fases de acreditación son:",
+    "options": {
+      "A": "Autoevaluación y evaluación externa",
+      "B": "Autoanálisis y evaluación anual",
+      "C": "Evaluación y evaluación interna",
+      "D": "Análisis situacional y evaluación interna"
+    },
+    "correct_answer": "A",
+    "page": 7
+  },
+  {
+    "original_num": 68,
+    "question": "Las creencias que presenta una comunidad determinándolo como válido y propio en su desarrollo cultural no presentando participación en la comunidad ni en el sistema de salud. ¿Qué tipo de problema intercultural presenta?",
+    "options": {
+      "A": "Desarrollo social",
+      "B": "Bioética",
+      "C": "Conflicto intercultural",
+      "D": "Aculturación"
+    },
+    "correct_answer": "C",
+    "page": 7
+  },
+  {
+    "original_num": 69,
+    "question": "El responsable de capacitación del establecimiento de salud solicita el plan de capacitación a cada servicio. Para ello el encargado del servicio de medicina se reúne con su personal, para realizar el análisis FODA y necesidades de capacitación. ¿Qué componente pertenece al análisis interno?",
+    "options": {
+      "A": "Fortaleza",
+      "B": "Oportunidades",
+      "C": "Amenazas",
+      "D": "Competencias"
+    },
+    "correct_answer": "A",
+    "page": 7
+  },
+  {
+    "original_num": 70,
+    "question": "En los cuidados individuales por curso de vida adulto mayor; en el entorno comunitario contempla:",
+    "options": {
+      "A": "La prevención de las caídas entre otros",
+      "B": "El control glicemia",
+      "C": "Control de presión arterial",
+      "D": "Control de colesterol en sangre"
+    },
+    "correct_answer": "A",
+    "page": 8
+  },
+  {
+    "original_num": 71,
+    "question": "En una visita domiciliaria se encuentra que en la familia Zegarra, el padre de 42 años es diabético de 10 años de evolución; el hijo mayor de 16 años tiene IMC: 27, glicemia en ayunas de 130 mg/dl; madre de 34 años tiene IMC: 23. El médico recomienda dieta hipocalórica e hipograsa. Esta medida está en nivel de prevención:",
+    "options": {
+      "A": "Terciaria",
+      "B": "Secundaria",
+      "C": "Primaria",
+      "D": "Cuaternaria"
+    },
+    "correct_answer": "C",
+    "page": 8
+  },
+  {
+    "original_num": 72,
+    "question": "El médico SERUMS del puesto de salud, organiza un taller para autoexamen de mama con las mujeres del comedor popular de su distrito; allí explica la técnica del autoexamen y factores de riesgo para cáncer de mama. ¿Qué fomenta esta intervención?",
+    "options": {
+      "A": "Tratamiento",
+      "B": "Autocuidado",
+      "C": "Diagnóstico",
+      "D": "Rehabilitación"
+    },
+    "correct_answer": "B",
+    "page": 8
+  },
+  {
+    "original_num": 73,
+    "question": "¿Cuál es una de las causales de exclusión de proveedores adjudicatarios?",
+    "options": {
+      "A": "Cuando su empresa no cuente con RUC vigente",
+      "B": "Cuando sea persona natural",
+      "C": "Cuando este impedido de contratar con el estado",
+      "D": "Cuando el consorcio no esté registrado"
+    },
+    "correct_answer": "C",
+    "page": 8
+  },
+  {
+    "original_num": 74,
+    "question": "Paciente, quechua hablante de 44 años aún fértil, madre de 6 hijos, con enfermedad de hipertensión arterial, se niega a utilizar métodos anticonceptivos. ¿Qué acción debe tomar con respecto a este caso?",
+    "options": {
+      "A": "Respetar su decisión",
+      "B": "Solicitar evaluación psicológica",
+      "C": "Persuadirla a que utilice anticonceptivos",
+      "D": "Llamar a su pareja para que decida por ella"
+    },
+    "correct_answer": "A",
+    "page": 8
+  },
+  {
+    "original_num": 75,
+    "question": "Puérpera con diagnóstico confirmatorio de sífilis; tratamiento incompleto; al recién nacido se considera neonato con sífilis congénita. ¿Cuál es la acción a seguir?",
+    "options": {
+      "A": "Evaluación diagnostica confirmatoria",
+      "B": "Derivar a establecimiento resolutivo",
+      "C": "Tratamiento farmacológico inmediato",
+      "D": "Tratamiento alternativo"
+    },
+    "correct_answer": "B",
+    "page": 8
+  },
+  {
+    "original_num": 76,
+    "question": "Gestante llega al centro materno infantil, aproximadamente a las 11 pm, durante el proceso de la atención del parto, el bebé cae al balde de desecho provocándole luxación de la clavícula. El equipo de guardia inmediatamente procede a realizar la atención correspondiente, siendo derivado a un establecimiento de mayor capacidad resolutiva. El jefe del establecimiento solicita una auditoría. ¿Qué comité de auditoría se activará para este caso?",
+    "options": {
+      "A": "Comité de Auditoria Médica",
+      "B": "Consejo de Auditoría Médica",
+      "C": "Comité de Auditoría en Salud",
+      "D": "Consejo de Auditoría profesional"
+    },
+    "correct_answer": "C",
+    "page": 8
+  },
+  {
+    "original_num": 77,
+    "question": "Acuden a la emergencia médica, de un hospital de alta complejidad, dos pacientes provenientes de la selva peruana, ambos afiliados al Seguro Integral de Salud; uno de ellos viene con su respectiva referencia y el otro no. ¿Qué le corresponde hacer al médico tratante de la emergencia?",
+    "options": {
+      "A": "Atender solo al que cuenta con la respectiva referencia del SIS",
+      "B": "Atender a los dos pacientes por igual",
+      "C": "Deriva a la asistenta social para que evalue el caso",
+      "D": "Derivar al paciente que no tiene referencia a su jurisdicción"
+    },
+    "correct_answer": "B",
+    "page": 8
+  },
+  {
+    "original_num": 78,
+    "question": "En la actividad de entrega de producto e información, dentro del proceso de dispensación farmacéutica de medicamentos de primera línea para la tuberculosis. ¿Cuál es una reacción adversa que debería de advertirse al paciente?",
+    "options": {
+      "A": "Neuritis periférica por isoniazida",
+      "B": "Trombocitopenia por linezolid",
+      "C": "Neuritis óptica por pirazinamida",
+      "D": "Nefrotoxicidad por rifampicina"
+    },
+    "correct_answer": "A",
+    "page": 8
+  },
+  {
+    "original_num": 79,
+    "question": "Una investigación es un proceso sistemático, organizado y objetivo, destinado a responder a una pregunta. El término sistemático significa que se aplica...",
+    "options": {
+      "A": "el método científico.",
+      "B": "el método hipotético.",
+      "C": "el método epidemiológico.",
+      "D": "el método clínico."
+    },
+    "correct_answer": "A",
+    "page": 9
+  },
+  {
+    "original_num": 80,
+    "question": "¿Cuál es el criterio que determina: \"el grado en el que un programa de salud puesto en práctica logra lo que se pretende conseguir en una población determinada\"?",
+    "options": {
+      "A": "Eficacia",
+      "B": "Efectividad",
+      "C": "Eficiencia",
+      "D": "Factibilidad"
+    },
+    "correct_answer": "B",
+    "page": 9
+  },
+  {
+    "original_num": 81,
+    "question": "En bioestadística, las observaciones cuantitativas que brindan datos discretos corresponden a ...",
+    "options": {
+      "A": "valores individuales que sólo aceptan números enteros.",
+      "B": "valor que se puede dividir en infinitos valores entre dos puntos cualquiera.",
+      "C": "valor que se puede dividir en fracciones entre dos puntos cualquiera.",
+      "D": "un número infinito de fracciones entre dos puntos de la escala."
+    },
+    "correct_answer": "A",
+    "page": 9
+  },
+  {
+    "original_num": 82,
+    "question": "Dentro de sus intervenciones a realizar en su establecimiento de salud, prioriza el programa articulado nutricional (PAN). ¿Cuál es el objetivo del programa?",
+    "options": {
+      "A": "Disminución la desnutrición aguda en menores de 3 años",
+      "B": "Disminución de la malnutrición en menores de un año",
+      "C": "Reducción de la desnutrición crónica en menores de 5 años",
+      "D": "Reducción de desnutrición y anemia en niños"
+    },
+    "correct_answer": "C",
+    "page": 9
+  },
+  {
+    "original_num": 83,
+    "question": "Paciente varón de 35 años que trabaja habitualmente en el sector agrícola, acude junto a su familiar al centro de salud donde realiza su SERUMS, manifestando desorientación, mareos, bradicardia, dificultad respiratoria y relajación de esfínteres. El familiar manifiesta que el paciente estaba manipulando plaguicidas y parte de este se derramó en gran parte de su vestimenta. ¿Cuál es el tratamiento de primera línea?",
+    "options": {
+      "A": "Adrenalina",
+      "B": "Atropina",
+      "C": "Naloxona",
+      "D": "Flumazenil"
+    },
+    "correct_answer": "B",
+    "page": 9
+  },
+  {
+    "original_num": 84,
+    "question": "Las farmacias de los establecimientos de salud del MINSA a nivel nacional. ¿Qué sistema de información deben manejar para remitir información de consumo integrado de productos farmacéuticos, dispositivos médicos y productos sanitarios?",
+    "options": {
+      "A": "SISMED",
+      "B": "Sisgalen",
+      "C": "Farmax",
+      "D": "Galeno"
+    },
+    "correct_answer": "A",
+    "page": 9
+  },
+  {
+    "original_num": 85,
+    "question": "¿Cuál es un ámbito que se debe considerar, en un foco ampliado del modelo integral de atención, encargada de las actividades de diagnóstico precoz y tratamiento oportuno?",
+    "options": {
+      "A": "Medicina en domicilio y comunidad",
+      "B": "Consulta ambulatoria",
+      "C": "Hospitalizaciones",
+      "D": "Urgencias y observación"
+    },
+    "correct_answer": "B",
+    "page": 9
+  },
+  {
+    "original_num": 86,
+    "question": "¿Cuál de las siguientes acciones forma parte de una prevención específica?",
+    "options": {
+      "A": "Propicia la actividad física en la comunidad",
+      "B": "Sensibiliza a la población la no ingesta de alcohol",
+      "C": "Promueve el uso de condón",
+      "D": "Incrementa la cobertura en el programa de inmunización"
+    },
+    "correct_answer": "D",
+    "page": 9
+  },
+  {
+    "original_num": 87,
+    "question": "¿Es un instrumento que facilita el enfoque sistémico familiar en atención a la persona y proporciona una visión rápida e integrada de los problemas biomédicos y psicosociales, además de establecer las relaciones familiares?",
+    "options": {
+      "A": "Genograma",
+      "B": "Tipología familiar",
+      "C": "Círculo familiar",
+      "D": "Apgar familiar"
+    },
+    "correct_answer": "A",
+    "page": 9
+  },
+  {
+    "original_num": 88,
+    "question": "El respeto que merece el paciente exige, hoy más que nunca, que los profesionales de la salud en general y los médicos en particular adquieran la suficiente habilidad comunicativa para que los pacientes realmente comprendan, por lo que la asertividad en la comunicación inicia con...",
+    "options": {
+      "A": "valorar lo justo y lo injusto.",
+      "B": "saber escuchar.",
+      "C": "discernir entre lo bueno y lo malo.",
+      "D": "diferenciar lo correcto de lo incorrecto."
+    },
+    "correct_answer": "B",
+    "page": 10
+  },
+  {
+    "original_num": 89,
+    "question": "Estudiando la prevalencia de anemia en 2020 en la población de Huancavelica encontramos que mantienen patrones culturales asociados a ingestas deficientes y aunadas a costumbres alimentarias de la región. ¿Qué aspecto de la interculturalidad vienen desarrollando?",
+    "options": {
+      "A": "Bioética",
+      "B": "Medicina holística",
+      "C": "Derechos humanos",
+      "D": "Etnocentrismo"
+    },
+    "correct_answer": "D",
+    "page": 10
+  },
+  {
+    "original_num": 90,
+    "question": "Cuando el evento definitivamente no está relacionado a la vacuna y se identifica una etiología o patología que explica de manera razonable el cuadro clínico (enfermedad producida por otra etiología). ¿A qué tipo de ESAVI corresponde?",
+    "options": {
+      "A": "Evento no concluyente",
+      "B": "Inmunización",
+      "C": "RAM",
+      "D": "Evento coincidente"
+    },
+    "correct_answer": "D",
+    "page": 10
+  },
+  {
+    "original_num": 91,
+    "question": "En consulta a paciente adolescente el médico realiza la evaluación antropométrica; al tomar pliegues cutáneos y perímetros, no realiza consentimiento informado. ¿Qué principio ético está vulnerando?",
+    "options": {
+      "A": "Justicia",
+      "B": "No maleficencia",
+      "C": "Beneficencia",
+      "D": "Autonomía"
+    },
+    "correct_answer": "D",
+    "page": 10
+  },
+  {
+    "original_num": 92,
+    "question": "Paciente de 30 años procedente de zona infestada por Aedes aegypti, presenta hace 5 días fiebre y dolor muscular, además se agrega dolor abdominal y plaquetas: 80,000/dl. ¿Cuál es el diagnóstico?",
+    "options": {
+      "A": "Dengue",
+      "B": "Dengue grave",
+      "C": "Dengue sin signos de alarma",
+      "D": "Dengue con signos de alarma"
+    },
+    "correct_answer": "D",
+    "page": 10
+  },
+  {
+    "original_num": 93,
+    "question": "Paciente que acude a su establecimiento de salud, con una glicemia en ayudas de 201 mg/dl, baja de peso, polidipsia y polifagia; el médico diagnostica diabetes mellitus tipo 2, indicando glimepirida. ¿A qué familia de drogas antidiabéticas pertenece?",
+    "options": {
+      "A": "Sulfonilureas",
+      "B": "Metformina",
+      "C": "Glitazonas",
+      "D": "Glifozinas"
+    },
+    "correct_answer": "A",
+    "page": 10
+  },
+  {
+    "original_num": 94,
+    "question": "Adulto mayor acude a un establecimiento de salud I-1, se le capta para realizar su cuidado integral. ¿Qué tipo de valoración clínica del adulto mayor (VACAM) le corresponde?",
+    "options": {
+      "A": "Corta",
+      "B": "Breve",
+      "C": "Completa",
+      "D": "Integral"
+    },
+    "correct_answer": "B",
+    "page": 10
+  },
+  {
+    "original_num": 95,
+    "question": "Las dimensiones del clima organizacional son las características susceptibles de ser medidas en una organización y que influyen en el comportamiento de los individuos. Una de las más importantes dimensiones se refiere al nivel de colaboración que se observa entre los empleados en el ejercicio de su trabajo y en los apoyos materiales y humanos que éstos reciben de su organización. ¿Cuál es esa dimensión?",
+    "options": {
+      "A": "Estructura",
+      "B": "Confort",
+      "C": "Conflicto y cooperación",
+      "D": "Comunicación"
+    },
+    "correct_answer": "C",
+    "page": 10
+  },
+  {
+    "original_num": 96,
+    "question": "La definición de caso de enfermedad diarreica persistente, es la que se presenta con un cuadro diarreico que inicia con una diarrea aguda infecciosa, pero se prolonga por ...... días o más.",
+    "options": {
+      "A": "07",
+      "B": "10",
+      "C": "21",
+      "D": "14"
+    },
+    "correct_answer": "D",
+    "page": 10
+  },
+  {
+    "original_num": 97,
+    "question": "Niño de 6 meses de edad, traido a su control de crecimiento y desarrollo al centro de salud de Paracas donde usted labora. Examen peso: 8 Kg. Hb: 10.8 g/dl. De acuerdo a la norma técnica de anemia 2024. ¿Cuál es la dosis de suplementación en mg indicada?",
+    "options": {
+      "A": "16",
+      "B": "40",
+      "C": "24",
+      "D": "32"
+    },
+    "correct_answer": "A",
+    "page": 11
+  },
+  {
+    "original_num": 98,
+    "question": "Mujer de 75 años con diagnóstico de insuficiencia cardiaca y diabetes mellitus 2, recibiendo el siguiente tratamiento farmacológico: losartán 50 mg c/24 h, espironolactona 25 mg c/24 h, bisoprolol 5 mg c/24 h, metformina 850 mg c/24 h. Resultados de control de laboratorio: Na: 140 mEq/L, K: 6.3 mEq/L, glucosa: 90 mg/dL. ¿Cuáles son los fármacos responsables del problema electrolítico?",
+    "options": {
+      "A": "Bisoprolol - espironolactona",
+      "B": "Losartán - metformina",
+      "C": "Losartán - espironolactona",
+      "D": "Metformina - espironolactona"
+    },
+    "correct_answer": "C",
+    "page": 11
+  },
+  {
+    "original_num": 99,
+    "question": "Confirma o refuta los datos preliminares, solidifica las conclusiones y asienta las bases para la generalización científica o estadística de los resultados a la población de interés:",
+    "options": {
+      "A": "Comparabilidad a lo largo del estudio",
+      "B": "Muestra adecuada y representativa",
+      "C": "Definición clara y precisa del objetivo",
+      "D": "El adecuado análisis de datos"
+    },
+    "correct_answer": "D",
+    "page": 11
+  },
+  {
+    "original_num": 100,
+    "question": "Al conjunto al que se le quiere medir la distribución de variables en toda investigación se le conoce como:",
+    "options": {
+      "A": "Muestra",
+      "B": "Variable",
+      "C": "Parámetro",
+      "D": "Población"
+    },
+    "correct_answer": "D",
+    "page": 11
+  }
+]

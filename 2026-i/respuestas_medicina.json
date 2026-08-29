@@ -1,0 +1,1202 @@
+[
+  {
+    "original_num": 1,
+    "question": "Gestante multípara a término, que acude a puesto de salud con contracciones uterinas cada 30 minutos. Al tacto vaginal se identifica dilatación de cuello uterino de 3 cm, sin signos de alarma. Ud. procede referir a:",
+    "options": {
+      "A": "Centro de salud I-3",
+      "B": "Hospital III",
+      "C": "Centro de salud I-4",
+      "D": "Hospital II"
+    },
+    "correct_answer": "C",
+    "page": 1
+  },
+  {
+    "original_num": 2,
+    "question": "Al consultorio de medicina acude María de 55 años, con 10 años de diabetes, actualmente controlada, en tratamiento con Metformina, con estilos de vida saludables, se realiza el seguimiento periódico ¿Cuál de los siguientes se considera como meta en el manejo integral del paciente con diabetes?",
+    "options": {
+      "A": "Glicemia en ayunas de 80 a 126 mg/dl",
+      "B": "Hemoglobina glucosilada < 7.5%",
+      "C": "Glicemia postprandial de 2 h <140 mg/dl",
+      "D": "Perímetro de cintura < 94 cm"
+    },
+    "correct_answer": "C",
+    "page": 1
+  },
+  {
+    "original_num": 3,
+    "question": "En un establecimiento de salud I-4 el personal de salud recoge los datos en el escenario donde se presentó la enfermedad para su control, incluyendo a las personas que no acudieron al servicio de salud. ¿A qué tipo de vigilancia corresponde?",
+    "options": {
+      "A": "Centinela",
+      "B": "Especializada",
+      "C": "Pasiva",
+      "D": "Activa"
+    },
+    "correct_answer": "D",
+    "page": 1
+  },
+  {
+    "original_num": 4,
+    "question": "Mujer de 52 años, natural de región selva, trabaja en prostitución, refiere a profesional de salud que el día anterior fue dopada y sufrió agresión sexual, tiene dolor pélvico y moretones en el cuerpo. ¿Qué debe hacer el profesional de salud?",
+    "options": {
+      "A": "Aplicar kit completo de emergencia, previo consentimiento",
+      "B": "Derivar a paciente para que se le brinde atención en salud mental",
+      "C": "Aplicar kit de descarte sin consentimiento para que no se asuste",
+      "D": "Hacer denuncia a las autoridades sin autorización de paciente"
+    },
+    "correct_answer": "A",
+    "page": 1
+  },
+  {
+    "original_num": 5,
+    "question": "Ud. como médico acude a una visita domiciliaria en el sector sanitario asignado, identificando a una pareja con unión de 4 meses y cursando el primer embarazo. ¿Cómo la clasificaría según su ciclo vital familiar?",
+    "options": {
+      "A": "Expansión",
+      "B": "Dispersión",
+      "C": "Contracción",
+      "D": "Formación"
+    },
+    "correct_answer": "A",
+    "page": 1
+  },
+  {
+    "original_num": 6,
+    "question": "Gestante de 23 años, migrante, con primaria incompleta, control prenatal esporádico de su tercer embarazo, manifiesta a un profesional que le quiere regalar a su hijo porque tiene problemas económicos, y su pareja la ha abandonado. Esta persona se encuentra sola y no tiene testigos. ¿Cuál es la conducta a seguir?",
+    "options": {
+      "A": "Comunicar a la policía, la intención de la gestante",
+      "B": "Aceptar por el bienestar y bien superior del recién nacido",
+      "C": "Referir a paciente a salud mental o servicio social",
+      "D": "Rechazar porque es un acto en contra de la ética profesional"
+    },
+    "correct_answer": "D",
+    "page": 1
+  },
+  {
+    "original_num": 7,
+    "question": "¿Cuál es el rango de T° en °C, necesario para la conservación de las vacunas?",
+    "options": {
+      "A": "1 a 8",
+      "B": "4 a 10",
+      "C": "2 a 8",
+      "D": "-1 a -8"
+    },
+    "correct_answer": "C",
+    "page": 1
+  },
+  {
+    "original_num": 8,
+    "question": "En un pueblo amazónico se está implementando una RIS de manera ordenada, siguiendo la normativa del MINSA, considerando su realidad local. ¿Qué característica del proceso se está cumpliendo?",
+    "options": {
+      "A": "Sistemático",
+      "B": "Sostenible",
+      "C": "Progresivo",
+      "D": "Planificado"
+    },
+    "correct_answer": "A",
+    "page": 2
+  },
+  {
+    "original_num": 9,
+    "question": "La evaluación continua del recién nacido hospitalizado cuya madre tuvo ITU o ITS antes del parto, corresponde a una vigilancia epidemiológica de las IAAS de tipo ...",
+    "options": {
+      "A": "pasiva.",
+      "B": "focalizada.",
+      "C": "activa.",
+      "D": "selectiva."
+    },
+    "correct_answer": "D",
+    "page": 2
+  },
+  {
+    "original_num": 10,
+    "question": "En un establecimiento de salud I-4, mujer de 25 años, recibió esquema de tratamiento para TB, pero indica que los síntomas continúan, y que su hija menor de 5 años, también fue diagnosticada de lo mismo. ¿Qué principio del uso de medicamentos antimicrobianos NO se aplicó?",
+    "options": {
+      "A": "Calidad",
+      "B": "Concentración",
+      "C": "Resistencia",
+      "D": "Biodisponibilidad"
+    },
+    "correct_answer": "C",
+    "page": 2
+  },
+  {
+    "original_num": 11,
+    "question": "El fortalecimiento de capacidades del personal de salud para mejorar la calidad en un servicio específico de atención primaria de salud, es una actividad acorde al objetivo de planeamiento estratégico relacionado a …",
+    "options": {
+      "A": "fortalecer el ejercicio de la rectoría de la autoridad nacional de salud.",
+      "B": "incrementar el acceso a atención integral de salud.",
+      "C": "mejorar asignación de presupuesto para atención integral.",
+      "D": "difundir la importancia de la salud como derecho."
+    },
+    "correct_answer": "B",
+    "page": 2
+  },
+  {
+    "original_num": 12,
+    "question": "En un establecimiento de salud I-4, ingresa paciente con parto inminente, no controlada. ¿ Cuál de las siguientes pruebas de tamizaje rápido se utiliza para detectar anticuerpos contra VIH y treponema pallidum o anticuerpos treponémicos totales?",
+    "options": {
+      "A": "FTA-Abs",
+      "B": "PM (pruebas moleculares)",
+      "C": "PRT (pruebas rápidas triples)",
+      "D": "PRD (pruebas rápidas duales)"
+    },
+    "correct_answer": "D",
+    "page": 2
+  },
+  {
+    "original_num": 13,
+    "question": "Durante la visita a un niño con anemia, se le orienta a la madre darle alimentos ricos en hierro como la sangrecita, sin embargo, la madre señal que su religión no se lo permite. ¿Cuál es la conducta más adecuada para mejorar el estado de salud del menor?",
+    "options": {
+      "A": "Llamarle la atención por negligencia y desidia",
+      "B": "Obligar a que la madre lo alimente con la sangrecita",
+      "C": "Respetar la decisión y creencia de la familia",
+      "D": "Fortalecer el consumo de hierro intradomiciliario"
+    },
+    "correct_answer": "D",
+    "page": 2
+  },
+  {
+    "original_num": 14,
+    "question": "El tabaco es un factor de riesgo para cáncer pulmonar y EPOC, una intervención efectiva para disminuir la exposición es la implementación de medidas correctivas que favorezcan espacios libres de humo, siendo una función de salud...",
+    "options": {
+      "A": "individual.",
+      "B": "pública.",
+      "C": "familiar.",
+      "D": "participativa."
+    },
+    "correct_answer": "B",
+    "page": 2
+  },
+  {
+    "original_num": 15,
+    "question": "Durante la consulta de curso de vida de un adulto mayor, identifica que hace varios años no se ha aplicado vacunas, por lo que lo sensibiliza informándole sobre los beneficios. De acuerdo al curso de vida, le corresponde:",
+    "options": {
+      "A": "Hepatitis B y antiamarílica",
+      "B": "Antiamarílica e influenza adulto",
+      "C": "Influenza adulto y neumococo",
+      "D": "VPH, SPR y neumococo"
+    },
+    "correct_answer": "C",
+    "page": 3
+  },
+  {
+    "original_num": 16,
+    "question": "Frente a un paciente con sospecha de neumotórax y/o atrapamiento aéreo; para un adecuado diagnóstico, se debe tomar una radiografía en:",
+    "options": {
+      "A": "Decúbito supino",
+      "B": "Inspiración",
+      "C": "Decúbito prono",
+      "D": "Espiración"
+    },
+    "correct_answer": "D",
+    "page": 3
+  },
+  {
+    "original_num": 17,
+    "question": "Un médico serumista se encuentra trabajando en un centro de salud de 12 horas, al cual acude una gestante de bajo riesgo obstétrico con contracciones. ¿A qué establecimiento de salud le corresponde referir?",
+    "options": {
+      "A": "I - 3",
+      "B": "I - 4",
+      "C": "II - 1",
+      "D": "III - 1"
+    },
+    "correct_answer": "B",
+    "page": 3
+  },
+  {
+    "original_num": 18,
+    "question": "En el proceso de atención de Juan en consulta externa, el médico asume un rol \"Consejero - consultor\", buscando la autocomprensión de sus valores en salud del paciente. ¿Cómo se denomina a esta modelo de relación profesional de salud - paciente?",
+    "options": {
+      "A": "Deliberativo",
+      "B": "Informativo",
+      "C": "Paternalista",
+      "D": "Interpretativo"
+    },
+    "correct_answer": "D",
+    "page": 3
+  },
+  {
+    "original_num": 19,
+    "question": "Las condiciones en que viven las personas y sus experiencias de convivencia que condicionan su salud, son determinantes de tipo:",
+    "options": {
+      "A": "Pobreza",
+      "B": "Ambiental",
+      "C": "Económico",
+      "D": "Social"
+    },
+    "correct_answer": "D",
+    "page": 3
+  },
+  {
+    "original_num": 20,
+    "question": "¿Cuál es una vacuna multidosis, indicada a partir de los 15 meses hasta los 59 años?",
+    "options": {
+      "A": "Tétano y Difteria (DT)",
+      "B": "Antiamarílica (AMA)",
+      "C": "BCG",
+      "D": "Sarampión, Papera y Rubeola (SPR)"
+    },
+    "correct_answer": "B",
+    "page": 3
+  },
+  {
+    "original_num": 21,
+    "question": "Para garantizar el adecuado desempeño de los recursos humanos de su establecimiento de salud. ¿Qué se debe considerar?",
+    "options": {
+      "A": "Virtudes",
+      "B": "Competencias",
+      "C": "Valores",
+      "D": "Caracteres"
+    },
+    "correct_answer": "B",
+    "page": 3
+  },
+  {
+    "original_num": 22,
+    "question": "Se considera posible cáncer o enfermedad muy grave a todo niño o adolescente que presente:",
+    "options": {
+      "A": "Ganglios mayores de 5 cm de cualquier localización",
+      "B": "Inicio progresivo de visión borrosa, doble o ceguera",
+      "C": "Cefalea con pred, diurno, persistente y progresivo",
+      "D": "Fiebre de duración mayor a 7 días sin causa conocida"
+    },
+    "correct_answer": "D",
+    "page": 3
+  },
+  {
+    "original_num": 23,
+    "question": "Se identifica un caso índice de tuberculosis en su comunidad, en población semicerrada, por lo que, de acuerdo con la normativa, inicia estudio de contactos. ¿Cuál es el plazo límite para el estudio de contactos?",
+    "options": {
+      "A": "≤7 días calendario",
+      "B": ">7 días calendario",
+      "C": "<48 horas",
+      "D": "≥48 horas"
+    },
+    "correct_answer": "A",
+    "page": 3
+  },
+  {
+    "original_num": 24,
+    "question": "Se desea ordenar el servicio de Admisión en un establecimiento de salud. ¿Hasta cuántos años de la última consulta se pueden tener las historias clínicas en el archivo activo?",
+    "options": {
+      "A": "2",
+      "B": "3",
+      "C": "5",
+      "D": "10"
+    },
+    "correct_answer": "C",
+    "page": 4
+  },
+  {
+    "original_num": 25,
+    "question": "Durante las campañas de vacunación se intervienen a las instituciones educativas a fin de vacunar a los niños y niñas con la vacuna de VPH para protegerlos y prevenir el cáncer cervical. ¿Desde qué edad se puede vacunar y cuantas dosis se debe aplicar?",
+    "options": {
+      "A": "9 años y dosis única",
+      "B": "11 años y dosis única",
+      "C": "9 años y dos dosis",
+      "D": "13 años y dosis única"
+    },
+    "correct_answer": "A",
+    "page": 4
+  },
+  {
+    "original_num": 26,
+    "question": "Tras administrar un medicamento \"x\" a un paciente, este reporta nauseas. Esta reacción a pesar de solo ser una sospecha de haber sido generada por el medicamento \"x\", sin necesidad de confirmar la relación causal, debe reportarse en la historia clínica del paciente; porque corresponde a:",
+    "options": {
+      "A": "Reacción bien caracterizada",
+      "B": "Evento centinela",
+      "C": "ESAVI",
+      "D": "Sospecha de reacción adversa"
+    },
+    "correct_answer": "D",
+    "page": 4
+  },
+  {
+    "original_num": 27,
+    "question": "En una actividad de prevención de cáncer en su comunidad, Ud. acude con su equipo multidisciplinario en salud para la captación de personas en riesgo, según la normatividad vigente sobre el acceso a la cobertura oncológica ¿Cuál es la conducta a seguir?",
+    "options": {
+      "A": "Citología cervical a mujeres de cualquier edad",
+      "B": "Tamizaje de piel a varones mayores de 50 años",
+      "C": "Dosaje de PSA a partir de los 40 años",
+      "D": "Aplicar IVAA a mujeres de 30 a 49 años"
+    },
+    "correct_answer": "D",
+    "page": 4
+  },
+  {
+    "original_num": 28,
+    "question": "Varón de 18 años le comenta a usted que tuvo su primera relación sexual sin protección para lo cual pide una prueba de descarte de VIH. Al regresar a consulta para su resultado se da con la noticia que es positivo ¿Qué responsabilidades tiene usted como médico?",
+    "options": {
+      "A": "Movilizar redes de soporte social para el paciente",
+      "B": "Coordinar con el servicio de inmunizaciones",
+      "C": "Confirmar el diagnóstico",
+      "D": "Identificar al agente de soporte"
+    },
+    "correct_answer": "C",
+    "page": 4
+  },
+  {
+    "original_num": 29,
+    "question": "La organización mundial de la salud ratifica la importancia de la actividad física y la considera como el factor que interviene en el estado de salud de las personas y la define como la principal estrategia en prevención de la ...",
+    "options": {
+      "A": "morbilidad.",
+      "B": "letalidad.",
+      "C": "mortalidad.",
+      "D": "obesidad."
+    },
+    "correct_answer": "D",
+    "page": 4
+  },
+  {
+    "original_num": 30,
+    "question": "Mariela de 25 años acude por segunda vez en un mes al servicio de medicina por problemas personales no físicos, con insomnio y preocupación. Ante esta situación el médico SERUMS aplica el Cuestionario Symptoms Report Questionnaire - SRQ; luego de responder las primeras 18 preguntas obtiene un puntaje de 09, esto significa:",
+    "options": {
+      "A": "Alta probabilidad de sufrir enfermedad mental",
+      "B": "Joven con personalidad normal",
+      "C": "Probabilidad baja de sufrir ansiedad",
+      "D": "Alta probabilidad de sufrir adicción"
+    },
+    "correct_answer": "A",
+    "page": 5
+  },
+  {
+    "original_num": 31,
+    "question": "En el PS I-2 de la región central se ha detectado un caso de fiebre amarilla selvática, en este caso la notificación es:",
+    "options": {
+      "A": "Mensual",
+      "B": "Inmediata",
+      "C": "Quincenal",
+      "D": "Semanal"
+    },
+    "correct_answer": "B",
+    "page": 5
+  },
+  {
+    "original_num": 32,
+    "question": "Mujer de 30 años con 9 meses de gestación refiere que empezó a tener contracciones hace más de dos horas y se encuentra pronta a dar a luz. ¿Qué criterios debe cumplir para parto vertical?",
+    "options": {
+      "A": "Presentación cefálica del feto",
+      "B": "Incompatibilidad feto pélvica",
+      "C": "Embarazo gemelar",
+      "D": "Cirugía uterina previa"
+    },
+    "correct_answer": "A",
+    "page": 5
+  },
+  {
+    "original_num": 33,
+    "question": "Alfonso de 62 años, agricultor, acude a su control anual por medicina en la posta de San Marcos. A la evaluación integral se obtiene una PA: 142/90 mmHg, FR: 20X’, FC: 80X’ y un IMC: 31 Kg/m2, sin daño a órgano blanco. ¿Qué riesgo cardiovascular le corresponde?",
+    "options": {
+      "A": "Alto",
+      "B": "Moderado",
+      "C": "Bajo a moderado",
+      "D": "Moderado a alto"
+    },
+    "correct_answer": "D",
+    "page": 5
+  },
+  {
+    "original_num": 34,
+    "question": "Cuando el personal de salud reconoce a las enfermedades transmisibles a través de la ruta del agente infeccioso desde la fuente de infección hasta el susceptible. Está aplicando la definición de:",
+    "options": {
+      "A": "Epidemiología de las enfermedades",
+      "B": "Cadena de vigilancia y recuperación",
+      "C": "Triada epidemiológica",
+      "D": "Cadena epidemiológica"
+    },
+    "correct_answer": "D",
+    "page": 5
+  },
+  {
+    "original_num": 35,
+    "question": "Para prevenir las muertes neonatales se impulsa el parto institucional, sin embargo, la población de las zonas rurales, por costumbre y cultura, prefieren los partos domiciliarios. ¿Qué acciones se deben de tomar en cuenta para cumplir con los objetivos del sector?",
+    "options": {
+      "A": "Informar a las gestantes que la atención es gratuita",
+      "B": "Prometerles la entrega de canastas de víveres",
+      "C": "Educar e impulsar la participación comunitaria",
+      "D": "Atender los partos intradomiciliarios"
+    },
+    "correct_answer": "C",
+    "page": 5
+  },
+  {
+    "original_num": 36,
+    "question": "Se encuentra en un centro de salud I-4, el equipo de vigilancia está realizando la revisión de historias clínicas de las mujeres post parto eutócico, para identificar casos de endometritis puerperal. En el proceso de la vigilancia epidemiológica de las IAAS corresponde a:",
+    "options": {
+      "A": "Recolección de datos",
+      "B": "Análisis e interpretación de los datos",
+      "C": "Evaluación de la vigilancia",
+      "D": "Plan de vigilancia epidemiológica"
+    },
+    "correct_answer": "A",
+    "page": 5
+  },
+  {
+    "original_num": 37,
+    "question": "Se encuentra atendiendo el serumista profesional de salud no médico en un establecimiento de salud nivel I-1. ¿Cuál es la atención de salud de urgencia que puede realizar según su categoría y su referencia correspondiente?",
+    "options": {
+      "A": "Hemorragia leve",
+      "B": "Síndrome febril",
+      "C": "Asma no complicada",
+      "D": "Parasitosis intestinal"
+    },
+    "correct_answer": "B",
+    "page": 6
+  },
+  {
+    "original_num": 38,
+    "question": "La farmacovigilancia es una actividad de la ...... que se encarga de evaluar la efectividad del medicamento y dispone un sistema rápido de alerta a…",
+    "options": {
+      "A": "salud pública / vigilancia epidemiológica.",
+      "B": "vigilancia / reacciones adversas.",
+      "C": "epidemiología / farmacovigilancia.",
+      "D": "salud pública / reacciones adversas."
+    },
+    "correct_answer": "D",
+    "page": 6
+  },
+  {
+    "original_num": 39,
+    "question": "Como integrante de un equipo multidisciplinario del adolescente en su IPRESS, realiza el cuidado integral a María de 15 años, buscando prevenir el riesgo y conductas problemáticas, desarrollando competencias necesarias para la consecución de logros, ¿Qué enfoque está abordando Ud.?",
+    "options": {
+      "A": "Desarrollo positivo",
+      "B": "Diversidad",
+      "C": "Derechos y ciudadanía",
+      "D": "Inclusión social"
+    },
+    "correct_answer": "A",
+    "page": 6
+  },
+  {
+    "original_num": 40,
+    "question": "El conjunto de procedimientos asistenciales a través del cual se asegura la continuidad de la atención de las necesidades de salud de los usuarios, transfiriéndolo del establecimiento de menor a mayor capacidad resolutiva corresponde a:",
+    "options": {
+      "A": "Referencia",
+      "B": "Contrarreferencia",
+      "C": "Atención primaria",
+      "D": "Atención compartida"
+    },
+    "correct_answer": "A",
+    "page": 6
+  },
+  {
+    "original_num": 41,
+    "question": "En la evaluación de una gestante se evidencia úlcera indurada e indolora (chancro) localizada en mucosa genital. ¿En qué fase de la historia natural de la enfermedad se encuentra?",
+    "options": {
+      "A": "Clínica",
+      "B": "Subclínica",
+      "C": "Inducción",
+      "D": "Resolutiva"
+    },
+    "correct_answer": "A",
+    "page": 6
+  },
+  {
+    "original_num": 42,
+    "question": "En una comunidad con escenario de intervención III para Aedes aegypti se realizaron actividades de vigilancia mediante ovitrampas, obteniendo un índice IPO/IDH de 70. ¿Qué medidas se debe adoptar, considerando la estratificación del riesgo entomológico?",
+    "options": {
+      "A": "Aplicar larvicidas y adulticidas",
+      "B": "Realizar inspecciones adicionales",
+      "C": "Identificar criaderos para eliminar",
+      "D": "Seguir con el monitoreo"
+    },
+    "correct_answer": "A",
+    "page": 6
+  },
+  {
+    "original_num": 43,
+    "question": "Un centro de salud I-3 que no genera más de 10 litros al día de residuos sólidos biocontaminados y cuenta con autoclave para el tratamiento. ¿Cuál es el tiempo máximo que puede almacenarlos antes de su disposición final?",
+    "options": {
+      "A": "Un mes",
+      "B": "Tres días",
+      "C": "48 horas",
+      "D": "Siete días"
+    },
+    "correct_answer": "D",
+    "page": 6
+  },
+  {
+    "original_num": 44,
+    "question": "En un caserío de Pasco, se presentan 5 casos de la enfermedad de pertussis durante los meses de enero y febrero. Como jefe de establecimiento, ¿Qué actividades dispone realizar?",
+    "options": {
+      "A": "Complementarias de vacunación",
+      "B": "Desinfección en comunidad",
+      "C": "Regulares de vacunación",
+      "D": "Control de vectores"
+    },
+    "correct_answer": "A",
+    "page": 6
+  },
+  {
+    "original_num": 45,
+    "question": "Un establecimiento de salud con población asignada que cuenta con médico cirujano, profesionales de enfermería y obstetricia, y personal técnico de enfermería; si recibe una gestante en periodo expulsivo. ¿Cuál es la conducta a seguir?",
+    "options": {
+      "A": "Referirlo a un hospital",
+      "B": "Atender el parto",
+      "C": "Referirlo a un EESS I-3",
+      "D": "Referirlo a un EESS I-4"
+    },
+    "correct_answer": "B",
+    "page": 7
+  },
+  {
+    "original_num": 46,
+    "question": "A una RIS se le asigna las siguientes acciones: conformar el equipo implementador del modelo de cuidado integral (MCI), su plan y fortalecimiento de capacidades a su equipo de gestión. ¿Cuál es el componente del MCI aplicado?",
+    "options": {
+      "A": "Provisión",
+      "B": "Financiamiento",
+      "C": "Gestión",
+      "D": "Organización"
+    },
+    "correct_answer": "D",
+    "page": 7
+  },
+  {
+    "original_num": 47,
+    "question": "Recientemente usted fue asignado a un C.S. y quiere conocer cómo se transmite una enfermedad de una persona a otra o de un reservorio no humano a una población humana, además de las razones por las que los comportamientos de riesgo causan enfermedades. ¿En qué se basa para realizar este estudio?",
+    "options": {
+      "A": "Tanatología",
+      "B": "Estadística",
+      "C": "Salud pública",
+      "D": "Epidemiología"
+    },
+    "correct_answer": "D",
+    "page": 7
+  },
+  {
+    "original_num": 48,
+    "question": "Adolescente de 13 años, con 38 semanas de gestación, procedente de los andes, sin control, indica que relaciones sexuales han sido voluntarias con ex pareja de 35 años, viene acompañada por la madre al establecimiento I-3 ¿Cuál es la conducta a seguir?",
+    "options": {
+      "A": "Aplicar kits completos de emergencia para descarte de ITS, VIH, Hepatitis B",
+      "B": "Comunicar a las autoridades, activar código violeta y referencia hospitalaria",
+      "C": "Brindar actividades socio educativas a fin de que paciente identifique riesgos",
+      "D": "Responsabilizar a sus progenitores por negligencia hacia la paciente"
+    },
+    "correct_answer": "B",
+    "page": 7
+  },
+  {
+    "original_num": 49,
+    "question": "El jefe del puesto de salud acudió a la reunión convocada por el municipio para empadronamiento y evaluación sanitaria de los drogadictos que pernoctan a las afueras de la ciudad y que han ido en aumento. Este hábito negativo para la salud, está dentro del grupo de determinantes:",
+    "options": {
+      "A": "Biológicos",
+      "B": "Genéticos",
+      "C": "Ambientales",
+      "D": "Asistenciales"
+    },
+    "correct_answer": "C",
+    "page": 7
+  },
+  {
+    "original_num": 50,
+    "question": "La inducción inicial, así como los cursos recibidos durante su SERUMS en el marco del \"desarrollo y capacitación de recursos humanos\" organizada por la Gerencia Regional de Salud. ¿A qué aspecto de la salud pública corresponde?",
+    "options": {
+      "A": "Función esencial",
+      "B": "Desarrollo de políticas",
+      "C": "Transición epidemiológica",
+      "D": "Rendimiento de personal"
+    },
+    "correct_answer": "A",
+    "page": 7
+  },
+  {
+    "original_num": 51,
+    "question": "Conjunto de actividades periódicas y sistemáticas realizadas por el profesional de la salud de enfermería y/o médico, con el objetivo de vigilar de manera adecuada, oportuna e individual, a fin de detectar de forma precoz los riesgos, las deficiencias y discapacidades e incremento de las oportunidades y factores protectores. Es individual, integral, oportuno, periódico y secuencial. ¿Cómo se denomina a estas actividades?",
+    "options": {
+      "A": "Control de signos de alarma del niño y niña",
+      "B": "Control de crecimiento y desarrollo del niño y niña",
+      "C": "Control parcial de crecimiento del niño y niña",
+      "D": "Evaluación global del niño y niña"
+    },
+    "correct_answer": "B",
+    "page": 8
+  },
+  {
+    "original_num": 52,
+    "question": "Si la interacción entre un paciente y el personal sanitario tratante, se da mediante uso de las TICs, ¿Qué concepto de salud se está aplicando?",
+    "options": {
+      "A": "Cuidado integral",
+      "B": "Salud intercultural",
+      "C": "Promoviendo salud",
+      "D": "Telesalud"
+    },
+    "correct_answer": "D",
+    "page": 8
+  },
+  {
+    "original_num": 53,
+    "question": "Mujer no gestante de 30 años, que se atiende en un establecimiento de salud I-2 a 3200 msnm; presenta hemoglobina de 11.9 g por hemoglobinómetro. ¿Cuál es el tipo de anemia y la conducta a seguir?",
+    "options": {
+      "A": "Leve e inicia tratamiento farmacológico",
+      "B": "Moderada e inicia tratamiento farmacológico",
+      "C": "Leve y solicita ferritina en el C.S. más cercano",
+      "D": "Severa y refiere para manejo en siguiente nivel"
+    },
+    "correct_answer": "B",
+    "page": 8
+  },
+  {
+    "original_num": 54,
+    "question": "Como parte del cuidado integral del niño de 2 años y 3 meses de edad, corresponde realizar la vigilancia del neurodesarrollo. ¿Qué test se aplica considerando la edad del paciente?",
+    "options": {
+      "A": "Escala de salud del paciente",
+      "B": "Lista de verificación de síntomas pediátricos",
+      "C": "Lista de habilidades y conductas esperadas por edad",
+      "D": "Huanca test"
+    },
+    "correct_answer": "D",
+    "page": 8
+  },
+  {
+    "original_num": 55,
+    "question": "Los pobladores de una comunidad ashaninka llegan al centro de salud preocupados debido a que sus niños presentan dolor y diarrea con mucha frecuencia. Además, refieren que tomaron preparados de hierbas y posteriormente algunos fallecieron. ¿Cuál es la función de salud pública que debe fortalecer el personal de salud?",
+    "options": {
+      "A": "Vigilancia y valoración del estado de salud",
+      "B": "Valoración clínica y laboratorio",
+      "C": "Vigilancia y valoración por el laboratorio",
+      "D": "Valoración del estado de salud"
+    },
+    "correct_answer": "A",
+    "page": 8
+  },
+  {
+    "original_num": 56,
+    "question": "Lactante de 4 meses con SIS, procedente de otra jurisdicción, acude al establecimiento de salud para su control e inicio de tratamiento preventivo de anemia. ¿Cuál es el procedimiento que se debe realizar para respetar su derecho al acceso a la salud?",
+    "options": {
+      "A": "Solicitar su referencia del lugar de procedencia",
+      "B": "Referir al hospital de mayor complejidad",
+      "C": "Apertura de la HC y brindar la atención requerida",
+      "D": "Enviarle al SIS central para su inscripción"
+    },
+    "correct_answer": "C",
+    "page": 8
+  },
+  {
+    "original_num": 57,
+    "question": "Adela es una adulta mayor viviendo con diabetes mellitus, la cual tiene dificultad para movilizarse. Refiere que vive con su hija que trabaja todo el día y no puede acompañarla siempre al establecimiento de salud. Está estable, pero necesita su medicación de manera oportuna. ¿Qué tipo de intervención de Telesalud requiere?",
+    "options": {
+      "A": "Teleorientación",
+      "B": "Telecapacitación",
+      "C": "Telemonitoreo",
+      "D": "Teleconsulta"
+    },
+    "correct_answer": "C",
+    "page": 9
+  },
+  {
+    "original_num": 58,
+    "question": "El modelo actual de salud en el Perú busca mejorar su calidad, atender a toda persona bajo su contexto cultural, comunitario y familiar, brindando un amplio rango de servicios. ¿Cuál es el atributo de la APS aplicado para este fin?",
+    "options": {
+      "A": "Coordinación de la atención",
+      "B": "Accesibilidad del primer contacto",
+      "C": "Participación activa",
+      "D": "Integralidad de los servicios"
+    },
+    "correct_answer": "D",
+    "page": 9
+  },
+  {
+    "original_num": 59,
+    "question": "Varón de 36 años viviendo con VIH, percibe que el profesional médico en consulta lo atiende con una gran indiferencia y poca comunicación. Para que él usuario no se sienta afectado se debe ...",
+    "options": {
+      "A": "aceptar la condición del paciente.",
+      "B": "indicar donde debe tomar asiento.",
+      "C": "disimular el rechazo al paciente.",
+      "D": "brindar un trato digno y humanizado."
+    },
+    "correct_answer": "D",
+    "page": 9
+  },
+  {
+    "original_num": 60,
+    "question": "Gestante migrante quechua hablante, que acude para atención a su establecimiento de salud tiene derecho a ...",
+    "options": {
+      "A": "servicios de salud con adecuación cultural.",
+      "B": "presencia solo de pareja.",
+      "C": "acompañamiento de familia.",
+      "D": "traductor de idioma original."
+    },
+    "correct_answer": "A",
+    "page": 9
+  },
+  {
+    "original_num": 61,
+    "question": "Durante la atención integral de la gestante, los controles prenatales buscan detectar riesgos para eliminarlos o minimizarlos. ¿Qué tipo de prevención es?",
+    "options": {
+      "A": "Cuaternaria",
+      "B": "Primaria",
+      "C": "Secundaria",
+      "D": "Terciaria"
+    },
+    "correct_answer": "B",
+    "page": 9
+  },
+  {
+    "original_num": 62,
+    "question": "El responsable de la RIS desea saber la cantidad de atenciones realizadas por el médico serumista en consulta externa. ¿Qué indicador de gestión debe utilizar?",
+    "options": {
+      "A": "Rendimiento",
+      "B": "Concentración",
+      "C": "Productividad",
+      "D": "Permanencia"
+    },
+    "correct_answer": "C",
+    "page": 9
+  },
+  {
+    "original_num": 63,
+    "question": "Varón de 35 años acude al establecimiento de salud para evaluación médica. Durante la consulta refiere que presenta tos y flema desde hace 15 días. Según la Norma Técnica de Salud para la prevención y control de tuberculosis. ¿Cómo se denomina a un paciente con este cuadro clínico?",
+    "options": {
+      "A": "Sintomático respiratorio examinado",
+      "B": "Paciente con infección latente",
+      "C": "Sintomático respiratorio",
+      "D": "Paciente con tuberculosis sensible"
+    },
+    "correct_answer": "C",
+    "page": 9
+  },
+  {
+    "original_num": 64,
+    "question": "En un establecimiento de salud I-4 el médico jefe debe elaborar el ...... que es una herramienta de gestión que considera las actividades para la implementación del plan operativo institucional.",
+    "options": {
+      "A": "cuadro multianual de necesidades",
+      "B": "plan de abastecimiento e inversiones",
+      "C": "plan estratégico institucional",
+      "D": "plan de salud local"
+    },
+    "correct_answer": "D",
+    "page": 9
+  },
+  {
+    "original_num": 65,
+    "question": "El enfoque intercultural implica que el Estado valore e incorpore las diferentes visiones de los grupos étnicos y culturales para la generación de los servicios con pertinencia cultural, promoviendo el reconocimiento de la ciudadanía intercultural basada en el diálogo y la atención diferenciada. Este enfoque debería ser diferenciado de manera especial en la población:",
+    "options": {
+      "A": "Aymara e indígena",
+      "B": "Latina y europea",
+      "C": "En general",
+      "D": "Indígena y afroperuana"
+    },
+    "correct_answer": "D",
+    "page": 10
+  },
+  {
+    "original_num": 66,
+    "question": "Una persona después de haberse vacunado contra el dengue. ¿Cuánto tiempo debe permanecer en el área de reposo?",
+    "options": {
+      "A": "Una hora",
+      "B": "45 minutos",
+      "C": "30 minutos",
+      "D": "2 horas"
+    },
+    "correct_answer": "C",
+    "page": 10
+  },
+  {
+    "original_num": 67,
+    "question": "Acude a su consulta una paciente mujer de 60 años con resultado de RPR positivo 8 dils, asintomática, cuya única pareja sexual es su esposo. ¿Cuál sería el esquema a seguir?",
+    "options": {
+      "A": "Penicilina benzatínica 2 400 000 UI 1 ampolla IM c/semana por 3 semanas",
+      "B": "Bencilpenicilina sódica 1 000 000 UI 4 ampollas EV c/4 horas por 2 semanas",
+      "C": "Doxiciclina 100 mg 1 tableta VO c/12 horas por 2 semanas",
+      "D": "Penicilina benzatínica 2 400 000 UI 1 ampolla IM dosis única"
+    },
+    "correct_answer": "A",
+    "page": 10
+  },
+  {
+    "original_num": 68,
+    "question": "¿Con qué se determina el número de la historia clínica de una persona de nacionalidad peruana?",
+    "options": {
+      "A": "Carnet de extranjería",
+      "B": "Documento Nacional de Identidad",
+      "C": "Pasaporte",
+      "D": "Según número de ingreso"
+    },
+    "correct_answer": "B",
+    "page": 10
+  },
+  {
+    "original_num": 69,
+    "question": "El equipo multidisciplinario de salud acude a una visita domiciliaria para aplicar el test de PAIFAM. La familia refiere que Roberto, padre de familia de 48 años, está consumiendo alcohol algunos días a la semana, por no conseguir trabajo, por lo que, Ud. como médico aplica el cuestionario de:",
+    "options": {
+      "A": "Hamilton",
+      "B": "Zung",
+      "C": "AUDIT C",
+      "D": "SRQ"
+    },
+    "correct_answer": "C",
+    "page": 10
+  },
+  {
+    "original_num": 70,
+    "question": "En la comunidad de un PS I-2 se identifica que existe un número elevado de adolescentes entre 13 y 15 años que se encuentran laborando pasteando ganado y pernoctando en el campo y que no han sido matriculados en la escuela. ¿A qué determinantes corresponde esta situación?",
+    "options": {
+      "A": "Estilo de vida",
+      "B": "Ambientales",
+      "C": "Intermedios",
+      "D": "Estructurales"
+    },
+    "correct_answer": "C",
+    "page": 10
+  },
+  {
+    "original_num": 71,
+    "question": "Para realizar un trabajo de investigación y obtener información de las exposiciones anteriores y actuales. ¿Qué tipo de recolección de debe realizar?",
+    "options": {
+      "A": "Observación familiar",
+      "B": "Observación",
+      "C": "Entrevista",
+      "D": "Informante indirecto"
+    },
+    "correct_answer": "C",
+    "page": 10
+  },
+  {
+    "original_num": 72,
+    "question": "A un establecimiento de salud, llegan 25 niños beneficiarios del programa de alimentación escolar, por presentar cuadro de intoxicación alimentaria, luego del consumir el desayuno escolar. Este tipo de evento debe ser notificado y corresponde a:",
+    "options": {
+      "A": "Epizootia",
+      "B": "Endemia",
+      "C": "Brote",
+      "D": "Pandemia"
+    },
+    "correct_answer": "C",
+    "page": 10
+  },
+  {
+    "original_num": 73,
+    "question": "Mujer de 28 años con sospecha de TB es atendida en el CS y luego de concluir con la consejería es derivada al servicio de salud mental; esta indicación se tomó debido a que el tamizaje salió...",
+    "options": {
+      "A": "negativo.",
+      "B": "positivo.",
+      "C": "con riesgo bajo.",
+      "D": "con riesgo alto."
+    },
+    "correct_answer": "B",
+    "page": 11
+  },
+  {
+    "original_num": 74,
+    "question": "Acude a la consulta externa, de un centro de salud I-3, una persona adulta mayor de 75 años acompañada con hija, la cual refiere que acude para iniciar chequeos por su edad, por lo que Ud. indica la siguiente valoración clínica:",
+    "options": {
+      "A": "Corta",
+      "B": "Complejo",
+      "C": "Breve",
+      "D": "Completa"
+    },
+    "correct_answer": "A",
+    "page": 11
+  },
+  {
+    "original_num": 75,
+    "question": "En estudios clínicos y epidemiológicos, la medición de variables que incluyen la perspectiva del paciente con referencia a resultados relacionados a su calidad de vida. ¿Cuáles son los instrumentos de recolección de datos más indicados?",
+    "options": {
+      "A": "Registro por el paciente y familiar",
+      "B": "Entrevistas y cuestionarios",
+      "C": "Registros y documentos ya existentes",
+      "D": "Observación directa e indirecta"
+    },
+    "correct_answer": "B",
+    "page": 11
+  },
+  {
+    "original_num": 76,
+    "question": "Ud. es jefe de un establecimiento I-4 en la región norte del país y los boletines informativos de epidemiología indican un aumento de casos de melanomas por exposición a rayos UV en el último año. ¿A qué tipo de casos corresponden?",
+    "options": {
+      "A": "Reincidentes",
+      "B": "Prevalentes",
+      "C": "Probables",
+      "D": "Incidentes"
+    },
+    "correct_answer": "D",
+    "page": 11
+  },
+  {
+    "original_num": 77,
+    "question": "Jorge de 38 años, acude a la IPRESS puerta de entrada de su zona sanitaria en Piura, con fiebre, cefalea, mialgias y dolor retro ocular de 2 días de evolución, sin factor de riesgo. Médico serumista lo considera como un dengue probable y lo clasifica como grupo ...… para iniciar tratamiento.",
+    "options": {
+      "A": "A",
+      "B": "B2",
+      "C": "B1",
+      "D": "C"
+    },
+    "correct_answer": "A",
+    "page": 11
+  },
+  {
+    "original_num": 78,
+    "question": "Mujer parturienta de 37 años, solicito dar a luz en posición de rodillas ¿Qué ubicación toma usted para proteger el periné en todo momento y evitar desgarre?",
+    "options": {
+      "A": "arrodillado",
+      "B": "Delante o detrás",
+      "C": "sentado en un banco",
+      "D": "costado izquierdo o derecho"
+    },
+    "correct_answer": "B",
+    "page": 11
+  },
+  {
+    "original_num": 79,
+    "question": "En una comunidad amazónica se registra un brote de malaria por Plasmodium falciparum, donde dos niños fallecieron de un total de 50 pacientes (4%) confirmados con gota gruesa y PCR. ¿Cuál es la medida epidemiológica de frecuencia referida?",
+    "options": {
+      "A": "Tasa de ataque",
+      "B": "Tasa de letalidad",
+      "C": "Tasa de mortalidad general",
+      "D": "Incidencia acumulada"
+    },
+    "correct_answer": "B",
+    "page": 11
+  },
+  {
+    "original_num": 80,
+    "question": "Se observa que hay migrantes de la selva que viven en un asentamiento humano de un distrito de Lima, que son discriminados y rechazados por los pobladores del distrito donde pernoctan. ¿Qué acciones debe realizar como personal de salud?",
+    "options": {
+      "A": "Reforzar la interacción cultural",
+      "B": "Normalizar el comportamiento de la comunidad",
+      "C": "Imponer acciones socio educativas",
+      "D": "Cambiar hábitos, costumbres y creencias"
+    },
+    "correct_answer": "A",
+    "page": 11
+  },
+  {
+    "original_num": 81,
+    "question": "El jefe del establecimiento de salud nivel I-2 ha identificado que existe necesidad de otro personal técnico para las visitas domiciliarias, porque no se logran las metas programadas. ¿En qué instrumento de gestión se debe programar este recurso?",
+    "options": {
+      "A": "Plan estratégico",
+      "B": "Presupuesto por resultados",
+      "C": "Plan operativo",
+      "D": "Plan de salud local"
+    },
+    "correct_answer": "C",
+    "page": 12
+  },
+  {
+    "original_num": 82,
+    "question": "Ud. desea definir las líneas de mejora continua de su centro de salud para lo cual es necesario conocer sus fortalezas. ¿Qué pregunta debe realizar?",
+    "options": {
+      "A": "¿Qué facilidades se presentan?",
+      "B": "¿Qué se está haciendo bien?",
+      "C": "¿Qué nos falta para mejorar?",
+      "D": "¿Qué riesgos externos existen?"
+    },
+    "correct_answer": "B",
+    "page": 12
+  },
+  {
+    "original_num": 83,
+    "question": "La búsqueda intencionada y sistemática de casos de dislipidemia y obesidad infantil en las historias clínicas y archivos estadísticos del centro de salud. ¿A qué tipo de vigilancia corresponde?",
+    "options": {
+      "A": "Centinela",
+      "B": "Retrospectiva",
+      "C": "Pasiva",
+      "D": "Activa"
+    },
+    "correct_answer": "C",
+    "page": 12
+  },
+  {
+    "original_num": 84,
+    "question": "Neonato de 8 horas de parto domiciliario, en zona rural. Deben recibir BCG y HvB. ¿Cuál es el tiempo ideal para recibirlas?",
+    "options": {
+      "A": "Hasta un año",
+      "B": "Dentro de las 24 horas",
+      "C": "Hasta un mes",
+      "D": "Dentro de una semana"
+    },
+    "correct_answer": "B",
+    "page": 12
+  },
+  {
+    "original_num": 85,
+    "question": "Se apersona una mujer de 25 años, con 20 semanas de gestación, sin controles previos, sin antecedentes patológicos previos de acuerdo a protocolo le realizan el tamizaje de VIH, con resultado positivo. ¿Qué acciones se realizan desde el centro de salud nivel I-3?",
+    "options": {
+      "A": "Ubicación de familiares para soporte socio familiar",
+      "B": "Derivación a centro hospitalario para confirmación",
+      "C": "Control de gestación y psicoprofilaxis",
+      "D": "Gestionar apoyo con programa social del MIDIS"
+    },
+    "correct_answer": "B",
+    "page": 12
+  },
+  {
+    "original_num": 86,
+    "question": "¿Cuál es la función esencial de la salud pública que ha sido identificada como critica para la práctica de la salud publica relacionada a la colaboración activa del personal de los servicios de salud en el desarrollo de programas educativos en la comunidad?",
+    "options": {
+      "A": "Promoción del acceso equitativo",
+      "B": "Participación social",
+      "C": "Regulación y fiscalización",
+      "D": "Promoción de la salud"
+    },
+    "correct_answer": "D",
+    "page": 12
+  },
+  {
+    "original_num": 87,
+    "question": "Niña de 4 meses de parto institucional con peso de 5 kg debe recibir sus vacunas de acuerdo a calendario de vacunación para su edad. ¿Cuál de las siguientes vacunas le corresponde?",
+    "options": {
+      "A": "BCG",
+      "B": "Pentavalente",
+      "C": "Hexavalente",
+      "D": "HvB"
+    },
+    "correct_answer": "B",
+    "page": 12
+  },
+  {
+    "original_num": 88,
+    "question": "En un centro de salud I-4, el nuevo médico jefe ha reestructurado el rol central de esta institución, la población objetivo asignada y los atributos de la entidad. Esta construcción de elementos se denomina:",
+    "options": {
+      "A": "Indicador",
+      "B": "Objetivo",
+      "C": "Misión",
+      "D": "Visión"
+    },
+    "correct_answer": "C",
+    "page": 12
+  },
+  {
+    "original_num": 89,
+    "question": "En un establecimiento de salud I-4 el personal de salud está organizado para identificar problemas de salud, facilitando el control y resolución de los mismos en su comunidad. ¿Qué estrategia han implementado?",
+    "options": {
+      "A": "Presupuesto por resultados",
+      "B": "Gestión por procesos",
+      "C": "Vigilancia epidemiológica",
+      "D": "Oferta de servicios"
+    },
+    "correct_answer": "C",
+    "page": 13
+  },
+  {
+    "original_num": 90,
+    "question": "Varón de 63 años, con diagnóstico HIV, en tratamiento desde que estuvo en prisión, actualmente en libertad, acude por retrovirales al establecimiento I-3. ¿Qué debe hacer el proveedor de salud que atiende?",
+    "options": {
+      "A": "Custodiar sus cosas personales e institucionales y mantener distancias",
+      "B": "Brindar confidencialidad, indicar hospital de derivación para recibir retrovirales",
+      "C": "Constatar si tiene SIS, para entregarle retrovirales correspondientes",
+      "D": "Indicarle que debe apersonarse con algún familiar para darle información"
+    },
+    "correct_answer": "B",
+    "page": 13
+  },
+  {
+    "original_num": 91,
+    "question": "En la comunidad rural donde realiza su SERUMS varios moradores reportan el hallazgo de muerte y enfermedad inusuales en cuyes y ratas de campo, por lo que debe proceder a la notificación respectiva. ¿Cuál es el acontecimiento epidemiológico presentado?",
+    "options": {
+      "A": "Brote infeccioso",
+      "B": "Zoonosis",
+      "C": "Epizootia",
+      "D": "Endemia animal"
+    },
+    "correct_answer": "C",
+    "page": 13
+  },
+  {
+    "original_num": 92,
+    "question": "Usted acaba de ganar su plaza SERUMS, y en su primer día de trabajo, su jefatura le indica que se encuentran en el proceso de búsqueda de información a fin de elaborar el documento que oriente una gestión eficiente en salud acorde con los procesos de planificación. ¿Cuál es el documento?",
+    "options": {
+      "A": "Análisis de la Vulnerabilidad territorial",
+      "B": "Análisis Global del Estado de la Salud",
+      "C": "Análisis Global de los Determinantes de la Salud",
+      "D": "Análisis de Situación de Salud"
+    },
+    "correct_answer": "D",
+    "page": 13
+  },
+  {
+    "original_num": 93,
+    "question": "La autoridad regional de salud está implementando la estrategia de Salud Familiar para que se pueda desarrollar efectivamente en el siguiente año. ¿En qué plan institucional se debe programar?",
+    "options": {
+      "A": "Continuidad",
+      "B": "Contingencia",
+      "C": "Estratégico",
+      "D": "Operativo"
+    },
+    "correct_answer": "D",
+    "page": 13
+  },
+  {
+    "original_num": 94,
+    "question": "Un grupo de migrantes de la selva que viven en comunidad en Lima, mantienen sus estilos de vida donde prevalece el trabajo informal, la deserción escolar y el ausentismo en servicios de salud. ¿Qué acciones deben realizar las autoridades locales?",
+    "options": {
+      "A": "Brindar solamente acceso a los diversos programas sociales",
+      "B": "Gestionar políticas públicas que brinden recursos en la comunidad",
+      "C": "Censo a fin de conocer las personas que se encuentran en riesgo de salud",
+      "D": "Visitas domiciliarias a fin de integrarlos a los servicios de salud"
+    },
+    "correct_answer": "B",
+    "page": 13
+  },
+  {
+    "original_num": 95,
+    "question": "Rosa acude a la IPRESS de su jurisdicción, con su hijo Iván nacido a término, quien ha cumplido 4 meses, aparentemente normal. Como médico preocupado por la lucha contra la anemia, Ud. decide lo siguiente, de acuerdo a normatividad vigente:",
+    "options": {
+      "A": "Iniciar con suplementación preventiva a 2 mg/kg/día de hierro elemental",
+      "B": "Dosaje de hemoglobina urgente e iniciar tratamiento con hierro polimaltosado",
+      "C": "Tratamiento con hierro elemental a 3mg/Kg/día para prevenir la anemia",
+      "D": "Esperar hasta los 6 meses para dosaje de hemoglobina y suplementación"
+    },
+    "correct_answer": "A",
+    "page": 14
+  },
+  {
+    "original_num": 96,
+    "question": "En un establecimiento de salud I-4, un ejemplo de UPSS podría considerarse al servicio de …",
+    "options": {
+      "A": "epidemiología.",
+      "B": "pediatría.",
+      "C": "gestión de investigación.",
+      "D": "docencia."
+    },
+    "correct_answer": "B",
+    "page": 14
+  },
+  {
+    "original_num": 97,
+    "question": "Durante la visita del equipo multidisciplinario a la comunidad de un sector sanitario, se brindan actividades incluidas en el paquete de cuidado integral. Se sabe que en la localidad visitada consume agua no potable por lo cual se solicita el test de Graham. ¿Qué probable enfermedad se pretende descartar?",
+    "options": {
+      "A": "Amebiasis",
+      "B": "Salmonelosis",
+      "C": "Disentería",
+      "D": "Oxiuriasis"
+    },
+    "correct_answer": "D",
+    "page": 14
+  },
+  {
+    "original_num": 98,
+    "question": "Un estudio de investigación realizado en una población aledaña a su centro de salud, reporta que los niños cuya familia es monoparental tiene el doble de riesgo de presentar anemia (RR=2.0), respecto a aquellos con familia biparental. ¿Cuál es el tipo de medida epidemiológica a la que se hace referencia?",
+    "options": {
+      "A": "Impacto",
+      "B": "Asociación",
+      "C": "Mortalidad",
+      "D": "Frecuencia"
+    },
+    "correct_answer": "B",
+    "page": 14
+  },
+  {
+    "original_num": 99,
+    "question": "En una comunidad se reportan dos o más casos de una misma enfermedad y están relacionados entre sí, el personal de salud según criterio epidemiológico identifica que es:",
+    "options": {
+      "A": "Endemia",
+      "B": "Epidemia",
+      "C": "Pandemia",
+      "D": "Brote"
+    },
+    "correct_answer": "D",
+    "page": 14
+  },
+  {
+    "original_num": 100,
+    "question": "Durante la evaluación de los cuidados integrales de un adolescente varón de 16 años, que vive solo con su hermana mayor de 20 años, identifica que ha iniciado relaciones sexuales hace 1 año, con 3 parejas sexuales de su misma edad, sin uso de preservativo, por lo que Ud. prescribe:",
+    "options": {
+      "A": "Consejería de salud sexual y reproductiva",
+      "B": "Prueba rápida de VIH, sífilis y hepatitis B",
+      "C": "Consejería en estilos de vida saludables",
+      "D": "Educación en I.E. sobre sexualidad saludable"
+    },
+    "correct_answer": "B",
+    "page": 14
+  }
+]
