@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Cpu, Play, BookOpen, RefreshCw, Key, Layers, CheckCircle2, AlertCircle, Bookmark, ArrowRight, Zap, Download, Lightbulb, Clock } from 'lucide-react';
+import { Sparkles, Cpu, RefreshCw, Key, Layers, CheckCircle2, Bookmark, Zap, Lightbulb, Clock, Target, ShieldCheck, Flame, Play } from 'lucide-react';
 import { CATEGORIES } from '../../data/categories';
 import { generateSingleQuestion, generateExamBatch } from '../../services/aiService';
 import { QuestionCard } from '../ExamSimulator/QuestionCard';
@@ -15,6 +15,12 @@ const WAITING_TIPS = [
   '💡 Relación Médico-Paciente: El modelo "Interpretativo" sitúa al médico como consejero-consultor para dilucidar los valores del paciente.'
 ];
 
+const DIFFICULTY_OPTIONS = [
+  { id: 'standard', label: 'Estándar MINSA', short: 'Estándar', icon: Target },
+  { id: 'high', label: 'Alta Rentabilidad', short: 'Alta Rent.', icon: Flame },
+  { id: 'normative', label: 'Normativa NTS', short: 'Normas NTS', icon: ShieldCheck }
+];
+
 export function AiExamGenerator({
   onStartCustomExam,
   onSaveQuestionToBank,
@@ -22,7 +28,6 @@ export function AiExamGenerator({
   onToggleSave,
   fontSize
 }) {
-  const [subMode, setSubMode] = useState('single'); // 'single' | 'batch'
   const [apiKey, setApiKey] = useLocalStorage('nvidia_custom_api_key', import.meta.env.VITE_NVIDIA_API_KEY || '');
   const [showKeyConfig, setShowKeyConfig] = useState(false);
 
@@ -35,14 +40,9 @@ export function AiExamGenerator({
   const [selectedOption, setSelectedOption] = useState(null);
   const [singleError, setSingleError] = useState('');
 
-  // Batch Exam Generation State
-  const [batchCount, setBatchCount] = useState(25);
-  const [batchCategory, setBatchCategory] = useState('all');
-  const [batchDifficulty, setBatchDifficulty] = useState('standard');
-  const [isGeneratingBatch, setIsGeneratingBatch] = useState(false);
-  const [batchProgress, setBatchProgress] = useState({ current: 0, total: 0 });
-  const [generatedExamList, setGeneratedExamList] = useState([]);
-  const [batchError, setBatchError] = useState('');
+  // Mini-Exam State (Max 2 questions to strictly protect NVIDIA credits)
+  const [isGeneratingMini, setIsGeneratingMini] = useState(false);
+  const [miniExamQuestions, setMiniExamQuestions] = useState([]);
 
   // Timer & Tip Rotation for Waiting Experience
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
@@ -52,7 +52,7 @@ export function AiExamGenerator({
     let intervalTimer = null;
     let tipTimer = null;
 
-    if (isLoadingSingle || isGeneratingBatch) {
+    if (isLoadingSingle || isGeneratingMini) {
       setElapsedSeconds(0);
       intervalTimer = setInterval(() => {
         setElapsedSeconds((prev) => prev + 1);
@@ -69,13 +69,14 @@ export function AiExamGenerator({
       if (intervalTimer) clearInterval(intervalTimer);
       if (tipTimer) clearInterval(tipTimer);
     };
-  }, [isLoadingSingle, isGeneratingBatch]);
+  }, [isLoadingSingle, isGeneratingMini]);
 
   // Handle single question generation
   const handleGenerateSingle = async () => {
     setIsLoadingSingle(true);
     setSingleError('');
     setSelectedOption(null);
+    setMiniExamQuestions([]);
     try {
       const q = await generateSingleQuestion({
         category: singleCategory,
@@ -91,408 +92,267 @@ export function AiExamGenerator({
     }
   };
 
-  // Handle batch exam generation
-  const handleGenerateBatch = async () => {
-    setIsGeneratingBatch(true);
-    setBatchError('');
-    setGeneratedExamList([]);
-    setBatchProgress({ current: 0, total: batchCount });
-
+  // Handle safe Mini Reto generation (Strictly 2 questions to protect free credits)
+  const handleGenerateMiniChallenge = async () => {
+    setIsGeneratingMini(true);
+    setSingleError('');
+    setCurrentSingleQ(null);
     try {
       const questions = await generateExamBatch({
-        totalQuestions: batchCount,
-        category: batchCategory,
-        difficulty: batchDifficulty,
+        totalQuestions: 2,
+        category: singleCategory,
+        difficulty: singleDifficulty,
         topic: customTopic,
-        apiKey,
-        onProgress: (current, total) => {
-          setBatchProgress({ current, total });
-        }
+        apiKey
       });
-      setGeneratedExamList(questions);
+      if (questions.length > 0) {
+        setMiniExamQuestions(questions);
+        if (onStartCustomExam) {
+          onStartCustomExam(questions);
+        }
+      }
     } catch (err) {
-      setBatchError(err.message || 'Error durante la generación masiva.');
+      setSingleError(err.message || 'Error al generar el mini-reto con IA.');
     } finally {
-      setIsGeneratingBatch(false);
+      setIsGeneratingMini(false);
     }
   };
 
   return (
-    <div className="ai-exam-generator-view" id="ai-exam-generator-view" style={{ maxWidth: '960px', margin: '0 auto' }}>
-      {/* Banner Header */}
-      <div style={{ background: 'linear-gradient(135deg, rgba(2, 132, 199, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%)', border: '1px solid rgba(2, 132, 199, 0.35)', borderRadius: 'var(--radius-lg)', padding: '1.75rem', marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+    <div className="ai-exam-generator-view" id="ai-exam-generator-view" style={{ maxWidth: '820px', margin: '0 auto' }}>
+      
+      {/* Banner Header (Ultra-Compact & Credit Protected) */}
+      <div style={{ background: 'linear-gradient(135deg, rgba(2, 132, 199, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%)', border: '1px solid rgba(2, 132, 199, 0.35)', borderRadius: 'var(--radius-md)', padding: '0.75rem 1rem', marginBottom: '0.65rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
         <div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.2rem 0.6rem', background: 'rgba(139, 92, 246, 0.2)', color: '#a78bfa', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 700, marginBottom: '0.5rem' }}>
-            <Cpu size={14} />
-            <span>NVIDIA NIM AI • LLaMA 3.2 11B/90B</span>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', padding: '0.15rem 0.5rem', background: 'rgba(139, 92, 246, 0.2)', color: '#a78bfa', borderRadius: 'var(--radius-full)', fontSize: '0.7rem', fontWeight: 700, marginBottom: '0.2rem' }}>
+            <Cpu size={13} />
+            <span>NVIDIA NIM AI • LLaMA 3.2 11B (Ahorro de Créditos Activo)</span>
           </div>
-          <h2 style={{ fontSize: '1.6rem', marginBottom: '0.35rem' }}>
-            Generador de Preguntas y Exámenes con IA
+          <h2 style={{ fontSize: '1.2rem', marginBottom: '0.15rem', fontWeight: 800 }}>
+            Generador Clínico On-Demand con IA
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', maxWidth: '620px' }}>
-            Genera preguntas inéditas en tiempo real calibradas con las Normas Técnicas del MINSA, o crea un simulacro completo de hasta 100 preguntas asistido por IA.
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', maxWidth: '560px', lineHeight: 1.35 }}>
+            Preguntas inéditas generadas en tiempo real y calibradas con el Temario SERUMS 2026-II y Normas MINSA.
           </p>
         </div>
 
         <button
           className="action-btn-sm"
           onClick={() => setShowKeyConfig(!showKeyConfig)}
-          style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-medium)', color: 'var(--text-main)' }}
+          style={{ background: 'var(--bg-surface)', borderColor: 'var(--border-medium)', color: 'var(--text-main)', fontSize: '0.76rem', padding: '0.35rem 0.65rem' }}
         >
-          <Key size={16} />
-          <span>Configurar API Key</span>
+          <Key size={14} />
+          <span>API Key</span>
         </button>
       </div>
 
       {/* API Key Config Dropdown */}
       {showKeyConfig && (
-        <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', padding: '1.25rem', marginBottom: '1.5rem' }}>
-          <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>
-            NVIDIA API Key (Portal build.nvidia.com):
+        <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', padding: '0.75rem', marginBottom: '0.65rem' }}>
+          <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '0.3rem' }}>
+            NVIDIA API Key:
           </label>
-          <div style={{ display: 'flex', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
             <input
               type="password"
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
               placeholder="nvapi-..."
-              style={{ flex: 1, padding: '0.6rem 0.8rem', background: 'var(--bg-surface)', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)', fontSize: '0.85rem' }}
+              style={{ flex: 1, padding: '0.45rem 0.7rem', background: 'var(--bg-surface)', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-xs)', color: 'var(--text-main)', fontSize: '0.82rem' }}
             />
-            <button className="btn-primary" onClick={() => setShowKeyConfig(false)}>
+            <button className="btn-primary" onClick={() => setShowKeyConfig(false)} style={{ padding: '0.45rem 0.9rem', fontSize: '0.82rem' }}>
               Guardar
             </button>
           </div>
         </div>
       )}
 
-      {/* Submode Switcher */}
-      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.75rem' }}>
-        <button
-          className={`btn-secondary ${subMode === 'single' ? 'active' : ''}`}
-          onClick={() => setSubMode('single')}
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            backgroundColor: subMode === 'single' ? 'var(--primary)' : 'var(--bg-card)',
-            color: subMode === 'single' ? '#ffffff' : 'var(--text-secondary)'
-          }}
-        >
-          <Zap size={18} />
-          <span>Modo Uno a Uno (On-Demand)</span>
-        </button>
+      {/* Main Form Controls Bar */}
+      <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', padding: '0.85rem 1rem', marginBottom: '0.85rem' }}>
+        
+        {/* Specialty Pill Selector */}
+        <div style={{ marginBottom: '0.75rem' }}>
+          <label style={{ display: 'block', fontSize: '0.76rem', color: 'var(--text-secondary)', marginBottom: '0.35rem', fontWeight: 700 }}>
+            Especialidad Temática:
+          </label>
+          <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap', alignItems: 'center' }}>
+            {Object.values(CATEGORIES).map((c) => {
+              const isSelected = singleCategory === c.id;
+              return (
+                <button
+                  key={c.id}
+                  onClick={() => setSingleCategory(c.id)}
+                  disabled={isLoadingSingle || isGeneratingMini}
+                  style={{
+                    padding: '0.28rem 0.6rem',
+                    borderRadius: 'var(--radius-full)',
+                    fontSize: '0.74rem',
+                    fontWeight: isSelected ? 700 : 500,
+                    background: isSelected ? 'var(--primary-gradient)' : 'var(--bg-surface)',
+                    color: isSelected ? '#ffffff' : 'var(--text-secondary)',
+                    border: isSelected ? '1px solid transparent' : '1px solid var(--border-subtle)',
+                    cursor: 'pointer',
+                    whiteSpace: 'nowrap',
+                    transition: 'var(--transition)'
+                  }}
+                >
+                  {c.shortName || c.name}
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
-        <button
-          className={`btn-secondary ${subMode === 'batch' ? 'active' : ''}`}
-          onClick={() => setSubMode('batch')}
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            backgroundColor: subMode === 'batch' ? 'var(--primary)' : 'var(--bg-card)',
-            color: subMode === 'batch' ? '#ffffff' : 'var(--text-secondary)'
-          }}
-        >
-          <Layers size={18} />
-          <span>Generar Simulacro Completo (10 a 100 preguntas)</span>
-        </button>
+        {/* Difficulty Segmented Buttons */}
+        <div style={{ marginBottom: '0.75rem' }}>
+          <label style={{ display: 'block', fontSize: '0.76rem', color: 'var(--text-secondary)', marginBottom: '0.35rem', fontWeight: 700 }}>
+            Nivel de Complejidad:
+          </label>
+          <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
+            {DIFFICULTY_OPTIONS.map((d) => {
+              const Icon = d.icon;
+              const isSelected = singleDifficulty === d.id;
+              return (
+                <button
+                  key={d.id}
+                  onClick={() => setSingleDifficulty(d.id)}
+                  disabled={isLoadingSingle || isGeneratingMini}
+                  style={{
+                    flex: '1 1 auto',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.35rem',
+                    padding: '0.38rem 0.75rem',
+                    borderRadius: 'var(--radius-md)',
+                    fontSize: '0.78rem',
+                    fontWeight: isSelected ? 700 : 500,
+                    background: isSelected ? 'var(--primary-light)' : 'var(--bg-surface)',
+                    color: isSelected ? 'var(--primary)' : 'var(--text-secondary)',
+                    border: isSelected ? '1.5px solid var(--primary)' : '1px solid var(--border-subtle)',
+                    cursor: 'pointer',
+                    transition: 'var(--transition)'
+                  }}
+                >
+                  <Icon size={14} />
+                  <span>{d.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Custom Topic Input */}
+        <div style={{ marginBottom: '0.85rem' }}>
+          <label style={{ display: 'block', fontSize: '0.76rem', color: 'var(--text-secondary)', marginBottom: '0.3rem', fontWeight: 700 }}>
+            Filtro Temático Libre (Opcional):
+          </label>
+          <input
+            type="text"
+            placeholder="ej. Dengue signos de alarma, Esquema Zuspan, NTS Anemia 2024, Vacuna VRS..."
+            value={customTopic}
+            onChange={(e) => setCustomTopic(e.target.value)}
+            disabled={isLoadingSingle || isGeneratingMini}
+            style={{ width: '100%', padding: '0.45rem 0.75rem', background: 'var(--bg-surface)', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-md)', color: 'var(--text-main)', fontSize: '0.82rem', outline: 'none' }}
+          />
+        </div>
+
+        {/* Action Buttons: Single Question (1 credit) or Mini Reto (2 questions) */}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <button
+            className="btn-secondary"
+            onClick={handleGenerateMiniChallenge}
+            disabled={isLoadingSingle || isGeneratingMini}
+            style={{ padding: '0.65rem 1.15rem', fontSize: '0.84rem', fontWeight: 600 }}
+            title="Genera un reto corto de 2 preguntas de simulación"
+          >
+            {isGeneratingMini ? (
+              <>
+                <RefreshCw size={15} className="animate-spin" />
+                <span>Generando 2 preguntas...</span>
+              </>
+            ) : (
+              <>
+                <Layers size={15} />
+                <span>Mini-Reto (2 Preguntas)</span>
+              </>
+            )}
+          </button>
+
+          <button
+            id="btn-generate-ai-single"
+            className="btn-primary"
+            onClick={handleGenerateSingle}
+            disabled={isLoadingSingle || isGeneratingMini}
+            style={{ padding: '0.65rem 1.4rem', fontSize: '0.88rem', fontWeight: 700 }}
+          >
+            {isLoadingSingle ? (
+              <>
+                <RefreshCw size={16} className="animate-spin" />
+                <span>Redactando caso ({elapsedSeconds}s)...</span>
+              </>
+            ) : (
+              <>
+                <Sparkles size={16} />
+                <span>{currentSingleQ ? 'Generar Otra Pregunta' : 'Generar Pregunta Inédita'}</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Live Waiting Animated Card */}
+        {(isLoadingSingle || isGeneratingMini) && (
+          <div style={{ marginTop: '0.85rem', padding: '0.85rem 1rem', background: 'rgba(2, 132, 199, 0.08)', border: '1px dashed rgba(2, 132, 199, 0.4)', borderRadius: 'var(--radius-md)', animation: 'fadeIn 0.3s ease-in' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.4rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)', fontWeight: 600, fontSize: '0.84rem' }}>
+                <Cpu size={18} className="animate-pulse" />
+                <span>NVIDIA AI analizando literatura médica MINSA...</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--text-secondary)', fontSize: '0.78rem', background: 'var(--bg-surface)', padding: '0.15rem 0.5rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+                <Clock size={13} color="var(--primary)" />
+                <span>Tiempo: <strong>{elapsedSeconds}s</strong></span>
+              </div>
+            </div>
+
+            {/* Rotating Medical Flash Tip */}
+            <div style={{ background: 'var(--bg-card)', padding: '0.65rem 0.85rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+              <Lightbulb size={16} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.4 }}>
+                <strong style={{ color: 'var(--text-main)' }}>Repaso Rápido SERUMS: </strong>
+                {WAITING_TIPS[tipIndex]}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {singleError && (
+          <div style={{ marginTop: '0.75rem', padding: '0.65rem 0.85rem', background: 'var(--danger-bg)', border: '1px solid var(--danger-border)', borderRadius: 'var(--radius-sm)', color: 'var(--danger)', fontSize: '0.82rem' }}>
+            {singleError}
+          </div>
+        )}
       </div>
 
-      {/* ========================================================================= */}
-      {/* MODE 1: SINGLE QUESTION (ON-DEMAND)                                       */}
-      {/* ========================================================================= */}
-      {subMode === 'single' && (
-        <div>
-          {/* Controls Bar */}
-          <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-lg)', padding: '1.5rem', marginBottom: '2rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.35rem', fontWeight: 600 }}>
-                  Especialidad:
-                </label>
-                <select
-                  className="exam-selector-select"
-                  value={singleCategory}
-                  onChange={(e) => setSingleCategory(e.target.value)}
-                  style={{ width: '100%', background: 'var(--bg-surface)' }}
-                  disabled={isLoadingSingle}
-                >
-                  {Object.values(CATEGORIES).map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.35rem', fontWeight: 600 }}>
-                  Nivel de Dificultad:
-                </label>
-                <select
-                  className="exam-selector-select"
-                  value={singleDifficulty}
-                  onChange={(e) => setSingleDifficulty(e.target.value)}
-                  style={{ width: '100%', background: 'var(--bg-surface)' }}
-                  disabled={isLoadingSingle}
-                >
-                  <option value="standard">Estándar SERUMS (MINSA)</option>
-                  <option value="high">Alta Complejidad / Casos Retadores</option>
-                  <option value="normative">Normativa Técnica Pura (NTS)</option>
-                </select>
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.35rem', fontWeight: 600 }}>
-                  Tema Libre (Opcional):
-                </label>
-                <input
-                  type="text"
-                  placeholder="ej. Dengue con signos de alarma, CRED..."
-                  value={customTopic}
-                  onChange={(e) => setCustomTopic(e.target.value)}
-                  disabled={isLoadingSingle}
-                  style={{ width: '100%', padding: '0.5rem 0.8rem', background: 'var(--bg-surface)', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-md)', color: 'var(--text-main)', fontSize: '0.85rem' }}
-                />
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <button
-                id="btn-generate-ai-single"
-                className="btn-primary"
-                onClick={handleGenerateSingle}
-                disabled={isLoadingSingle}
-                style={{ padding: '0.75rem 1.75rem' }}
-              >
-                {isLoadingSingle ? (
-                  <>
-                    <RefreshCw size={18} className="animate-spin" />
-                    <span>Redactando caso clínico ({elapsedSeconds}s)...</span>
-                  </>
-                ) : (
-                  <>
-                    <Sparkles size={18} />
-                    <span>{currentSingleQ ? 'Generar Otra Pregunta con IA' : 'Generar Pregunta con IA'}</span>
-                  </>
-                )}
-              </button>
-            </div>
-
-            {/* Live Waiting Animated Card */}
-            {isLoadingSingle && (
-              <div style={{ marginTop: '1.5rem', padding: '1.25rem 1.5rem', background: 'rgba(2, 132, 199, 0.08)', border: '1px dashed rgba(2, 132, 199, 0.4)', borderRadius: 'var(--radius-md)', animation: 'fadeIn 0.3s ease-in' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--primary)', fontWeight: 600, fontSize: '0.92rem' }}>
-                    <Cpu size={20} className="animate-pulse" />
-                    <span>NVIDIA AI está analizando la literatura médica del MINSA...</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-secondary)', fontSize: '0.85rem', background: 'var(--bg-surface)', padding: '0.2rem 0.6rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-                    <Clock size={14} color="var(--primary)" />
-                    <span>Tiempo transcurrido: <strong>{elapsedSeconds}s</strong></span>
-                  </div>
-                </div>
-
-                {/* Rotating Medical Flash Tip */}
-                <div style={{ background: 'var(--bg-card)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'flex-start', gap: '0.6rem' }}>
-                  <Lightbulb size={18} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
-                  <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.4, transition: 'all 0.3s ease' }}>
-                    <strong style={{ color: 'var(--text-main)' }}>Repaso Rápido SERUMS: </strong>
-                    {WAITING_TIPS[tipIndex]}
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {singleError && (
-              <div style={{ marginTop: '1rem', padding: '0.85rem', background: 'var(--danger-bg)', border: '1px solid var(--danger-border)', borderRadius: 'var(--radius-sm)', color: 'var(--danger)', fontSize: '0.85rem' }}>
-                {singleError}
-              </div>
-            )}
-          </div>
-
-          {/* Generated Question Display */}
-          {currentSingleQ && !isLoadingSingle && (
-            <div style={{ animation: 'fadeIn 0.3s ease-in-out' }}>
-              <QuestionCard
-                question={currentSingleQ}
-                currentIndex={0}
-                totalQuestions={1}
-                selectedOption={selectedOption}
-                onSelectOption={(letter) => setSelectedOption(letter)}
-                onNext={handleGenerateSingle}
-                onPrev={() => {}}
-                isFlagged={false}
-                onToggleFlag={() => {}}
-                isSaved={!!savedQuestions[currentSingleQ.id]}
-                onToggleSave={() => onToggleSave(currentSingleQ)}
-                fontSize={fontSize}
-                showInstantFeedback={true}
-              />
-            </div>
-          )}
+      {/* Generated Question Display */}
+      {currentSingleQ && !isLoadingSingle && (
+        <div style={{ animation: 'fadeIn 0.3s ease-in-out' }}>
+          <QuestionCard
+            question={currentSingleQ}
+            currentIndex={0}
+            totalQuestions={1}
+            selectedOption={selectedOption}
+            onSelectOption={(letter) => setSelectedOption(letter)}
+            onNext={handleGenerateSingle}
+            onPrev={() => {}}
+            isFlagged={false}
+            onToggleFlag={() => {}}
+            isSaved={!!savedQuestions[currentSingleQ.id]}
+            onToggleSave={() => onToggleSave(currentSingleQ)}
+            fontSize={fontSize}
+            showInstantFeedback={true}
+          />
         </div>
       )}
 
-      {/* ========================================================================= */}
-      {/* MODE 2: BATCH SIMULATION GENERATION (10 TO 100 QUESTIONS)                 */}
-      {/* ========================================================================= */}
-      {subMode === 'batch' && (
-        <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-lg)', padding: '2rem' }}>
-          <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Layers size={22} color="var(--primary)" />
-            Configuración del Simulacro Inédito con IA
-          </h3>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1.75rem' }}>
-            NVIDIA NIM generará un conjunto completo de preguntas calibradas con las ponderaciones oficiales del MINSA.
-          </p>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem', marginBottom: '2rem' }}>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.4rem' }}>
-                Cantidad de Preguntas:
-              </label>
-              <select
-                className="exam-selector-select"
-                value={batchCount}
-                onChange={(e) => setBatchCount(Number(e.target.value))}
-                style={{ width: '100%', background: 'var(--bg-surface)' }}
-                disabled={isGeneratingBatch}
-              >
-                <option value={10}>10 Preguntas (Simulacro Rápido - ~15 min)</option>
-                <option value={25}>25 Preguntas (Simulacro Medio - ~35 min)</option>
-                <option value={50}>50 Preguntas (Medio Examen - ~1 hora)</option>
-                <option value={100}>100 Preguntas (Examen Completo Oficial - 2 horas)</option>
-              </select>
-            </div>
-
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.4rem' }}>
-                Distribución Temática:
-              </label>
-              <select
-                className="exam-selector-select"
-                value={batchCategory}
-                onChange={(e) => setBatchCategory(e.target.value)}
-                style={{ width: '100%', background: 'var(--bg-surface)' }}
-                disabled={isGeneratingBatch}
-              >
-                <option value="all">Matriz Equilibrada MINSA (Todas las áreas)</option>
-                {Object.values(CATEGORIES).filter(c => c.id !== 'all').map((c) => (
-                  <option key={c.id} value={c.id}>
-                    Solo {c.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.4rem' }}>
-                Complejidad del Examen:
-              </label>
-              <select
-                className="exam-selector-select"
-                value={batchDifficulty}
-                onChange={(e) => setBatchDifficulty(e.target.value)}
-                style={{ width: '100%', background: 'var(--bg-surface)' }}
-                disabled={isGeneratingBatch}
-              >
-                <option value="standard">Oficial MINSA (Nivel Real)</option>
-                <option value="high">Avanzado (Para asegurar Top 5% de plazas)</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Progress Bar while generating */}
-          {isGeneratingBatch && (
-            <div style={{ marginBottom: '2rem', padding: '1.5rem', background: 'var(--bg-surface)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-medium)', animation: 'fadeIn 0.3s ease-in' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: 600, flexWrap: 'wrap', gap: '0.5rem' }}>
-                <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)' }}>
-                  <Cpu size={18} className="animate-spin" />
-                  Redactando preguntas con NVIDIA NIM AI ({elapsedSeconds}s transcurridos)...
-                </span>
-                <span>{batchProgress.current} / {batchProgress.total} generadas</span>
-              </div>
-              <div className="progress-bar-bg" style={{ height: '10px', marginBottom: '1rem' }}>
-                <div
-                  className="progress-bar-fill"
-                  style={{
-                    width: `${batchProgress.total > 0 ? (batchProgress.current / batchProgress.total) * 100 : 0}%`,
-                    backgroundColor: 'var(--primary)'
-                  }}
-                />
-              </div>
-
-              {/* Rotating tip during batch generation */}
-              <div style={{ background: 'var(--bg-card)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'flex-start', gap: '0.6rem' }}>
-                <Lightbulb size={18} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
-                <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.4 }}>
-                  <strong style={{ color: 'var(--text-main)' }}>Tip SERUMS mientras esperas: </strong>
-                  {WAITING_TIPS[tipIndex]}
-                </p>
-              </div>
-            </div>
-          )}
-
-          {batchError && (
-            <div style={{ marginBottom: '1.5rem', padding: '1rem', background: 'var(--danger-bg)', border: '1px solid var(--danger-border)', borderRadius: 'var(--radius-md)', color: 'var(--danger)', fontSize: '0.9rem' }}>
-              {batchError}
-            </div>
-          )}
-
-          {/* Start Generation Button */}
-          {!isGeneratingBatch && generatedExamList.length === 0 && (
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <button
-                id="btn-start-batch-ai"
-                className="btn-primary"
-                onClick={handleGenerateBatch}
-                style={{ padding: '0.85rem 2.5rem', fontSize: '1rem' }}
-              >
-                <Sparkles size={20} />
-                <span>Generar {batchCount} Preguntas Inéditas con IA</span>
-              </button>
-            </div>
-          )}
-
-          {/* Generated Exam Ready Card */}
-          {generatedExamList.length > 0 && (
-            <div style={{ textAlign: 'center', padding: '2rem', background: 'var(--bg-surface)', borderRadius: 'var(--radius-md)', border: '1px solid var(--success-border)', animation: 'fadeIn 0.3s ease-out' }}>
-              <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'var(--success-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem auto' }}>
-                <CheckCircle2 size={32} color="var(--success)" />
-              </div>
-              <h3 style={{ fontSize: '1.35rem', marginBottom: '0.4rem', color: 'var(--text-main)' }}>
-                ¡Simulacro de {generatedExamList.length} Preguntas Listo!
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', maxWidth: '540px', margin: '0 auto 1.5rem auto' }}>
-                El examen inédito ha sido redactado con éxito. Puedes iniciarlo ahora mismo en la modalidad oficial o guardarlo en tu banco.
-              </p>
-
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                <button
-                  className="btn-primary"
-                  onClick={() => onStartCustomExam(generatedExamList)}
-                  style={{ padding: '0.85rem 2rem' }}
-                >
-                  <Play size={18} />
-                  <span>Rendir Simulacro Oficial con este Examen</span>
-                </button>
-
-                <button
-                  className="btn-secondary"
-                  onClick={() => {
-                    if (onSaveQuestionToBank) {
-                      generatedExamList.forEach((q) => onSaveQuestionToBank(q));
-                    }
-                    alert(`¡${generatedExamList.length} preguntas guardadas en tus Favoritas!`);
-                  }}
-                >
-                  <Bookmark size={18} />
-                  <span>Guardar todas en Mis Favoritas</span>
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 }

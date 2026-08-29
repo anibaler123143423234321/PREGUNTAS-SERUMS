@@ -65,19 +65,14 @@ export function TutorMode({
 
   return (
     <div className="tutor-mode-view" id="tutor-mode-view">
-      {/* Category Pills Header */}
-      <div style={{ marginBottom: '1.5rem', background: 'var(--bg-card)', padding: '1.25rem', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-subtle)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-          <h3 style={{ fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <BookOpen size={20} color="var(--primary)" />
-            Modo Tutor & Estudio Clínico Guiado
-          </h3>
-          <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-            {filteredQuestions.length} preguntas en esta especialidad
-          </span>
+      {/* Ultra-Compact Category Pills Strip (Responsive Wrap) */}
+      <div className="tutor-category-strip" style={{ marginBottom: '0.65rem', background: 'var(--bg-card)', padding: '0.45rem 0.65rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--primary)', fontWeight: 700, fontSize: '0.78rem', whiteSpace: 'nowrap', paddingRight: '0.3rem' }}>
+          <BookOpen size={15} />
+          <span>Tutor:</span>
         </div>
 
-        <div style={{ display: 'flex', gap: '0.5rem', overflowX: 'auto', paddingBottom: '0.25rem' }}>
+        <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap', alignItems: 'center' }}>
           {Object.values(CATEGORIES).map((cat) => {
             const isSelected = selectedCategory === cat.id;
             return (
@@ -86,17 +81,16 @@ export function TutorMode({
                 id={`cat-pill-${cat.id}`}
                 onClick={() => handleCategoryChange(cat.id)}
                 style={{
-                  padding: '0.45rem 0.9rem',
+                  padding: '0.25rem 0.55rem',
                   borderRadius: 'var(--radius-full)',
-                  fontSize: '0.82rem',
-                  fontWeight: 600,
-                  whiteSpace: 'nowrap',
-                  cursor: 'pointer',
-                  transition: 'var(--transition)',
-                  backgroundColor: isSelected ? cat.color : 'var(--bg-surface)',
+                  fontSize: '0.74rem',
+                  fontWeight: isSelected ? 700 : 500,
+                  background: isSelected ? 'var(--primary-gradient)' : 'var(--bg-surface)',
                   color: isSelected ? '#ffffff' : 'var(--text-secondary)',
-                  border: `1px solid ${isSelected ? cat.color : 'var(--border-subtle)'}`,
-                  boxShadow: isSelected ? `0 2px 8px ${cat.color}40` : 'none'
+                  border: isSelected ? '1px solid transparent' : '1px solid var(--border-subtle)',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  transition: 'var(--transition)'
                 }}
               >
                 {cat.shortName}

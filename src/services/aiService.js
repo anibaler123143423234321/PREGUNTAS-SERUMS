@@ -113,17 +113,17 @@ export async function generateSingleQuestion({
   }
 }
 
-// Generate multiple questions in parallel batches
+// Generate mini exam with strict credit and rate-limit protection (max 2 questions)
 export async function generateExamBatch({
-  totalQuestions = 10,
+  totalQuestions = 2,
   category = 'all',
   difficulty = 'standard',
   topic = '',
   apiKey = DEFAULT_API_KEY,
   onProgress
 }) {
+  const safeCount = Math.min(2, Math.max(1, totalQuestions)); // Strictly cap at 2 to protect credits & rate limits
   const generatedQuestions = [];
-  const concurrency = 2; // parallel workers
 
   const categoriesPool = [
     'salud_publica',
@@ -135,43 +135,31 @@ export async function generateExamBatch({
     'etica_legal'
   ];
 
-  for (let i = 0; i < totalQuestions; i += concurrency) {
-    const batchSize = Math.min(concurrency, totalQuestions - i);
-    const batchPromises = Array.from({ length: batchSize }, async (_, idx) => {
-      const qNum = i + idx + 1;
-      const targetCategory = category !== 'all' ? category : categoriesPool[(i + idx) % categoriesPool.length];
-      
-      try {
-        const q = await generateSingleQuestion({
-          category: targetCategory,
-          difficulty,
-          topic,
-          apiKey
-        });
-        q.number = qNum;
-        q.id = `ai-exam-${Date.now()}-${qNum}`;
-        return q;
-      } catch (err) {
-        console.warn(`Error generating question ${qNum}, retrying...`, err);
-        const qRetry = await generateSingleQuestion({
-          category: targetCategory,
-          difficulty,
-          topic,
-          apiKey
-        });
-        qRetry.number = qNum;
-        qRetry.id = `ai-exam-${Date.now()}-${qNum}`;
-        return qRetry;
-      }
-    });
+  for (let i = 0; i < safeCount; i++) {
+    const qNum = i + 1;
+    const targetCategory = category !== 'all' ? category : categoriesPool[i % categoriesPool.length];
+    
+    // Safety delay of 400ms between requests to prevent HTTP 429
+    if (i > 0) {
+      await new Promise((res) => setTimeout(res, 400));
+    }
 
-    const results = await Promise.all(batchPromises);
-    results.forEach((q) => {
-      if (q) generatedQuestions.push(q);
-    });
+    try {
+      const q = await generateSingleQuestion({
+        category: targetCategory,
+        difficulty,
+        topic,
+        apiKey
+      });
+      q.number = qNum;
+      q.id = `ai-exam-${Date.now()}-${qNum}`;
+      generatedQuestions.push(q);
+    } catch (err) {
+      console.warn(`Error generando pregunta ${qNum}:`, err);
+    }
 
     if (onProgress) {
-      onProgress(generatedQuestions.length, totalQuestions);
+      onProgress(generatedQuestions.length, safeCount);
     }
   }
 

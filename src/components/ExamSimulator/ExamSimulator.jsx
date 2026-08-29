@@ -145,85 +145,93 @@ export function ExamSimulator({
   const isSaved = currentQ ? !!savedQuestions[currentQ.id] : false;
   const selectedOption = currentQ ? userAnswers[currentQ.id] : null;
 
-  // Pre-exam start screen
+  // Pre-exam start screen (Ultra-Compact)
   if (!isExamStarted && !isReviewMode) {
     return (
-      <div className="exam-intro-screen" style={{ maxWidth: '840px', margin: '1rem auto' }}>
-        <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-lg)', padding: '2.5rem', boxShadow: 'var(--shadow-md)', textAlign: 'center' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 1rem', background: 'var(--primary-light)', color: 'var(--primary)', borderRadius: 'var(--radius-full)', fontSize: '0.85rem', fontWeight: 700, marginBottom: '1.25rem' }}>
-            <Sparkles size={16} />
-            <span>MODALIDAD DE EVALUACIÓN OFICIAL MINSA</span>
+      <div className="exam-intro-screen" style={{ maxWidth: '720px', margin: '0.5rem auto' }}>
+        <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-lg)', padding: '1.5rem', boxShadow: 'var(--shadow-md)', textAlign: 'center' }}>
+          
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.2rem 0.75rem', background: 'var(--primary-light)', color: 'var(--primary)', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 700, marginBottom: '0.65rem' }}>
+            <Sparkles size={14} />
+            <span>MODALIDAD OFICIAL MINSA</span>
           </div>
 
-          <h2 style={{ fontSize: '2rem', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontSize: '1.4rem', marginBottom: '0.4rem', letterSpacing: '-0.02em', fontWeight: 800 }}>
             Simulacro Oficial SERUMS Medicina
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: '600px', margin: '0 auto 2rem auto', lineHeight: 1.6 }}>
-            Prepárate en condiciones reales de evaluación. Al iniciar el examen, el temporizador comenzará su cuenta regresiva y las claves correctas permanecerán ocultas hasta la entrega final.
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.86rem', maxWidth: '540px', margin: '0 auto 1.1rem auto', lineHeight: 1.45 }}>
+            Condiciones reales de examen: temporizador activo y claves ocultas hasta la entrega final.
           </p>
 
-          {/* Quick info boxes */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginBottom: '2rem', textAlign: 'left' }}>
-            <div style={{ background: 'var(--bg-surface)', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)', fontWeight: 700, marginBottom: '0.35rem', fontSize: '0.95rem' }}>
-                <CheckCircle size={18} />
-                <span>Preguntas Oficiales</span>
+          {/* Compact Info Badges Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.65rem', marginBottom: '1.25rem', textAlign: 'left' }}>
+            <div style={{ background: 'var(--bg-surface)', padding: '0.75rem 0.9rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--primary)', fontWeight: 700, fontSize: '0.85rem' }}>
+                <CheckCircle size={16} />
+                <span>{questions.length} Preguntas</span>
               </div>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                <strong>{questions.length} preguntas</strong> del proceso seleccionado con única respuesta correcta.
+              <p style={{ fontSize: '0.76rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>
+                Opción múltiple, respuesta única.
               </p>
             </div>
 
-            <div style={{ background: 'var(--bg-surface)', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--success)', fontWeight: 700, marginBottom: '0.35rem', fontSize: '0.95rem' }}>
-                <Award size={18} />
-                <span>Escala Vigesimal</span>
+            <div style={{ background: 'var(--bg-surface)', padding: '0.75rem 0.9rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--success)', fontWeight: 700, fontSize: '0.85rem' }}>
+                <Award size={16} />
+                <span>Escala 0 a 20</span>
               </div>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                Calificación de <strong>0.00 a 20.00</strong> (0.20 pts por acierto). Aprobatorio: <strong>11.00</strong>.
+              <p style={{ fontSize: '0.76rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>
+                0.20 pts c/u • Aprobatorio: 11.00.
               </p>
             </div>
 
-            <div style={{ background: 'var(--bg-surface)', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--warning)', fontWeight: 700, marginBottom: '0.35rem', fontSize: '0.95rem' }}>
-                <Clock size={18} />
-                <span>Duración del Examen</span>
+            <div style={{ background: 'var(--bg-surface)', padding: '0.75rem 0.9rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--warning)', fontWeight: 700, fontSize: '0.85rem', marginBottom: '0.35rem' }}>
+                <Clock size={16} />
+                <span>Tiempo Límite</span>
               </div>
-              <select
-                value={selectedDuration}
-                onChange={(e) => setSelectedDuration(Number(e.target.value))}
-                style={{
-                  width: '100%',
-                  marginTop: '0.25rem',
-                  padding: '0.4rem 0.6rem',
-                  background: 'var(--bg-card)',
-                  color: 'var(--text-main)',
-                  border: '1px solid var(--border-medium)',
-                  borderRadius: 'var(--radius-sm)',
-                  fontSize: '0.85rem',
-                  fontWeight: 600,
-                  outline: 'none',
-                  cursor: 'pointer'
-                }}
-              >
-                <option value={7200}>120 Minutos (2 horas - Oficial)</option>
-                <option value={5400}>90 Minutos (1.5 horas - Rápido)</option>
-                <option value={10800}>180 Minutos (3 horas - Extendido)</option>
-                <option value={36000}>Sin límite de tiempo</option>
-              </select>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.25rem' }}>
+                {[
+                  { value: 7200, label: '120m (Oficial)' },
+                  { value: 5400, label: '90m' },
+                  { value: 10800, label: '180m' },
+                  { value: 36000, label: 'Sin límite' }
+                ].map((dur) => {
+                  const isSelected = selectedDuration === dur.value;
+                  return (
+                    <button
+                      key={dur.value}
+                      onClick={() => setSelectedDuration(dur.value)}
+                      style={{
+                        padding: '0.22rem 0.4rem',
+                        borderRadius: 'var(--radius-xs)',
+                        fontSize: '0.72rem',
+                        fontWeight: isSelected ? 800 : 500,
+                        background: isSelected ? 'var(--warning-bg)' : 'var(--bg-card)',
+                        color: isSelected ? 'var(--warning)' : 'var(--text-secondary)',
+                        border: isSelected ? '1.5px solid var(--warning)' : '1px solid var(--border-subtle)',
+                        cursor: 'pointer',
+                        transition: 'var(--transition)'
+                      }}
+                    >
+                      {dur.label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
           {/* Action buttons */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
             {onSwitchToTutor && (
               <button
                 className="btn-secondary"
                 onClick={onSwitchToTutor}
-                style={{ padding: '0.85rem 1.5rem', fontSize: '0.95rem' }}
+                style={{ padding: '0.65rem 1.15rem', fontSize: '0.85rem' }}
               >
-                <BookOpen size={18} />
-                <span>Ir al Modo Tutor / Estudio</span>
+                <BookOpen size={16} />
+                <span>Modo Tutor / Estudio</span>
               </button>
             )}
 
@@ -231,12 +239,13 @@ export function ExamSimulator({
               id="btn-start-exam"
               className="btn-primary"
               onClick={handleStartExam}
-              style={{ padding: '0.85rem 2rem', fontSize: '1rem' }}
+              style={{ padding: '0.65rem 1.6rem', fontSize: '0.9rem', fontWeight: 700 }}
             >
-              <Play size={20} />
-              <span>Comenzar Simulacro Oficial</span>
+              <Play size={18} />
+              <span>Comenzar Simulacro</span>
             </button>
           </div>
+
         </div>
       </div>
     );

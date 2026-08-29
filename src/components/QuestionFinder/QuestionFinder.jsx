@@ -36,67 +36,98 @@ export function QuestionFinder({
 
   return (
     <div className="question-finder-view" id="question-finder-view">
-      {/* Search and Filters Bar */}
-      <div style={{ background: 'var(--bg-card)', padding: '1.5rem', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-subtle)', marginBottom: '1.75rem' }}>
-        <div className="search-bar-container">
-          <div className="search-input-wrapper">
-            <Search className="search-icon" size={18} />
+      {/* Search and Filters Bar (Ultra-Compact) */}
+      <div style={{ background: 'var(--bg-card)', padding: '0.85rem 1rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', marginBottom: '1rem' }}>
+        <div className="search-bar-container" style={{ marginBottom: '0.65rem' }}>
+          <div className="search-input-wrapper" style={{ minWidth: '100%' }}>
+            <Search className="search-icon" size={16} />
             <input
               id="search-questions-input"
               type="text"
-              placeholder="Buscar por término clínico, norma técnica, medicamento o concepto (ej. dengue, anemia, oxitocina)..."
+              placeholder="Buscar término clínico, norma técnica, fármaco (ej. dengue, anemia 2024, Zuspan, GeneXpert)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              style={{ padding: '0.55rem 0.85rem 0.55rem 2.2rem', fontSize: '0.86rem' }}
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }}
+                style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }}
               >
-                <X size={16} />
+                <X size={15} />
               </button>
             )}
           </div>
-
-          <select
-            className="exam-selector-select"
-            value={selectedYear}
-            onChange={(e) => setSelectedYear(e.target.value)}
-            style={{ background: 'var(--bg-surface)' }}
-          >
-            {EXAM_YEARS.map((y) => (
-              <option key={y.id} value={y.id}>
-                {y.name}
-              </option>
-            ))}
-          </select>
-
-          <select
-            className="exam-selector-select"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            style={{ background: 'var(--bg-surface)' }}
-          >
-            {Object.values(CATEGORIES).map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-          <span>Se encontraron <strong>{filteredList.length}</strong> preguntas que coinciden con tu criterio.</span>
-          {searchTerm && (
+        {/* Process Filter Pills */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', overflowX: 'auto', scrollbarWidth: 'none', marginBottom: '0.5rem', paddingBottom: '0.15rem' }}>
+          <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 700, whiteSpace: 'nowrap', marginRight: '0.2rem' }}>Año:</span>
+          {EXAM_YEARS.map((y) => {
+            const isSelected = selectedYear === y.id;
+            return (
+              <button
+                key={y.id}
+                onClick={() => setSelectedYear(y.id)}
+                style={{
+                  padding: '0.2rem 0.55rem',
+                  borderRadius: 'var(--radius-full)',
+                  fontSize: '0.73rem',
+                  fontWeight: isSelected ? 700 : 500,
+                  background: isSelected ? 'var(--primary-gradient)' : 'var(--bg-surface)',
+                  color: isSelected ? '#ffffff' : 'var(--text-secondary)',
+                  border: isSelected ? '1px solid transparent' : '1px solid var(--border-subtle)',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  transition: 'var(--transition)'
+                }}
+              >
+                {y.short || y.name}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Category Filter Pills */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', overflowX: 'auto', scrollbarWidth: 'none', marginBottom: '0.65rem', paddingBottom: '0.15rem' }}>
+          <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 700, whiteSpace: 'nowrap', marginRight: '0.2rem' }}>Área:</span>
+          {Object.values(CATEGORIES).map((cat) => {
+            const isSelected = selectedCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                style={{
+                  padding: '0.2rem 0.55rem',
+                  borderRadius: 'var(--radius-full)',
+                  fontSize: '0.73rem',
+                  fontWeight: isSelected ? 700 : 500,
+                  background: isSelected ? 'var(--primary-gradient)' : 'var(--bg-surface)',
+                  color: isSelected ? '#ffffff' : 'var(--text-secondary)',
+                  border: isSelected ? '1px solid transparent' : '1px solid var(--border-subtle)',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  transition: 'var(--transition)'
+                }}
+              >
+                {cat.shortName}
+              </button>
+            );
+          })}
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+          <span><strong>{filteredList.length}</strong> preguntas encontradas.</span>
+          {(searchTerm || selectedYear !== 'all' || selectedCategory !== 'all') && (
             <button
-              style={{ color: 'var(--primary)', fontWeight: 600, cursor: 'pointer' }}
+              style={{ color: 'var(--primary)', fontWeight: 700, cursor: 'pointer', fontSize: '0.75rem' }}
               onClick={() => {
                 setSearchTerm('');
                 setSelectedYear('all');
                 setSelectedCategory('all');
               }}
             >
-              Restablecer filtros
+              Limpiar filtros
             </button>
           )}
         </div>

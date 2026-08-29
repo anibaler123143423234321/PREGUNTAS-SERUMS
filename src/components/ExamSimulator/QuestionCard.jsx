@@ -147,7 +147,7 @@ export function QuestionCard({
           <span>Anterior</span>
         </button>
 
-        <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+        <span className="keyboard-shortcuts-hint" style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
           Atajos: <kbd>1-4 / A-D</kbd> responder • <kbd>← / →</kbd> navegar • <kbd>F</kbd> marcar
         </span>
 
