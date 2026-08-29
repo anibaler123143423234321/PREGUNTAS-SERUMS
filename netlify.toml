@@ -2,16 +2,15 @@
   publish = "dist"
   command = "npm run build"
 
-# SPA Fallback for React Router / Single Page App
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Proxy for NVIDIA API in production Netlify if needed
+# Proxy for NVIDIA API in production Netlify (MUST be first before the SPA fallback)
 [[redirects]]
   from = "/api/nvidia/*"
   to = "https://integrate.api.nvidia.com/v1/:splat"
   status = 200
   force = true
-  headers = {X-From = "Netlify"}
+
+# SPA Fallback for Single Page App
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

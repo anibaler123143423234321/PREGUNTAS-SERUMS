@@ -3,12 +3,9 @@ import AI_PROMPTS from '../data/aiPrompts.json';
 const DEFAULT_API_KEY = import.meta.env.VITE_NVIDIA_API_KEY || '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';
 const MODEL_NAME = 'meta/llama-3.2-11b-vision-instruct';
 
-// Determine endpoint: Use Vite proxy in dev/local to bypass browser CORS
+// Determine endpoint: Use reverse proxy (/api/nvidia) in both dev (Vite) and production (Netlify) to prevent CORS errors
 function getEndpoint() {
-  if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
-    return '/api/nvidia/chat/completions';
-  }
-  return 'https://integrate.api.nvidia.com/v1/chat/completions';
+  return '/api/nvidia/chat/completions';
 }
 
 export async function generateSingleQuestion({
@@ -54,32 +51,19 @@ export async function generateSingleQuestion({
       })
     });
   } catch (netErr) {
-    // If proxy failed, retry direct endpoint
-    if (getEndpoint() !== 'https://integrate.api.nvidia.com/v1/chat/completions') {
-      response = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${activeKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model: MODEL_NAME,
-          messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: userPrompt }
-          ],
-          temperature: 0.3,
-          max_tokens: 650
-        })
-      });
-    } else {
-      throw new Error(`Error de red al conectar con NVIDIA AI: ${netErr.message}`);
-    }
+    throw new Error(`Error de conexión al conectar con el servicio de IA: ${netErr.message}`);
   }
 
   if (!response.ok) {
     const errText = await response.text();
-    throw new Error(`Error en API NVIDIA (${response.status}): ${errText}`);
+    let errorDetail = errText;
+    try {
+      const parsedError = JSON.parse(errText);
+      errorDetail = parsedError?.error?.message || parsedError?.message || errText;
+    } catch {
+      // Keep errText
+    }
+    throw new Error(`Error en API NVIDIA (${response.status}): ${errorDetail}`);
   }
 
   const data = await response.json();
