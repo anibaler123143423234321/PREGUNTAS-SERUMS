@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Stethoscope, Moon, Sun, Printer, ZoomIn, ZoomOut, Menu, X, ChevronDown, Check, Sparkles } from 'lucide-react';
+import { Stethoscope, Moon, Sun, Printer, Menu, X, ChevronDown, Check } from 'lucide-react';
 import { EXAM_YEARS } from '../data/categories';
 
 export function Header({
@@ -7,9 +7,6 @@ export function Header({
   onSelectYear,
   theme,
   onToggleTheme,
-  fontSize,
-  onIncreaseFontSize,
-  onDecreaseFontSize,
   onOpenExport,
   isMobileMenuOpen,
   onToggleMobileMenu
@@ -104,28 +101,12 @@ export function Header({
           {/* Desktop Utilities */}
           <div className="desktop-controls-group">
             <button
-              id="btn-font-decrease"
-              className="icon-circle-btn"
-              onClick={onDecreaseFontSize}
-              title="Reducir fuente"
-            >
-              <ZoomOut size={15} />
-            </button>
-            <button
-              id="btn-font-increase"
-              className="icon-circle-btn"
-              onClick={onIncreaseFontSize}
-              title="Aumentar fuente"
-            >
-              <ZoomIn size={15} />
-            </button>
-            <button
               id="btn-open-export"
               className="icon-circle-btn"
               onClick={onOpenExport}
-              title="Imprimir / Exportar"
+              title="Imprimir / Exportar Examen"
             >
-              <Printer size={15} />
+              <Printer size={16} />
             </button>
           </div>
 

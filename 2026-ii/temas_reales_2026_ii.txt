@@ -1,0 +1,100 @@
+Q1: En actividad extramuros de vacunación del adolescente en su jurisdicción, usted acude a centro educativo identificando en un adolescente tat... -> [A] Psicosocial
+Q2: El modelo de la Red Integrada de Salud (RIS) tiene 4 dimensiones para su funcionamiento. ¿A qué dimensión corresponde el atributo del primer... -> [C] Prestación
+Q3: La programación del Plan Operativo Institucional, le corresponde a:... -> [C] Unidad ejecutora
+Q4: Varón de 12 meses quien en cita de inmunizaciones solo recibió SPR. Usted es consultado para indicación de vacuna de varicela. ¿Cuál es el i... -> [A] Un mes
+Q5: El sarampión es una enfermedad que se está incrementando en los diversos países de la región, incluido el Perú. En el primer semestre 2026 s... -> [C] 25
+Q6: En el centro poblado El Milagro durante el mes de junio se presenta un brote de dengue con presencia de casos importados y presencia del vec... -> [A] Control larvario químico con pyriproxyfen al 100% de viviendas
+Q7: Una de las tareas relevantes de la epidemiología es la organización y descripción de los datos colectados, para lo cual se utilizan las vari... -> [D] Tiempo, lugar y persona
+Q8: En un EESS, el personal responsable de salud ambiental realiza supervisión inopinada a las áreas asistenciales; evaluando de manera especial... -> [C] Biocontaminados - especiales - comunes
+Q9: Con el propósito de llegar a conclusiones más favorables en un estudio, el investigador a cargo de la edición y análisis de los datos suprim... -> [A] Fraude científico
+Q10: El médico jefe de un establecimiento I-2 luego de reunirse con su equipo de gestión y el comité distrital de salud determina que es necesari... -> [A] Odontología y laboratorio
+Q11: El establecimiento de salud “La Esperanza” ha logrado bajas coberturas en todos los indicadores de salud mental; el personal de Psicología s... -> [B] Toma de decisiones
+Q12: El psicólogo del centro de salud mental comunitario recibe una referencia de su colega de la zona sanitaria, mediante el cual, después de su... -> [A] Críticas entre colegas
+Q13: Dentro del marco de la salud pública, una de las fuentes de datos para la información en salud basada en la población es el registro de...... -> [C] hechos vitales.
+Q14: Varón de 25 años acude al establecimiento por mordedura superficial de perro en el antebrazo izquierdo, siendo atendido por el profesional d... -> [B] Leve
+Q15: En el centro de salud Corazón de María se recibe a un niño de 3 años de edad, quien es traído por su madre, se le diagnostica enfermedad dia... -> [D] Datos de identificación de la persona legalmente responsable que solicita el alta en caso que no fuera el paciente
+Q16: En la Resolución Ministerial de Julio 2026, se clasificaron las emergencias según el grado de prioridad de atención y se establecieron inter... -> [D] 10'
+Q17: El profesional de la salud que trabaja en el primer nivel de atención, para prevenir las enfermedades no trasmisibles, identifica a las fami... -> [B] alimentación saludable / salud ocular.
+Q18: Se desea realizar un estudio de indicadores de salud en inmigrantes ilegales asentados en una comunidad fronteriza; pero, al desconocerse su... -> [B] En bola de nieve
+Q19: El médico y el equipo de gestión del centro de salud Arena Blanca, categoría I-4, ubicado en la zona altoandina del sur del país, luego del ... -> [C] fortalezas.
+Q20: El uso de mascarilla N95, antisepsia con alcohol gel, uso de guantes desechables, de EPP; según grupo de exposición. Son recomendaciones par... -> [A] Influenza A (H1N1)
+Q21: ¿Ante qué tipo de problema estamos, si se recoge información que nos permite saber cómo están los problemas en términos de frecuencia, carac... -> [B] Descriptivo
+Q22: Gestante de 32 semanas no controlada, es captada por el profesional de la salud en las actividades extramurales, recomienda iniciar el contr... -> [D] Virus respiratorio sincitial
+Q23: El profesional de la salud antes de realizar las actividades de vacunación debe contar con el kit de ESAVI para situaciones de emergencia: a... -> [A] 0.01
+Q24: Lactante de 3 meses, desde hace tres días presenta rinorrea, tos y alza térmica, fue diagnosticada de rinofaringitis viral, madre lo trae a ... -> [D] Referir a hospital
+Q25: En una comunidad altoandina, se presentan varios casos de rubéola; una gestante de 7 semanas expuesta, acude al establecimiento de salud sin... -> [C] Subclínico
+Q26: En un EESS, un personal de salud ha sido diagnosticado con TB; por tanto, tiene derecho a una licencia ...... -> [A] con goce de remuneraciones.
+Q27: Mujer de 13 años traída por madre a centro de salud solicitando examen médico rutinario por estar en crecimiento, usted realiza las prestaci... -> [A] Consejería
+Q28: El jefe de una zona sanitaria, en reunión con sus coordinadores de estrategias y el comité multisectorial, definen las condiciones futuras q... -> [C] Objetivos estratégicos
+Q29: En el siglo XX en los registros civiles; se retiró la categoría “raza” para visibilizar a los indígenas dentro del sistema de salud y otras ... -> [A] étnica
+Q30: ¿Qué deber de la función pública está cumpliendo el servidor público que no adopta represalia de ningún tipo o ejerce coacción alguna contra... -> [A] Ejercicio adecuado del cargo
+Q31: Mujer de 18 meses presenta desde hace 4 días alza térmica, rinitis, inyección conjuntival y exantema. Antecedentes: parto eutócico, sin cobe... -> [C] Vitamina A retinol
+Q32: Varón adulto mayor, residente en Pucallpa, ingresa por emergencia al EESS, refiere que hace 3 días llegó a Lima; desde hace un día presenta ... -> [C] Inmediatamente
+Q33: Madre acude con su niña de 4 años de edad, al servicio de urgencias del Centro de Salud Santa Rosa, por presentar los siguientes signos y sí... -> [C] relacionado con la vacuna.
+Q34: Es la probabilidad de producir efectos nocivos para el individuo, ocasionadas por animales o plantas en un desastre natural, desequilibrando... -> [C] Biológico
+Q35: En el informe de investigación, la parte que contiene de manera suscinta toda la información de la investigación realizada y tiene un límite... -> [D] Resumen
+Q36: ¿Cómo se le denomina al modelo de atención centrado en la comunidad, que fomenta la promoción y protección de la salud mental, continuidad d... -> [B] Comunitario de salud mental
+Q37: Personal de salud, en visita a su sector, brinda consejería para evitar la presencia del vector, como el cuidado de recipientes de almacenam... -> [A] Medidas preventivas
+Q38: ¿Cómo se le define a la situación en la que todas las personas puedan ejercer sus derechos, aprovechar sus habilidades y tomar ventaja de la... -> [A] Inclusión social
+Q39: Se necesita realizar un estudio descriptivo en la comunidad de Tornameza-Huarochirí, para conocer las características de la población que ac... -> [A] Aspectos y características de las viviendas de la población estudio
+Q40: El equipo multidisciplinario del EESS, desarrollan actividades de forma integral, continuada, permanente y interviniendo en la comunidad con... -> [A] Atención primaria de salud
+Q41: En un establecimiento de salud de la zona altoandina del sur del país, un médico serumista registra un incremento inusual de casos de diarre... -> [C] Centinela
+Q42: Personal de salud realiza una visita domiciliaria de control y seguimiento a una familia de 8 integrantes, de los cuales 4 reciben tratamien... -> [B] Necesaria pero no suficiente
+Q43: El profesional de la salud en el examen físico del niño, identifica fiebre >7 días sin causa conocida, adenopatías >2.5 cm, no dolorosas, si... -> [A] cáncer infantil.
+Q44: La investigación en salud se ha definido como la generación de conocimientos nuevos mediante la aplicación del ...... , a fin de identificar... -> [A] método científico
+Q45: El líder del equipo de salud de la localidad, decide fomentar el cuidado integral de salud por curso de vida (MCI) y coordina con el persona... -> [D] Accesibilidad y continuidad del cuidado
+Q46: Varón de 68 años acude al establecimiento, siendo atendido por el profesional de la salud capacitado, aplica la valoración clínica del adult... -> [C] I-2, I-3 y I-4
+Q47: El plan multisectorial de lucha contra la anemia plantea la articulación ...... de intervenciones efectivas a cargo de los sectores de salud... -> [D] intersectorial 09 de agosto 2026
+Q48: ¿Quién se encarga de elaborar el plan local de salud quien, además de establecer las metas sanitarias y sobre los determinantes de la salud,... -> [A] La autoridad local de salud
+Q49: Con respecto al enfoque causal en salud la determinación de inferencias causales, derivado de los criterios de Hill. ¿Qué evalúan el riesgo ... -> [B] Fuerza de la asociación
+Q50: En cuanto a salud ocupacional, hablamos de riesgo profesional cuando existe la posibilidad de sufrir un accidente y/o enfermedad...... -> [D] con vínculo laboral vigente.
+Q51: En la jurisdicción de San José existe presencia de Aedes aegypti, con casos importados de dengue, sin casos autóctonos de dengue. ¿Cuál es e... -> [C] II
+Q52: La suplementación preventiva para anemia en adolescentes y mujeres en edad fértil se inicia cuando la hemoglobina es ≥ 12 g/dL, 2 veces por ... -> [D] 60 mg + 400 ug.
+Q53: Si se brinda asesoría y apoyo a las personas de 18 años a más, que se encuentran en alto riesgo de contraer VIH, HSH, MT, TS o son parejas s... -> [C] Profilaxis pre exposición (PrEP)
+Q54: En un EESS un personal de salud ha denunciado a la dependencia superior la sobrecarga de trabajo, comunicaciones deficientes, programación d... -> [D] Psicosocial
+Q55: Es muy importante que la consejería en lactancia materna se inicie desde el embarazo, por lo que las gestantes a partir de las …… semanas co... -> [D] 32
+Q56: Al proceso que exige sistematización del pensamiento; además es la manera ordenada de desarrollar el pensamiento reflexivo y de investigació... -> [B] Método científico
+Q57: Mujer de 66 años, viene al EESS en compañía de familiar, presentando de manera brusca, dificultad para hablar, miastenia, trastorno psicomot... -> [C] Solicitar la intervención del ministerio público
+Q58: A la capacidad de mantener a la organización productiva, eficiente y eficaz, a partir del uso adecuado de su recurso humano, teniendo como o... -> [D] Gestión de recursos humanos
+Q59: En un establecimiento de salud llega un paciente lactante de 11 meses de edad cuya madre refiere vómitos y diarrea, a la evaluación por tria... -> [D] Prioridad III: urgencia que debe ser atendido en un tiempo no mayor a 30 minutos desde su evaluación por triaje
+Q60: En el análisis de datos de una investigación, la ...... es uno de los tipos de medidas de tendencia central que informan el valor más repres... -> [B] moda
+Q61: ¿Cuál es la complicación tardía y fatal del Sarampión?... -> [A] Panencefalitis esclerosante subaguda
+Q62: Se asigna nuevo jefe en un EESS del primer nivel de atención; al llegar percibe insatisfacción y quejas de los trabajadores sobre el ambient... -> [D] clima organizacional
+Q63: En un EESS nivel I-2 se desea conocer la prevalencia de obesidad en niños menores de 10 años; por lo cual, necesitamos recopilar datos antro... -> [A] Descriptiva
+Q64: En el último decenio, se incrementó la autoatención de salud, porque los usuarios prefieren ocuparse más activamente de su propia salud y lo... -> [B] medicina tradicional y complementaria.
+Q65: En un establecimiento de salud en Chiclayo se ha reportado incremento de casos de pacientes febriles y pacientes con lesiones eruptivas en p... -> [D] Dengue y sarampión
+Q66: En el CS se ha determinado un problema de investigación para lo cual se ha desarrollado un cuestionario estructurado para ser aplicado al es... -> [D] Instrumento de recolección de datos
+Q67: Persona a quien se le diagnostica TB con compromiso del parénquima pulmonar con o sin confirmación bacteriológica. Es definición de caso...... -> [A] de TB pulmonar.
+Q68: El jefe del EESS, realiza una sala situacional sobre dengue, desde el enfoque de EIS (Evaluación de Impacto en Salud), la cual la difunde y ... -> [B] Promover y garantizar políticas públicas saludables
+Q69: El consultorio de psicología necesita adquirir pruebas psicológicas para mejorar la atención de sus pacientes, para lo cual el jefe del esta... -> [C] Área usuaria
+Q70: El derecho del usuario en salud a contar con una segunda opinión médica. ¿A qué derecho corresponde?... -> [B] Acceso a servicios de salud
+Q71: Los medicamentos ...... son aquellos medicamentos y productos biológicos que cubren la mayor parte de la morbilidad en el país que han demos... -> [C] esenciales
+Q72: En el colegio Daniel Alcides Carrión junto con el equipo multidisciplinario del establecimiento de salud, trabajan en líneas básicas de acci... -> [A] saludables.
+Q73: El personal profesional de la salud en el primer nivel de atención debe realizar consejería nutricional por cursos de vida, a fin de crear e... -> [D] familia.
+Q74: El empoderamiento de los pueblos indígenas adquiere vigencia contemporánea y una de sus exigencias es que se incorporen al sistema de salud ... -> [C] interculturalidad.
+Q75: En el informe final de investigación debe explicarse el objeto de estudio, a través de la definición y conceptualización de sus variables, i... -> [B] Marco teórico y conceptual
+Q76: En un EESS el equipo de farmacovigilancia identificó una RAM (reacción adversa al medicamento), para ello aplica el método de estudio más co... -> [C] Sistema de notificaciones espontáneas
+Q77: Durante la pandemia del COVID-19, hubo escasez de mascarillas, test, recursos de UCI, equipos de protección personal para un determinado gru... -> [A] Justicia
+Q78: La SERUMS de Enfermería del C.S. Tomas, realiza el tamizaje de control de anemia a 10 niños del centro educativo del lugar, encontrando 03 n... -> [B] 60 mg en jarabe o tableta de manera diaria por tres meses
+Q79: Primigesta 36 años; 29 semanas; acude a su primer control prenatal, deberá iniciar inmediatamente su esquema de vacunación para la inmunizac... -> [A] Tdap
+Q80: Mujer de 55 años, nulípara, IMC 32, acude al establecimiento I-2 para tamizaje por examen clínico para cáncer de mama, nunca se ha realizado... -> [A] Referencia para mamografía
+Q81: Al llegar al establecimiento de salud el nuevo jefe observa que existen en el archivo historias clínicas muy antiguas y deterioradas. Por ta... -> [D] 5
+Q82: El EESS desarrolla acciones de evaluación y mejora continua de la calidad de atención a adolescentes. La población adolescente está satisfec... -> [D] Gestión de la calidad
+Q83: La enfermera ingresa al turno y evidencia que su recipiente de punzocortantes está lleno, evidenciando riesgo de bioseguridad para todo el p... -> [D] 3/4 partes
+Q84: ¿Cuál es el servicio de salud a distancia prestado por personal de la salud competente, a través de las TIC, para lograr que estos servicios... -> [A] Telesalud
+Q85: Al C.S. de Yauyos acude una gestante con diagnóstico de sífilis a la que le falta cuatro semanas para el parto. El tratamiento completo y ad... -> [C] 2.4 millones UI
+Q86: Cuando el servidor público no ejerce presiones, amenazas o acoso sexual contra otros servidores públicos o subordinados que puedan afectar l... -> [B] Una prohibición ética
+Q87: La explicación de la plausibilidad de los hallazgos principales, la confrontación de los puntos fuertes y débiles frente a otros estudios, a... -> [A] Discusión
+Q88: Una estrategia para la prevención del dengue es utilizar medios alternativos de comunicación de la comunidad, para asegurar la cobertura a t... -> [A] alianzas estratégicas
+Q89: En el establecimiento de salud Las Flores laboran 20 personas, de los cuales 3 profesionales cuentan con estudios de diplomados y maestría e... -> [D] fortalezas / oportunidades
+Q90: En la consulta médica se atiende a un varón adulto, para descartar riesgo cardiovascular; por lo que de acuerdo a las recomendaciones de la ... -> [A] 150
+Q91: En cuanto a los exámenes auxiliares en pacientes fallecidos con probable diagnóstico de dengue, la muestra para laboratorio se puede obtener... -> [D] 24
+Q92: El incremento de la morbimortalidad por dengue ha generado intervenciones como el proyecto Wolbachia y la vacunación contra el dengue. Dentr... -> [B] Impacto de la investigación científica
+Q93: Teleinterconsulta es la consulta a distancia mediante el uso de las TIC, que realiza un personal de salud a un profesional de la salud, para... -> [D] presente
+Q94: ¿En qué documento de gestión se hacen los cambios en la programación de las metas físicas, incorporación o inactivación de actividades opera... -> [C] POI
+Q95: Usuaria de 24 años, acude a consulta psicológica indicando que nadie le cree, pero le han hecho brujería; un curandero le pasó el cuy negro ... -> [D] Reducir las barreras culturales
+Q96: De acuerdo a la norma técnica para el cuidado integral del adolescente, el equipo multidisciplinario puede realizar el abordaje en la instit... -> [C] Los establecimientos de salud
+Q97: El médico jefe de un establecimiento de salud, aborda el tema de vigilancia epidemiológica, refiere que cada tipo de vigilancia tiene su pro... -> [C] Activa
+Q98: El estado de salud de una jurisdicción se puede evaluar a través del cumplimiento de …… sanitarios de los diferentes componentes de cada uno... -> [C] indicadores
+Q99: En el adolescente, el alcanzar el desarrollo físico, maduración mental, desarrollo emocional y desarrollo social, es un objetivo de:... -> [D] Cuidado integral por curso de vida
+Q100: A la percepción colectiva de satisfacción de los/las servidores/as civiles sobre el ambiente de trabajo, se le denomina:... -> [A] Clima organizacional

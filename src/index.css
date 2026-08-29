@@ -1483,3 +1483,258 @@ kbd {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.6; }
 }
+
+/* ==========================================================================
+   PRINT STYLES — OFFICIAL 100-QUESTION SERUMS EXAM EXPORT
+   ========================================================================== */
+
+@media print {
+  /* Global reset for paper */
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 10pt !important;
+    line-height: 1.35 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide app chrome, headers, navbar, buttons, and screen controls */
+  .main-header,
+  .desktop-nav-bar,
+  .mobile-bottom-dock,
+  .mobile-drawer-overlay,
+  .content-wrapper,
+  .no-print,
+  .tool-icon-btn,
+  .theme-toggle-btn,
+  .btn-primary,
+  .btn-secondary,
+  .export-config-panel,
+  .export-dialog-header {
+    display: none !important;
+  }
+
+  /* Unclip modal wrappers so they take 100% full paper height and flow across pages */
+  .modal-backdrop,
+  .export-modal-backdrop {
+    position: static !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .modal-content,
+  .export-modal-dialog {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .export-preview-scrollable-container {
+    max-height: none !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Printable Exam Document */
+  .printable-exam-document {
+    display: block !important;
+    width: 100% !important;
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm 15mm 15mm;
+  }
+
+  .print-header-block {
+    text-align: center;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 6pt;
+    margin-bottom: 12pt;
+    page-break-inside: avoid;
+  }
+
+  .print-institution-title h2 {
+    font-size: 13pt !important;
+    font-weight: 800 !important;
+    margin: 0 0 2pt 0 !important;
+    color: #000000 !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  .print-institution-title h3 {
+    font-size: 10.5pt !important;
+    font-weight: 700 !important;
+    margin: 0 0 2pt 0 !important;
+    color: #000000 !important;
+  }
+
+  .print-institution-title h4 {
+    font-size: 9.5pt !important;
+    font-weight: 600 !important;
+    margin: 0 0 6pt 0 !important;
+    color: #222222 !important;
+  }
+
+  .print-exam-meta-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 8.5pt;
+    border-top: 1px solid #444444;
+    border-bottom: 1px solid #444444;
+    padding: 3pt 0;
+    margin-bottom: 5pt;
+    color: #000000;
+  }
+
+  .print-instructions-box {
+    font-size: 8pt;
+    text-align: justify;
+    line-height: 1.25;
+    color: #333333;
+    margin-bottom: 4pt;
+  }
+
+  /* Questions List */
+  .print-questions-grid {
+    display: block !important;
+  }
+
+  .print-question-item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 10pt;
+    padding-bottom: 6pt;
+    border-bottom: 1px dotted #b0b0b0;
+  }
+
+  .print-question-stem {
+    font-size: 9.5pt !important;
+    font-weight: 700 !important;
+    color: #000000 !important;
+    line-height: 1.35 !important;
+    margin-bottom: 4pt !important;
+    text-align: justify;
+  }
+
+  .print-q-number {
+    font-weight: 800;
+    margin-right: 2pt;
+  }
+
+  .print-options-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    column-gap: 15pt !important;
+    row-gap: 3pt !important;
+    padding-left: 6pt !important;
+  }
+
+  .print-option-row {
+    font-size: 9pt !important;
+    color: #000000 !important;
+    line-height: 1.25 !important;
+  }
+
+  .print-option-letter {
+    font-weight: 700;
+    margin-right: 3pt;
+  }
+
+  .print-option-row.is-correct-answer {
+    font-weight: 800 !important;
+    color: #000000 !important;
+    text-decoration: underline;
+  }
+
+  .print-correct-mark {
+    font-weight: 700;
+    font-size: 7.5pt;
+    color: #000000;
+  }
+
+  .print-pearl-box {
+    margin-top: 4pt;
+    padding: 3pt 6pt;
+    background: #f4f4f4 !important;
+    border-left: 2pt solid #000000;
+    font-size: 8pt;
+    color: #222222;
+    page-break-inside: avoid;
+  }
+
+  /* Answer Key Section */
+  .print-answer-key-section {
+    page-break-before: always;
+    margin-top: 15pt;
+    padding-top: 10pt;
+    border-top: 2px solid #000000;
+  }
+
+  .print-key-header {
+    text-align: center;
+    margin-bottom: 10pt;
+  }
+
+  .print-key-header h3 {
+    font-size: 11.5pt;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .print-key-grid {
+    display: grid !important;
+    grid-template-columns: repeat(10, 1fr) !important;
+    gap: 3pt !important;
+    text-align: center;
+  }
+
+  .print-key-cell {
+    border: 1px solid #000000;
+    padding: 3pt 1pt;
+    font-size: 8pt;
+  }
+
+  .print-key-cell .key-num {
+    font-weight: 600;
+    color: #555555;
+    display: block;
+    font-size: 7pt;
+  }
+
+  .print-key-cell .key-ans {
+    font-weight: 800;
+    font-size: 9.5pt;
+    color: #000000;
+  }
+
+  .print-document-footer {
+    text-align: center;
+    font-size: 7.5pt;
+    color: #666666;
+    margin-top: 15pt;
+    border-top: 1px solid #cccccc;
+    padding-top: 4pt;
+  }
+}

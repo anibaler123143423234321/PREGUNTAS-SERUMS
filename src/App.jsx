@@ -105,9 +105,6 @@ export function App() {
         }}
         theme={theme}
         onToggleTheme={handleToggleTheme}
-        fontSize={fontSize}
-        onIncreaseFontSize={handleIncreaseFontSize}
-        onDecreaseFontSize={handleDecreaseFontSize}
         onOpenExport={() => setShowExportModal(true)}
         isMobileMenuOpen={isMobileMenuOpen}
         onToggleMobileMenu={() => setIsMobileMenuOpen((prev) => !prev)}
