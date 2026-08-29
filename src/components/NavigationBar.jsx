@@ -1,5 +1,5 @@
 import React from 'react';
-import { Timer, BookOpen, Layers, AlertTriangle, BarChart3, Search, Sparkles, X, ChevronRight } from 'lucide-react';
+import { Timer, BookOpen, Layers, AlertTriangle, BarChart3, Search, Sparkles, X, ChevronRight, Award } from 'lucide-react';
 
 export function NavigationBar({
   activeTab,
@@ -16,7 +16,8 @@ export function NavigationBar({
     { id: 'flashcards', label: 'Flashcards', fullLabel: 'Flashcards 3D', icon: Layers, count: null },
     { id: 'mistakes', label: 'Errores', fullLabel: 'Banco de Errores', icon: AlertTriangle, count: mistakesCount, isDanger: mistakesCount > 0 },
     { id: 'analytics', label: 'Desempeño', fullLabel: 'Analytics & Desempeño', icon: BarChart3, count: null },
-    { id: 'search', label: 'Buscador', fullLabel: 'Buscador Global (500)', icon: Search, count: null }
+    { id: 'search', label: 'Buscador', fullLabel: 'Buscador Global (500)', icon: Search, count: null },
+    { id: 'academies', label: 'Academias', fullLabel: 'Academias', icon: Award, count: null }
   ];
 
   return (

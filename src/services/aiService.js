@@ -46,12 +46,12 @@ export async function generateSingleQuestion({
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userPrompt }
         ],
-        temperature: 0.25,
-        max_tokens: 480
+        temperature: 0.2,
+        max_tokens: 600
       })
     });
   } catch (netErr) {
-    throw new Error(`Error de conexión al conectar con el servicio de IA: ${netErr.message}`);
+    throw new Error(`Error de conexión con la IA (${netErr.message}). Verifica tu conexión.`);
   }
 
   if (!response.ok) {
@@ -63,6 +63,11 @@ export async function generateSingleQuestion({
     } catch {
       // Keep errText
     }
+    
+    if (response.status === 504) {
+      throw new Error('El servidor de IA tardó en responder (504 Gateway Timeout). Por favor, presiona "Generar Pregunta" nuevamente.');
+    }
+    
     throw new Error(`Error en API NVIDIA (${response.status}): ${errorDetail}`);
   }
 
@@ -89,7 +94,9 @@ export async function generateSingleQuestion({
       category: parsed.category || (category !== 'all' ? category : 'salud_publica'),
       page: 1,
       pearl: parsed.pearl || 'Perla de estudio generada por IA especializada en SERUMS MINSA.',
-      explanation: parsed.explanation || `Respuesta correcta: ${parsed.correctAnswer}`
+      explanation: parsed.explanation || `Respuesta correcta: ${parsed.correctAnswer}`,
+      whyThisQuestion: parsed.whyThisQuestion || '',
+      references: parsed.references || ''
     };
   } catch (e) {
     console.error('JSON Parse Error on AI output:', cleanJson);

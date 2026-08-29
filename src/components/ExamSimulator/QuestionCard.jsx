@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flag, Bookmark, Sparkles, HelpCircle, ChevronLeft, ChevronRight, CheckCircle2, XCircle } from 'lucide-react';
+import { Flag, Bookmark, Sparkles, HelpCircle, ChevronLeft, ChevronRight, CheckCircle2, XCircle, Target, BookOpen } from 'lucide-react';
 import { CATEGORIES } from '../../data/categories';
 
 export function QuestionCard({
@@ -123,14 +123,58 @@ export function QuestionCard({
         })}
       </div>
 
-      {/* High-Yield Clinical Pearl (Tutor / Review Mode) */}
+      {/* High-Yield Clinical Feedback & MINSA References */}
       {(isReviewMode || (showInstantFeedback && isAnswered)) && (
-        <div className="pearl-card">
-          <div className="pearl-header">
-            <Sparkles size={18} />
-            <span>Perla Médica & Fundamento SERUMS:</span>
+        <div style={{ marginTop: '1.25rem', padding: '1rem 1.15rem', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)' }}>
+          
+          {/* Motivo de formulación si existe */}
+          {question.whyThisQuestion && (
+            <div style={{ marginBottom: '0.85rem', padding: '0.65rem 0.85rem', background: 'rgba(139, 92, 246, 0.08)', border: '1px solid rgba(139, 92, 246, 0.25)', borderRadius: 'var(--radius-sm)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#a78bfa', fontWeight: 700, fontSize: '0.8rem', marginBottom: '0.25rem' }}>
+                <Target size={15} />
+                <span>¿Por qué se formuló este caso? (Relevancia SERUMS):</span>
+              </div>
+              <p style={{ fontSize: '0.82rem', color: 'var(--text-main)', margin: 0, lineHeight: 1.45 }}>
+                {question.whyThisQuestion}
+              </p>
+            </div>
+          )}
+
+          {/* Fundamento Clínico & Descarte */}
+          <div style={{ marginBottom: '0.85rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--primary)', fontWeight: 700, fontSize: '0.82rem', marginBottom: '0.3rem' }}>
+              <CheckCircle2 size={16} />
+              <span>Fundamento Clínico de la Respuesta:</span>
+            </div>
+            <p style={{ fontSize: '0.84rem', color: 'var(--text-main)', margin: 0, lineHeight: 1.5 }}>
+              {question.explanation || question.pearl}
+            </p>
           </div>
-          <p className="pearl-body">{question.pearl || question.explanation}</p>
+
+          {/* Perla Médica Clave */}
+          {question.pearl && question.pearl !== question.explanation && (
+            <div style={{ marginBottom: question.references ? '0.85rem' : '0', padding: '0.65rem 0.85rem', background: 'rgba(245, 158, 11, 0.08)', border: '1px solid rgba(245, 158, 11, 0.25)', borderRadius: 'var(--radius-sm)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#f59e0b', fontWeight: 700, fontSize: '0.8rem', marginBottom: '0.25rem' }}>
+                <Sparkles size={15} />
+                <span>Perla Médica SERUMS de Alto Rendimiento:</span>
+              </div>
+              <p style={{ fontSize: '0.82rem', color: 'var(--text-main)', margin: 0, lineHeight: 1.45 }}>
+                {question.pearl}
+              </p>
+            </div>
+          )}
+
+          {/* Referencias Normativas Oficiales MINSA */}
+          {question.references && (
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.4rem', padding: '0.5rem 0.75rem', background: 'rgba(6, 182, 212, 0.08)', border: '1px solid rgba(6, 182, 212, 0.25)', borderRadius: 'var(--radius-sm)', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+              <BookOpen size={14} color="#06b6d4" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <div>
+                <strong style={{ color: '#06b6d4' }}>Referencia Normativa Oficial: </strong>
+                <span>{question.references}</span>
+              </div>
+            </div>
+          )}
+
         </div>
       )}
 

@@ -252,12 +252,47 @@ export function QuestionFinder({
               })}
             </div>
 
-            <div className="pearl-card">
-              <div className="pearl-header">
-                <Sparkles size={18} />
-                <span>Perla Médica & Fundamento SERUMS:</span>
+            <div style={{ marginTop: '1.25rem', padding: '1rem 1.15rem', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)' }}>
+              {activeQuestionModal.whyThisQuestion && (
+                <div style={{ marginBottom: '0.85rem', padding: '0.65rem 0.85rem', background: 'rgba(139, 92, 246, 0.08)', border: '1px solid rgba(139, 92, 246, 0.25)', borderRadius: 'var(--radius-sm)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#a78bfa', fontWeight: 700, fontSize: '0.8rem', marginBottom: '0.25rem' }}>
+                    <Sparkles size={14} />
+                    <span>¿Por qué se formuló este caso? (Relevancia SERUMS):</span>
+                  </div>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--text-main)', margin: 0, lineHeight: 1.45 }}>
+                    {activeQuestionModal.whyThisQuestion}
+                  </p>
+                </div>
+              )}
+
+              <div style={{ marginBottom: '0.85rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--primary)', fontWeight: 700, fontSize: '0.82rem', marginBottom: '0.3rem' }}>
+                  <CheckCircle2 size={16} />
+                  <span>Fundamento Clínico de la Respuesta:</span>
+                </div>
+                <p style={{ fontSize: '0.84rem', color: 'var(--text-main)', margin: 0, lineHeight: 1.5 }}>
+                  {activeQuestionModal.explanation || activeQuestionModal.pearl}
+                </p>
               </div>
-              <p className="pearl-body">{activeQuestionModal.pearl || activeQuestionModal.explanation}</p>
+
+              {activeQuestionModal.pearl && activeQuestionModal.pearl !== activeQuestionModal.explanation && (
+                <div style={{ marginBottom: activeQuestionModal.references ? '0.85rem' : '0', padding: '0.65rem 0.85rem', background: 'rgba(245, 158, 11, 0.08)', border: '1px solid rgba(245, 158, 11, 0.25)', borderRadius: 'var(--radius-sm)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#f59e0b', fontWeight: 700, fontSize: '0.8rem', marginBottom: '0.25rem' }}>
+                    <Sparkles size={14} />
+                    <span>Perla Médica SERUMS:</span>
+                  </div>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--text-main)', margin: 0, lineHeight: 1.45 }}>
+                    {activeQuestionModal.pearl}
+                  </p>
+                </div>
+              )}
+
+              {activeQuestionModal.references && (
+                <div style={{ padding: '0.5rem 0.75rem', background: 'rgba(6, 182, 212, 0.08)', border: '1px solid rgba(6, 182, 212, 0.25)', borderRadius: 'var(--radius-sm)', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+                  <strong style={{ color: '#06b6d4' }}>Referencia Normativa: </strong>
+                  <span>{activeQuestionModal.references}</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

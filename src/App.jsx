@@ -9,6 +9,7 @@ import { AnalyticsDashboard } from './components/Analytics/AnalyticsDashboard';
 import { QuestionFinder } from './components/QuestionFinder/QuestionFinder';
 import { ExportModal } from './components/ExportModal/ExportModal';
 import { AiExamGenerator } from './components/AiExamGenerator/AiExamGenerator';
+import { AcademiesRanking } from './components/AcademiesRanking/AcademiesRanking';
 import { QUESTIONS_DATA } from './data/questionsData';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
@@ -19,7 +20,7 @@ export function App() {
 
   // App Navigation & Selection
   const [activeTab, setActiveTab] = useState('exam');
-  const [selectedYear, setSelectedYear] = useState('2026-I');
+  const [selectedYear, setSelectedYear] = useState('2026-II');
   const [showExportModal, setShowExportModal] = useState(false);
   const [customAiExam, setCustomAiExam] = useState(null);
 
@@ -187,6 +188,10 @@ export function App() {
             onToggleSave={handleToggleSave}
             fontSize={fontSize}
           />
+        )}
+
+        {activeTab === 'academies' && (
+          <AcademiesRanking />
         )}
       </div>
 

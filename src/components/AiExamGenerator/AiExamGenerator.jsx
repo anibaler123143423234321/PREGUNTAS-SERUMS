@@ -173,7 +173,7 @@ export function AiExamGenerator({
         {/* Specialty Pill Selector */}
         <div style={{ marginBottom: '0.75rem' }}>
           <label style={{ display: 'block', fontSize: '0.76rem', color: 'var(--text-secondary)', marginBottom: '0.35rem', fontWeight: 700 }}>
-            Especialidad Temática:
+            Área / Bloque Temático (Temario Oficial SERUMS 2026-II):
           </label>
           <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap', alignItems: 'center' }}>
             {Object.values(CATEGORIES).map((c) => {
