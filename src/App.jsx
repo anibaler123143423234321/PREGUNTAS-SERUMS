@@ -19,7 +19,7 @@ export function App() {
   const [fontSize, setFontSize] = useLocalStorage('serums_font_size', 1.05);
 
   // App Navigation & Selection
-  const [activeTab, setActiveTab] = useState('exam');
+  const [activeTab, setActiveTab] = useState('ai');
   const [selectedYear, setSelectedYear] = useState('2026-II');
   const [showExportModal, setShowExportModal] = useState(false);
   const [customAiExam, setCustomAiExam] = useState(null);

@@ -10,9 +10,9 @@ export function NavigationBar({
   onCloseMobileMenu = () => {}
 }) {
   const mainTabs = [
+    { id: 'ai', label: 'IA NVIDIA', fullLabel: 'Generador IA (NVIDIA)', icon: Sparkles, count: 'PRO', isHighlight: true },
     { id: 'exam', label: 'Simulacro', fullLabel: 'Simulacro Oficial', icon: Timer, count: null },
     { id: 'tutor', label: 'Tutor', fullLabel: 'Modo Tutor / Estudio', icon: BookOpen, count: null },
-    { id: 'ai', label: 'IA NVIDIA', fullLabel: 'Generador IA (NVIDIA)', icon: Sparkles, count: 'PRO', isHighlight: true },
     { id: 'flashcards', label: 'Flashcards', fullLabel: 'Flashcards 3D', icon: Layers, count: null },
     { id: 'mistakes', label: 'Errores', fullLabel: 'Banco de Errores', icon: AlertTriangle, count: mistakesCount, isDanger: mistakesCount > 0 },
     { id: 'analytics', label: 'Desempeño', fullLabel: 'Analytics & Desempeño', icon: BarChart3, count: null },
