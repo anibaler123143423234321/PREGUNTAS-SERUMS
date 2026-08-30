@@ -30,6 +30,14 @@ export function AiExamGenerator({
 }) {
   const defaultAiKey = import.meta.env.VITE_GROQ_API_KEY || import.meta.env.VITE_NVIDIA_API_KEY || '';
   const [apiKey, setApiKey] = useLocalStorage('serums_ai_active_api_key', defaultAiKey);
+
+  // Auto-actualizar automáticamente a Groq LPU si la clave guardada en localStorage es la antigua o está vacía
+  useEffect(() => {
+    const groqKey = import.meta.env.VITE_GROQ_API_KEY;
+    if (groqKey && (!apiKey || apiKey.startsWith('nvapi-'))) {
+      setApiKey(groqKey);
+    }
+  }, []);
   const [showKeyConfig, setShowKeyConfig] = useState(false);
   const [showDocs, setShowDocs] = useState(false);
   const [isExportingPng, setIsExportingPng] = useState(false);

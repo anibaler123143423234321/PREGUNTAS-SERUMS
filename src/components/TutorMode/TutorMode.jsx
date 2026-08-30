@@ -7,6 +7,7 @@ export function TutorMode({
   allQuestions,
   savedQuestions,
   onToggleSave,
+  onRecordMistakes,
   fontSize
 }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -33,6 +34,13 @@ export function TutorMode({
       ...prev,
       [currentQ.id]: letter
     }));
+
+    if (letter !== currentQ.correctAnswer && onRecordMistakes) {
+      onRecordMistakes([{
+        ...currentQ,
+        userAnswer: letter
+      }]);
+    }
   };
 
   const handleToggleFlag = () => {

@@ -10,7 +10,7 @@ export function NavigationBar({
   onCloseMobileMenu = () => {}
 }) {
   const mainTabs = [
-    { id: 'ai', label: 'IA NVIDIA', fullLabel: 'Generador IA (NVIDIA)', icon: Sparkles, count: 'PRO', isHighlight: true },
+    { id: 'ai', label: 'IA Groq', fullLabel: 'Generador IA (Groq LPU)', icon: Sparkles, count: 'PRO', isHighlight: true },
     { id: 'exam', label: 'Simulacro', fullLabel: 'Simulacro Oficial', icon: Timer, count: null },
     { id: 'tutor', label: 'Tutor', fullLabel: 'Modo Tutor / Estudio', icon: BookOpen, count: null },
     { id: 'flashcards', label: 'Flashcards', fullLabel: 'Flashcards 3D', icon: Layers, count: null },

@@ -9,11 +9,13 @@ dist-ssr/
 build/
 *.local
 
-# Environment variables (DO NOT COMMIT REAL API KEYS TO PUBLIC GITHUB)
+# Environment variables and secrets (DO NOT COMMIT REAL API KEYS TO PUBLIC GITHUB)
 .env
 .env.local
 .env.*.local
 !.env.example
+client_secret*.json
+*.json.secret
 
 # Logs
 npm-debug.log*

@@ -129,7 +129,7 @@ CREATE POLICY "Los usuarios solo insertan en su propio historial" ON public.user
 -- Habilitar extensión pgcrypto para cifrado seguro de contraseñas
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
--- Insertar usuario administrador con correo confirmado
+-- Insertar usuario administrador con correo confirmado (si no existe ya)
 INSERT INTO auth.users (
     instance_id,
     id,
@@ -145,7 +145,7 @@ INSERT INTO auth.users (
     confirmation_token,
     recovery_token
 )
-VALUES (
+SELECT
     '00000000-0000-0000-0000-000000000000',
     gen_random_uuid(),
     'authenticated',
@@ -159,5 +159,6 @@ VALUES (
     NOW(),
     '',
     ''
-)
-ON CONFLICT (email) DO NOTHING;
+WHERE NOT EXISTS (
+    SELECT 1 FROM auth.users WHERE email = 'admin@codesoft.pe'
+);

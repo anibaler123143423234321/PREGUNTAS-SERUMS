@@ -10,6 +10,7 @@ export function Header({
   onToggleTheme,
   onOpenExport,
   onOpenDocs,
+  isDocsActive = false,
   onOpenAuthModal,
   isMobileMenuOpen,
   onToggleMobileMenu
@@ -109,11 +110,24 @@ export function Header({
               id="btn-open-docs"
               className="icon-circle-btn"
               onClick={onOpenDocs}
-              title="Centro de Documentación Técnica & Guías"
-              style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', width: 'auto', padding: '0 0.65rem', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 600 }}
+              title={isDocsActive ? "Cerrar Documentación y volver al módulo" : "Centro de Documentación Técnica & Guías"}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                width: 'auto',
+                padding: '0 0.75rem',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                background: isDocsActive ? 'var(--primary)' : 'var(--bg-surface)',
+                color: isDocsActive ? '#fff' : 'var(--text-main)',
+                border: isDocsActive ? '1px solid var(--primary)' : '1px solid var(--border-medium)',
+                transition: 'all 0.2s ease'
+              }}
             >
-              <BookOpen size={15} color="var(--primary)" />
-              <span className="hide-on-mobile">Doc</span>
+              <BookOpen size={15} color={isDocsActive ? '#fff' : 'var(--primary)'} />
+              <span className="hide-on-mobile">{isDocsActive ? 'Cerrar Doc' : 'Doc'}</span>
             </button>
 
             <button

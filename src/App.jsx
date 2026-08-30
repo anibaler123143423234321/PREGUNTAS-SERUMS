@@ -34,9 +34,9 @@ export function App() {
 
   // Navegacion y Seleccion de Modulos
   const [activeTab, setActiveTab] = useState('ai');
+  const [lastActiveTab, setLastActiveTab] = useState('ai');
   const [selectedYear, setSelectedYear] = useState('2026-II');
   const [showExportModal, setShowExportModal] = useState(false);
-  const [showDocsModal, setShowDocsModal] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [customAiExam, setCustomAiExam] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -178,6 +178,19 @@ export function App() {
     return <AuthGate />;
   }
 
+  const handleToggleDocs = () => {
+    if (activeTab === 'docs') {
+      setActiveTab(lastActiveTab || 'ai');
+    } else {
+      setLastActiveTab(activeTab);
+      setActiveTab('docs');
+    }
+  };
+
+  const handleCloseDocs = () => {
+    setActiveTab(lastActiveTab || 'ai');
+  };
+
   return (
     <div className="app-container">
       <Header
@@ -189,7 +202,8 @@ export function App() {
         theme={theme}
         onToggleTheme={handleToggleTheme}
         onOpenExport={() => setShowExportModal(true)}
-        onOpenDocs={() => setShowDocsModal(true)}
+        onOpenDocs={handleToggleDocs}
+        isDocsActive={activeTab === 'docs'}
         onOpenAuthModal={() => setShowAuthModal(true)}
         isMobileMenuOpen={isMobileMenuOpen}
         onToggleMobileMenu={() => setIsMobileMenuOpen((prev) => !prev)}
@@ -200,6 +214,7 @@ export function App() {
         onSelectTab={(tab) => {
           if (tab !== 'exam') setCustomAiExam(null);
           setActiveTab(tab);
+          setLastActiveTab(tab);
           setIsMobileMenuOpen(false);
         }}
         mistakesCount={mistakes.length}
@@ -210,6 +225,14 @@ export function App() {
       />
 
       <div className="content-wrapper">
+        {activeTab === 'docs' && (
+          <DocsModal
+            isOpen={true}
+            onClose={handleCloseDocs}
+            previousTabName={lastActiveTab}
+          />
+        )}
+
         {activeTab === 'exam' && (
           <ExamSimulator
             key={customAiExam ? 'custom-ai-exam' : selectedYear}
@@ -228,6 +251,7 @@ export function App() {
             allQuestions={activeQuestions}
             savedQuestions={savedQuestions}
             onToggleSave={handleToggleSave}
+            onRecordMistakes={handleRecordMistakes}
             fontSize={fontSize}
           />
         )}
@@ -283,13 +307,6 @@ export function App() {
         <ExportModal
           allQuestions={QUESTIONS_DATA}
           onClose={() => setShowExportModal(false)}
-        />
-      )}
-
-      {showDocsModal && (
-        <DocsModal
-          isOpen={showDocsModal}
-          onClose={() => setShowDocsModal(false)}
         />
       )}
 

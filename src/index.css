@@ -1350,19 +1350,20 @@ kbd {
   line-height: 1.6;
 }
 
-.modal-backdrop {
+.modal-backdrop,
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: var(--glass-blur);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  z-index: 100;
+  z-index: 1200;
   animation: fadeIn 0.2s ease-out;
 }
 

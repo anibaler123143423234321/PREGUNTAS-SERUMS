@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
 import { X, BookOpen, Cpu, Database, Award, MapPin, ExternalLink, ShieldCheck, Zap, Copy, Check } from 'lucide-react';
 
-export function DocsModal({ isOpen, onClose }) {
+export function DocsModal({ isOpen, onClose, previousTabName = '' }) {
   const [activeTab, setActiveTab] = useState('ai_limits');
   const [copiedSql, setCopiedSql] = useState(false);
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === 'Escape' && onClose) {
+        onClose();
+      }
+    }
+    if (isOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -73,11 +85,29 @@ CREATE POLICY "Permitir actualizacion con clave anon" ON public.preguntas_ia FOR
             </div>
             <div>
               <h3 style={{ fontSize: '1.1rem', fontWeight: 800, margin: 0 }}>Centro de Documentación Técnica</h3>
-              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: 0 }}>Guía oficial de Motores de IA, Cuotas, Supabase Cloud y Normativa SERUMS 2026</p>
+              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: 0 }}>Guía oficial de Motores de IA, Cuotas, Supabase Cloud y Normativa SERUMS 2027</p>
             </div>
           </div>
-          <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '0.3rem' }}>
-            <X size={20} />
+          <button
+            onClick={onClose}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.3rem',
+              background: 'rgba(239, 68, 68, 0.12)',
+              border: '1px solid rgba(239, 68, 68, 0.3)',
+              color: 'var(--danger)',
+              cursor: 'pointer',
+              padding: '0.35rem 0.75rem',
+              borderRadius: 'var(--radius-sm)',
+              fontSize: '0.76rem',
+              fontWeight: 700,
+              transition: 'all 0.2s ease'
+            }}
+            title="Cerrar documentación y volver al módulo donde estabas"
+          >
+            <X size={15} />
+            <span>Cerrar</span>
           </button>
         </div>
 
@@ -409,11 +439,38 @@ CREATE POLICY "Permitir actualizacion con clave anon" ON public.preguntas_ia FOR
         </div>
 
         {/* Footer */}
-        <div style={{ padding: '0.75rem 1.25rem', borderTop: '1px solid var(--border-subtle)', background: 'var(--bg-surface)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ padding: '0.75rem 1.25rem', borderTop: '1px solid var(--border-subtle)', background: 'var(--bg-surface)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
           <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>CODESOFT SERUMS 2027 • Plataforma Médica Oficial</span>
-          <button className="action-btn" onClick={onClose} style={{ fontSize: '0.76rem', padding: '0.35rem 0.85rem' }}>
-            Entendido
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <button
+              onClick={onClose}
+              style={{
+                background: 'var(--bg-surface-secondary)',
+                border: '1px solid var(--border-medium)',
+                color: 'var(--text-main)',
+                padding: '0.35rem 0.85rem',
+                borderRadius: 'var(--radius-sm)',
+                fontSize: '0.76rem',
+                fontWeight: 600,
+                cursor: 'pointer'
+              }}
+            >
+              ← Volver al Módulo
+            </button>
+            <button
+              className="action-btn"
+              onClick={onClose}
+              style={{
+                fontSize: '0.76rem',
+                padding: '0.35rem 0.85rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.3rem'
+              }}
+            >
+              <X size={14} /> Cerrar Documentación
+            </button>
+          </div>
         </div>
       </div>
     </div>
