@@ -9,12 +9,25 @@ import { AnalyticsDashboard } from './components/Analytics/AnalyticsDashboard';
 import { QuestionFinder } from './components/QuestionFinder/QuestionFinder';
 import { ExportModal } from './components/ExportModal/ExportModal';
 import { DocsModal } from './components/DocsModal/DocsModal';
+import { AuthModal } from './components/Auth/AuthModal';
+import { AuthGate } from './components/Auth/AuthGate';
 import { AiExamGenerator } from './components/AiExamGenerator/AiExamGenerator';
 import { AcademiesRanking } from './components/AcademiesRanking/AcademiesRanking';
 import { QUESTIONS_DATA } from './data/questionsData';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import { useAuth } from './hooks/useAuth';
+import {
+  loadUserDataFromCloud,
+  syncSavedQuestionToCloud,
+  syncMistakeToCloud,
+  syncExamHistoryToCloud
+} from './services/userSyncService';
+import { Stethoscope } from 'lucide-react';
 
 export function App() {
+  // Autenticación de Usuario (Supabase Auth / Google OAuth)
+  const { user, loading: authLoading, isAuthenticated } = useAuth();
+
   // Tema y Accesibilidad
   const [theme, setTheme] = useLocalStorage('serums_theme', 'dark');
   const [fontSize, setFontSize] = useLocalStorage('serums_font_size', 1.05);
@@ -24,7 +37,9 @@ export function App() {
   const [selectedYear, setSelectedYear] = useState('2026-II');
   const [showExportModal, setShowExportModal] = useState(false);
   const [showDocsModal, setShowDocsModal] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const [customAiExam, setCustomAiExam] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Datos Persistentes del Medico
   const [savedQuestions, setSavedQuestions] = useLocalStorage('serums_saved_q', {});
@@ -35,6 +50,33 @@ export function App() {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  // Cargar y sincronizar datos del médico desde Supabase Cloud al iniciar sesión
+  useEffect(() => {
+    if (user?.id) {
+      loadUserDataFromCloud(user.id).then(({ savedQuestions: cloudSaved, mistakes: cloudMistakes, examHistory: cloudHistory }) => {
+        if (cloudSaved && Object.keys(cloudSaved).length > 0) {
+          setSavedQuestions((prev) => ({ ...prev, ...cloudSaved }));
+        }
+        if (cloudMistakes && cloudMistakes.length > 0) {
+          setMistakes((prev) => {
+            const map = new Map();
+            [...cloudMistakes, ...prev].forEach((m) => map.set(m.id, m));
+            return Array.from(map.values());
+          });
+        }
+        if (cloudHistory && cloudHistory.length > 0) {
+          setExamHistory((prev) => {
+            const map = new Map();
+            [...cloudHistory, ...prev].forEach((h) => map.set(h.id || h.date, h));
+            return Array.from(map.values());
+          });
+        }
+      }).catch((err) => {
+        console.warn('Error al cargar datos desde Supabase:', err);
+      });
+    }
+  }, [user?.id]);
 
   const handleToggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -48,14 +90,19 @@ export function App() {
     setFontSize((prev) => Math.max(prev - 0.08, 0.85));
   };
 
-  // Alternar guardado de pregunta destacada
+  // Alternar guardado de pregunta destacada y sincronizar con Supabase Cloud
   const handleToggleSave = (question) => {
     setSavedQuestions((prev) => {
       const next = { ...prev };
-      if (next[question.id]) {
+      const isSaving = !next[question.id];
+      if (!isSaving) {
         delete next[question.id];
       } else {
         next[question.id] = question;
+      }
+      
+      if (user?.id) {
+        syncSavedQuestionToCloud(user.id, question, isSaving);
       }
       return next;
     });
@@ -66,20 +113,36 @@ export function App() {
     setMistakes((prev) => {
       const existingIds = new Set(prev.map((q) => q.id));
       const newItems = failedQuestions.filter((q) => !existingIds.has(q.id));
+      
+      if (user?.id) {
+        newItems.forEach((item) => syncMistakeToCloud(user.id, item, true));
+      }
       return [...prev, ...newItems];
     });
   };
 
   const handleRemoveMistake = (qId) => {
-    setMistakes((prev) => prev.filter((q) => q.id !== qId));
+    setMistakes((prev) => {
+      const target = prev.find((q) => q.id === qId);
+      if (user?.id && target) {
+        syncMistakeToCloud(user.id, target, false);
+      }
+      return prev.filter((q) => q.id !== qId);
+    });
   };
 
   const handleClearMistakes = () => {
+    if (user?.id) {
+      mistakes.forEach((m) => syncMistakeToCloud(user.id, m, false));
+    }
     setMistakes([]);
   };
 
   const handleSaveExamHistory = (record) => {
     setExamHistory((prev) => [...prev, record]);
+    if (user?.id) {
+      syncExamHistoryToCloud(user.id, record);
+    }
   };
 
   const handleStartCustomExam = (generatedQuestions) => {
@@ -96,7 +159,24 @@ export function App() {
     return QUESTIONS_DATA.filter((q) => q.year === selectedYear);
   }, [selectedYear, customAiExam]);
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // Pantalla de carga mientras se verifica la sesión en Supabase
+  if (authLoading) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-main)', color: 'var(--primary)' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(2, 132, 199, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.75rem auto' }}>
+            <Stethoscope size={28} className="animate-spin" />
+          </div>
+          <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Cargando CODESOFT SERUMS 2027...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Si no está autenticado, exigir inicio de sesión / creación de cuenta
+  if (!isAuthenticated) {
+    return <AuthGate />;
+  }
 
   return (
     <div className="app-container">
@@ -110,6 +190,7 @@ export function App() {
         onToggleTheme={handleToggleTheme}
         onOpenExport={() => setShowExportModal(true)}
         onOpenDocs={() => setShowDocsModal(true)}
+        onOpenAuthModal={() => setShowAuthModal(true)}
         isMobileMenuOpen={isMobileMenuOpen}
         onToggleMobileMenu={() => setIsMobileMenuOpen((prev) => !prev)}
       />
@@ -209,6 +290,13 @@ export function App() {
         <DocsModal
           isOpen={showDocsModal}
           onClose={() => setShowDocsModal(false)}
+        />
+      )}
+
+      {showAuthModal && (
+        <AuthModal
+          isOpen={showAuthModal}
+          onClose={() => setShowAuthModal(false)}
         />
       )}
     </div>

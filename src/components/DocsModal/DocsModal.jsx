@@ -138,6 +138,24 @@ CREATE POLICY "Permitir actualizacion con clave anon" ON public.preguntas_ia FOR
             <Award size={14} /> Normativa MINSA NTS
           </button>
           <button
+            onClick={() => setActiveTab('oauth')}
+            style={{
+              padding: '0.4rem 0.75rem',
+              fontSize: '0.78rem',
+              fontWeight: 700,
+              borderRadius: 'var(--radius-xs)',
+              border: 'none',
+              background: activeTab === 'oauth' ? 'var(--primary)' : 'transparent',
+              color: activeTab === 'oauth' ? '#fff' : 'var(--text-secondary)',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem'
+            }}
+          >
+            <ShieldCheck size={14} /> Google OAuth 2.0 (Login)
+          </button>
+          <button
             onClick={() => setActiveTab('geografia')}
             style={{
               padding: '0.4rem 0.75rem',
@@ -289,6 +307,55 @@ CREATE POLICY "Permitir actualizacion con clave anon" ON public.preguntas_ia FOR
             </div>
           )}
 
+          {/* TAB: Google OAuth 2.0 */}
+          {activeTab === 'oauth' && (
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 800, margin: 0, display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                  <ShieldCheck size={16} color="#10b981" /> Guía de Activación: Google OAuth 2.0 en Supabase
+                </h4>
+                <a href="https://supabase.com/docs/guides/auth/social-login/auth-google" target="_blank" rel="noreferrer" style={{ fontSize: '0.74rem', color: 'var(--primary)', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+                  Doc Supabase Google Auth <ExternalLink size={12} />
+                </a>
+              </div>
+
+              <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '0.85rem' }}>
+                El sistema ya cuenta con el módulo completo de autenticación. Para habilitar el inicio de sesión con Google en producción, solo debes seguir estos 3 pasos:
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1rem' }}>
+                <div style={{ background: 'var(--bg-surface)', padding: '0.85rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+                  <strong style={{ color: 'var(--primary)', fontSize: '0.82rem' }}>1. Crear Credenciales en Google Cloud Console</strong>
+                  <ul style={{ margin: '0.3rem 0 0 0', paddingLeft: '1.2rem', fontSize: '0.76rem', color: 'var(--text-secondary)' }}>
+                    <li>Ingresa a <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)' }}>Google Cloud Console &gt; Credenciales</a>.</li>
+                    <li>Crea un <strong>ID de cliente de OAuth 2.0</strong> de tipo <em>Aplicación Web</em>.</li>
+                    <li>En <strong>URIs de redireccionamiento autorizados</strong>, coloca la URL de callback de tu Supabase:
+                      <code style={{ display: 'block', background: 'var(--bg-surface-secondary)', padding: '0.3rem', margin: '0.25rem 0', borderRadius: '3px', color: 'var(--primary)' }}>
+                        https://sohwmpvtxnqyifsiomxo.supabase.co/auth/v1/callback
+                      </code>
+                    </li>
+                  </ul>
+                </div>
+
+                <div style={{ background: 'var(--bg-surface)', padding: '0.85rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+                  <strong style={{ color: 'var(--primary)', fontSize: '0.82rem' }}>2. Activar Proveedor Google en Supabase Dashboard</strong>
+                  <ul style={{ margin: '0.3rem 0 0 0', paddingLeft: '1.2rem', fontSize: '0.76rem', color: 'var(--text-secondary)' }}>
+                    <li>Ve a tu proyecto en <a href="https://supabase.com/dashboard/project/sohwmpvtxnqyifsiomxo/auth/providers" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)' }}>Supabase &gt; Authentication &gt; Providers</a>.</li>
+                    <li>Activa el toggle de <strong>Google</strong>.</li>
+                    <li>Pega tu <strong>Client ID</strong> y <strong>Client Secret</strong> generados en Google Cloud y guarda los cambios.</li>
+                  </ul>
+                </div>
+
+                <div style={{ background: 'var(--bg-surface)', padding: '0.85rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+                  <strong style={{ color: 'var(--primary)', fontSize: '0.82rem' }}>3. ¡Listo! Acceso Médico Multi-Dispositivo</strong>
+                  <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.76rem', color: 'var(--text-secondary)' }}>
+                    Los médicos podrán hacer clic en <strong>"Acceder"</strong> o <strong>"Continuar con Google"</strong> y su sesión, avatar, exámenes y errores se respaldarán automáticamente en la nube.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* TAB 4: Geografía Nacional */}
           {activeTab === 'geografia' && (
             <div>
@@ -343,7 +410,7 @@ CREATE POLICY "Permitir actualizacion con clave anon" ON public.preguntas_ia FOR
 
         {/* Footer */}
         <div style={{ padding: '0.75rem 1.25rem', borderTop: '1px solid var(--border-subtle)', background: 'var(--bg-surface)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>CODESOFT SERUMS 2026 • Plataforma Médica Oficial</span>
+          <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>CODESOFT SERUMS 2027 • Plataforma Médica Oficial</span>
           <button className="action-btn" onClick={onClose} style={{ fontSize: '0.76rem', padding: '0.35rem 0.85rem' }}>
             Entendido
           </button>

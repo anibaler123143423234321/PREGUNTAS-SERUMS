@@ -1,18 +1,18 @@
 ---
 name: serums-medicina-examen
 description: >-
-  Guía maestra, marco normativo, matriz de competencias, normas técnicas (NTS 2024-2026) y banco de preguntas y perlas verificadas para la preparación y resolución experta del Examen Nacional SERUMS de Medicina del Ministerio de Salud del Perú (MINSA).
+  Guía maestra, marco normativo, matriz de competencias, normas técnicas (NTS 2024-2026), arquitectura técnica de IA (Groq, Gemini, NVIDIA, Supabase) y banco de preguntas y perlas verificadas para la preparación y resolución experta del Examen Nacional SERUMS de Medicina del Ministerio de Salud del Perú (MINSA).
 ---
 
-# Examen Nacional SERUMS Medicina 2026 — Guía Integral, Normas Técnicas y Solucionario Experto
+# Examen Nacional SERUMS Medicina 2026 — Guía Integral, Normas Técnicas, Arquitectura de IA y Solucionario Experto
 
-Este skill proporciona el marco teórico, metodológico, normativo, clínico y epidemiológico para la preparación y resolución experta del **Examen de Evaluación para el Servicio Rural y Urbano Marginal de Salud (SERUMS)** del Ministerio de Salud (MINSA) del Perú, regulado por la **Ley N° 23330**, sus modificatorias y el **Temario Oficial SERUMS 2026-II**.
+Este skill proporciona el marco teórico, clínico, epidemiológico, normativo y la **arquitectura técnica completa del sistema CODESOFT SERUMS 2026** para la generación, resolución y evaluación experta del **Examen Nacional SERUMS de Medicina del Ministerio de Salud (MINSA)** del Perú (Ley N° 23330 y Temario Oficial 2026-II).
 
 ---
 
 ## 1. Parámetros Oficiales del Examen SERUMS 2026
 
-- **Normativa Base**: Ley N° 23330 (Ley del Servicio Rural y Urbano Marginal de Salud), DS N° 007-2008-SA, DL N° 1497 (Redes Integradas de Salud).
+- **Normativa Base**: Ley N° 23330 (Ley del SERUMS), DS N° 007-2008-SA, DL N° 1497 (Redes Integradas de Salud).
 - **Estructura**: 100 preguntas de opción múltiple con 4 alternativas (A, B, C, D) y única respuesta correcta.
 - **Tiempo Oficial**: 120 minutos (2 horas continuas).
 - **Sistema de Calificación**: Escala vigesimal (0.00 a 20.00). Cada acierto = **0.20 puntos**.
@@ -88,11 +88,7 @@ Este skill proporciona el marco teórico, metodológico, normativo, clínico y e
    - Fármacos de primera línea: **Oxitocina** (20-40 UI en infusión), **Ergometrina** (0.2 mg IM, *contraindicada en preeclampsia e HTA*), **Misoprostol** (800 ug vía rectal/sublingual) y **Ácido Tranexámico** (1 g IV lento dentro de las primeras 3 horas del parto).
 5. **Enfoque Intercultural**: **Parto Vertical (NTS N° 030-MINSA)** con acompañante de elección, ingesta de líquidos tibios y respeto a las costumbres de la gestante.
 
-### 3.6. VIH y Prevención Combinada:
-1. **Profilaxis Pre-Exposición (PrEP)**: Indicada con **Tenofovir + Emtricitabina (TDF/FTC)** para poblaciones de alto riesgo (HSH, mujeres trans, parejas serodiscordantes).
-2. **Prevención Materno-Infantil**: TARV triple inmediato a la gestante diagnosticada, cesárea electiva si carga viral >1000 copias/ml, suspensión absoluta de la lactancia materna y fórmula de inicio.
-
-### 3.7. Gestión, Categorización y Redes Integradas de Salud (RIS):
+### 3.6. Gestión, Categorización y Redes Integradas de Salud (RIS):
 1. **Categorización de Establecimientos de Salud (NTS N° 021-MINSA)**:
    - **I-1**: Puesto de salud sin médico permanente (Enfermera, Obstetra, Técnico).
    - **I-2**: Puesto de salud con Médico general permanente.
@@ -100,33 +96,80 @@ Este skill proporciona el marco teórico, metodológico, normativo, clínico y e
    - **I-4**: Centro de salud con **Camas de internamiento de corta estancia**, Sala de Partos y atención continua de **24 horas**.
 2. **Redes Integradas de Salud (RIS - DL 1497)**: Cuatro dimensiones: **Gobernanza**, **Prestación** (el primer nivel como puerta de entrada obligatoria), **Gestión** y **Financiamiento**.
 3. **Planificación**: La programación del **Plan Operativo Institucional (POI)** corresponde a la **Unidad Ejecutora**.
-4. **Clasificación de Residuos Hospitalarios (DIGESA)**:
-   - **Bolsa Roja**: Residuos Biocontaminados (gasas con sangre, fluidos, cultivos).
-   - **Bolsa Amarilla**: Residuos Especiales (medicamentos vencidos, reactivos químicos, placas radiográficas).
-   - **Bolsa Negra**: Residuos Comunes (papel, cartón, restos de alimentos).
-5. **Tiempos de Triaje en Emergencias**:
+4. **Tiempos de Triaje en Emergencias**:
    - **Prioridad I** (Emergencia con riesgo vital inminente): Atención inmediata (**0 minutos**).
    - **Prioridad II** (Urgencia mayor con potencial riesgo): Tiempo no mayor a **10 minutos**.
    - **Prioridad III** (Urgencia menor): Tiempo no mayor a **30 minutos**.
    - **Prioridad IV** (Patología no urgente): Hasta 60 minutos o derivación a consulta ambulatoria.
-6. **Valoración Clínica del Adulto Mayor (VACAM)**: Aplicación obligatoria en establecimientos categorizados como **I-2, I-3 e I-4**.
-
-### 3.8. Ética e Investigación en Salud:
-1. **Fraude Científico**: Manipulación o supresión deliberada de datos para obtener conclusiones favorables.
-2. **Muestreo en Bola de Nieve**: Muestreo no probabilístico indicado para poblaciones ocultas, estigmatizadas o de difícil acceso (ej. inmigrantes indocumentados, trabajadoras sexuales).
-3. **Centros de Salud Mental Comunitario (CSMC)**: Modelo de base comunitaria con respeto deontológico y no desacreditación entre colegas profesionales.
 
 ---
 
-## 4. Biblioteca de Normas Técnicas Verificadas en el Proyecto (`normas_tecnicas/`)
+## 4. Arquitectura de Motores de IA & Límites de Cuota
 
-| Documento Oficial | Norma Técnica / Resolución | Páginas | Temas Clave Evaluados |
-| :--- | :--- | :--- | :--- |
-| `GPC_MINSA_Dengue_Atencion_Clinica.pdf` | GPC Dengue MINSA | 64 págs | Clasificación A/B1/B2/C, ClNa 0.9%, contraindicación AINEs/IM |
-| `RM_894_2024_MINSA_NTS_221_Tuberculosis.pdf` | NTS 221-MINSA (2024-2026) | 147 págs | GeneXpert, 2HREZ/4H3R3, 3HP, descanso laboral con goce |
-| `RM_251_2024_MINSA_NTS_213_Anemia.pdf` | NTS 213-MINSA (2024) | 38 págs | Dosis 3 mg/kg/d (tto), 2 mg/kg/d (prev), Peña-Dallman |
-| `NTS_196_MINSA_Esquema_Vacunacion_Completo.pdf`| NTS 196-MINSA (2024-2026) | 45 págs | Esquema completo, VPH dosis única, bloqueo sarampión 25 mzn |
-| `NTS_105_MINSA_Salud_Materna_Emergencias.pdf` | NTS 105-MINSA | 38 págs | CPN reenfocado, Zuspan (MgSO4), Código Rojo 4T |
-| `NTS_021_MINSA_Categorizacion_Establecimientos.pdf` | NTS 021-MINSA | 46 págs | EESS I-1 a I-4, cartera de servicios, odontología/lab |
-| `8412657-1-medicina-temario-evaluacion-serums-2026-ii.pdf` | Temario Oficial MINSA | 4 págs | 5 Bloques Oficiales Temario 2026-II |
-| `EXAMEN_SERUMS_2026_II_MEDICINA.pdf` | Cuadernillo Oficial 2026-II | 11 págs | 100 Preguntas Oficiales del Examen Real 2026-II |
+| Motor / Proveedor | Modelo | Límite por Minuto (RPM) | Límite Diario (RPD) | Tokens / Minuto | Latencia Promedio |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **Groq Cloud (LPU)** | `openai/gpt-oss-120b` | **30 RPM** | **1,000 RPD** | 8,000 TPM | **~2.5s** |
+| **Groq Cloud (LPU)** | `qwen/qwen3.8-27b` | **30 RPM** | **1,000 RPD** | 8,000 TPM | **~1.8s** |
+| **Google Gemini** | `gemini-1.5-flash` | **15 RPM** | **1,500 RPD** | 1,000,000 TPM | **~3.2s** |
+| **NVIDIA NIM** | `meta/llama-3.2-11b-vision-instruct` | **10 RPM** | **1,000 créditos** | Variable | **~24s** |
+
+### Reglas Técnicas de Inferencia en Groq:
+1. **Auto-Detección por Prefijo**:
+   - `gsk_...` ➔ Groq Cloud API (`/api/groq/chat/completions`).
+   - `AIzaSy...` ➔ Google Gemini API (`/api/gemini/...`).
+   - `nvapi-...` ➔ NVIDIA NIM API (`/api/nvidia/chat/completions`).
+2. **`max_tokens: 2000`**: Los modelos de razonamiento (como `gpt-oss-120b`) consumen tokens de pensamiento interno (~500 tokens). Con `max_tokens: 2000`, el JSON clínico nunca se trunca.
+3. **Reinicio de Cuota**: A las **00:00 UTC (7:00 PM hora peruana)** diariamente.
+
+---
+
+## 5. Matriz de Diversidad Geográfica Nacional (47 Ubicaciones en 25 Regiones)
+
+Para evitar la repetición y garantizar que el postulante entrene en todas las realidades sanitarias del Perú:
+- **Puno (Altitud Extrema)**: Macusani (4,315 msnm), Asillo, Cojata.
+- **Cusco**: Espinar (3,928 msnm), Quillabamba (La Convención), Paucartambo.
+- **Ayacucho & VRAEM**: Llochegua, Chuschi, Puquio.
+- **Junín & Selva Central**: San Martín de Pangoa, Pichanaqui, Tarma.
+- **Amazonas (Comunidades Nativas)**: Santa María de Nieva (Awajún), Imaza, Lamud.
+- **San Martín**: Juanjuí, Jepelacio, San Pablo.
+- **Piura (Costa y Frontera)**: Canchaque, Paimas, Lancones.
+- **Cajamarca**: San Ignacio, Chota, Jaén.
+- **Huancavelica**: Pampas Tayacaja (3,276 msnm), Lircay.
+- **Ancash (Callejón de Huaylas)**: Chavín de Huántar, Marcará.
+- **Arequipa**: Chivay (3,635 msnm - Cañón del Colca).
+- **Ica / Costa Sur**: Paracas, Pisco, Palpa, Nazca.
+
+---
+
+## 6. Esquema de Base de Datos Cloud (Supabase PostgreSQL)
+
+Tabla pura y relacional (sin columnas JSON `options` ni `full_json`):
+```sql
+CREATE TABLE IF NOT EXISTS public.preguntas_ia (
+    id TEXT PRIMARY KEY,
+    question TEXT NOT NULL,
+    option_a TEXT NOT NULL,
+    option_b TEXT NOT NULL,
+    option_c TEXT NOT NULL,
+    option_d TEXT NOT NULL,
+    correct_answer VARCHAR(5) NOT NULL,
+    category VARCHAR(50) DEFAULT 'salud_publica',
+    difficulty VARCHAR(50) DEFAULT 'standard',
+    year TEXT DEFAULT 'Generado con IA (Groq LPU)',
+    why_this_question TEXT,
+    explanation TEXT,
+    pearl TEXT,
+    "references" TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+```
+
+---
+
+## 7. Herramientas de Exportación y Limpieza en la Interfaz
+
+1. **`📄 Descargar .txt`**: Descarga en texto plano estructurado con enunciado, alternativas A-D, clave oficial, justificación clínica MINSA y perla SERUMS.
+2. **`🖼️ Descargar .png`**: Captura HD de la tarjeta médica generada mediante `html-to-image` para compartir en WhatsApp/Telegram.
+3. **`📥 Sesión .json`**: Respaldo completo de la sesión de preguntas en formato JSON estándar.
+4. **`✕ Limpiar`**: Botón de reset que borra y cierra la pregunta actual para dejar la pantalla despejada.
+5. **`📖 Centro de Documentación (DocsModal)`**: Modal interactivo accesible desde el Header y desde la configuración con todas las guías, tablas de cuota y SQL.

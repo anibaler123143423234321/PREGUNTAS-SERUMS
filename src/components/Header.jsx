@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Stethoscope, Moon, Sun, Printer, Menu, X, ChevronDown, Check, BookOpen } from 'lucide-react';
 import { EXAM_YEARS } from '../data/categories';
+import { AuthButton } from './Auth/AuthButton';
 
 export function Header({
   selectedYear,
@@ -9,6 +10,7 @@ export function Header({
   onToggleTheme,
   onOpenExport,
   onOpenDocs,
+  onOpenAuthModal,
   isMobileMenuOpen,
   onToggleMobileMenu
 }) {
@@ -39,7 +41,7 @@ export function Header({
           <div className="brand-info">
             <div className="brand-title-row">
               <span className="brand-name">CODESOFT</span>
-              <span className="brand-badge">SERUMS 2026</span>
+              <span className="brand-badge">SERUMS 2027</span>
             </div>
             <p className="brand-subtitle">
               Plataforma Médica • Examen Nacional SERUMS (MINSA)
@@ -101,6 +103,8 @@ export function Header({
 
           {/* Desktop Utilities */}
           <div className="desktop-controls-group">
+            <AuthButton onOpenAuthModal={onOpenAuthModal} />
+
             <button
               id="btn-open-docs"
               className="icon-circle-btn"
