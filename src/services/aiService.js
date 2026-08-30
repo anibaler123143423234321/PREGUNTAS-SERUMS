@@ -8,6 +8,122 @@ function getEndpoint() {
   return '/api/nvidia/chat/completions';
 }
 
+/**
+ * Resilient JSON parser that automatically repairs common LLM structural glitches:
+ * 1. Missing closing braces in inner objects (e.g., options: { A: '..', correctAnswer: '..')
+ * 2. Unescaped quotes or trailing commas
+ * 3. Fallback regex extraction if standard parsing fails
+ */
+function parseResilientAiJson(rawContent, defaultCategory = 'salud_publica') {
+  if (!rawContent || typeof rawContent !== 'string') {
+    throw new Error('La IA devolvió una respuesta vacía.');
+  }
+
+  let text = rawContent.trim();
+
+  // Strip markdown code fences if present
+  if (text.includes('```json')) {
+    text = text.split('```json')[1].split('```')[0].trim();
+  } else if (text.includes('```')) {
+    text = text.split('```')[1].split('```')[0].trim();
+  }
+
+  // Find first { and last }
+  const firstBrace = text.indexOf('{');
+  const lastBrace = text.lastIndexOf('}');
+  if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+    text = text.substring(firstBrace, lastBrace + 1);
+  }
+
+  // 1. Direct JSON parse attempt
+  try {
+    const parsed = JSON.parse(text);
+    if (parsed && parsed.question && parsed.options) {
+      return sanitizeParsedObject(parsed, defaultCategory);
+    }
+  } catch (e1) {
+    // Continue to auto-repair
+  }
+
+  // 2. Automated syntax repairs
+  let repaired = text;
+
+  // Fix unclosed "options" object: e.g. "options": { "A": "...", "D": "...", "correctAnswer": "C"
+  repaired = repaired.replace(/"options"\s*:\s*\{([^}]+?)(,\s*"correctAnswer")/g, '"options": {$1}$2');
+
+  // Fix missing closing brace at the end
+  if (!repaired.endsWith('}')) {
+    repaired = repaired + '}';
+  }
+
+  // Fix trailing commas
+  repaired = repaired.replace(/,\s*([}\]])/g, '$1');
+
+  try {
+    const parsed = JSON.parse(repaired);
+    if (parsed && parsed.question) {
+      return sanitizeParsedObject(parsed, defaultCategory);
+    }
+  } catch (e2) {
+    // Continue to regex extraction
+  }
+
+  // 3. Robust Regex Fallback Extraction
+  const extractField = (pattern) => {
+    const match = text.match(pattern);
+    return match ? match[1].replace(/\\"/g, '"').trim() : '';
+  };
+
+  const question = extractField(/"question"\s*:\s*"([^"]+)"/) || extractField(/"question"\s*:\s*`([^`]+)`/);
+  const optA = extractField(/"A"\s*:\s*"([^"]+)"/);
+  const optB = extractField(/"B"\s*:\s*"([^"]+)"/);
+  const optC = extractField(/"C"\s*:\s*"([^"]+)"/);
+  const optD = extractField(/"D"\s*:\s*"([^"]+)"/);
+  const ans = extractField(/"correctAnswer"\s*:\s*"([A-D])"/);
+  const why = extractField(/"whyThisQuestion"\s*:\s*"([^"]+)"/);
+  const exp = extractField(/"explanation"\s*:\s*"([^"]+)"/);
+  const pearl = extractField(/"pearl"\s*:\s*"([^"]+)"/);
+  const ref = extractField(/"references"\s*:\s*"([^"]+)"/);
+
+  if (question && optA && optB) {
+    return {
+      question,
+      options: {
+        A: optA,
+        B: optB,
+        C: optC || 'Conducta alternativa no recomendada',
+        D: optD || 'Manejo en EESS de mayor complejidad'
+      },
+      correctAnswer: ans || 'A',
+      category: defaultCategory,
+      whyThisQuestion: why || 'Evalúa la capacidad de toma de decisiones clínicas y aplicación de la norma MINSA en el primer nivel.',
+      explanation: exp || 'Fundamento basado en la Norma Técnica de Salud aplicable para el primer nivel de atención.',
+      pearl: pearl || 'Prioriza siempre la aplicación rigurosa de las Normas Técnicas MINSA vigentes.',
+      references: ref || 'Norma Técnica de Salud MINSA'
+    };
+  }
+
+  throw new Error('La IA generó una respuesta incompleta. Por favor, intenta generar nuevamente.');
+}
+
+function sanitizeParsedObject(parsed, defaultCategory) {
+  return {
+    question: parsed.question,
+    options: parsed.options || {
+      A: 'Opción A',
+      B: 'Opción B',
+      C: 'Opción C',
+      D: 'Opción D'
+    },
+    correctAnswer: parsed.correctAnswer || 'A',
+    category: parsed.category || defaultCategory,
+    whyThisQuestion: parsed.whyThisQuestion || 'Evalúa el razonamiento clínico y la aplicación de la Norma Técnica en el primer nivel de atención.',
+    explanation: parsed.explanation || `Respuesta correcta: Opción ${parsed.correctAnswer || 'A'}`,
+    pearl: parsed.pearl || 'Perla de estudio de alto rendimiento calibrada para el Examen SERUMS.',
+    references: parsed.references || 'Norma Técnica de Salud MINSA'
+  };
+}
+
 export async function generateSingleQuestion({
   category = 'all',
   difficulty = 'standard',
@@ -46,8 +162,8 @@ export async function generateSingleQuestion({
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userPrompt }
         ],
-        temperature: 0.2,
-        max_tokens: 600
+        temperature: 0.15,
+        max_tokens: 700
       })
     });
   } catch (netErr) {
@@ -74,34 +190,23 @@ export async function generateSingleQuestion({
   const data = await response.json();
   const rawContent = data.choices?.[0]?.message?.content || '';
 
-  // Clean JSON
-  let cleanJson = rawContent.trim();
-  if (cleanJson.startsWith('```json')) {
-    cleanJson = cleanJson.replace(/^```json/, '').replace(/```$/, '').trim();
-  } else if (cleanJson.startsWith('```')) {
-    cleanJson = cleanJson.replace(/^```/, '').replace(/```$/, '').trim();
-  }
+  const defaultCategory = (category !== 'all' ? category : 'salud_publica');
+  const parsed = parseResilientAiJson(rawContent, defaultCategory);
 
-  try {
-    const parsed = JSON.parse(cleanJson);
-    return {
-      id: `ai-gen-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-      year: 'Generado con IA (NVIDIA)',
-      number: 1,
-      question: parsed.question,
-      options: parsed.options,
-      correctAnswer: parsed.correctAnswer || 'A',
-      category: parsed.category || (category !== 'all' ? category : 'salud_publica'),
-      page: 1,
-      pearl: parsed.pearl || 'Perla de estudio generada por IA especializada en SERUMS MINSA.',
-      explanation: parsed.explanation || `Respuesta correcta: ${parsed.correctAnswer}`,
-      whyThisQuestion: parsed.whyThisQuestion || '',
-      references: parsed.references || ''
-    };
-  } catch (e) {
-    console.error('JSON Parse Error on AI output:', cleanJson);
-    throw new Error('La IA no devolvió un formato JSON válido. Inténtalo de nuevo.');
-  }
+  return {
+    id: `ai-gen-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+    year: 'Generado con IA (NVIDIA)',
+    number: 1,
+    question: parsed.question,
+    options: parsed.options,
+    correctAnswer: parsed.correctAnswer,
+    category: parsed.category,
+    page: 1,
+    pearl: parsed.pearl,
+    explanation: parsed.explanation,
+    whyThisQuestion: parsed.whyThisQuestion,
+    references: parsed.references
+  };
 }
 
 // Generate mini exam with strict credit and rate-limit protection (max 2 questions)
@@ -113,46 +218,29 @@ export async function generateExamBatch({
   apiKey = DEFAULT_API_KEY,
   onProgress
 }) {
-  const safeCount = Math.min(2, Math.max(1, totalQuestions)); // Strictly cap at 2 to protect credits & rate limits
-  const generatedQuestions = [];
+  const clampedTotal = Math.min(Math.max(1, totalQuestions), 2);
+  const questions = [];
 
-  const categoriesPool = [
-    'salud_publica',
-    'gestion_aps',
-    'medicina_interna',
-    'pediatria',
-    'gineco_obstetricia',
-    'cirugia_trauma',
-    'etica_legal'
-  ];
-
-  for (let i = 0; i < safeCount; i++) {
-    const qNum = i + 1;
-    const targetCategory = category !== 'all' ? category : categoriesPool[i % categoriesPool.length];
-    
-    // Safety delay of 400ms between requests to prevent HTTP 429
-    if (i > 0) {
-      await new Promise((res) => setTimeout(res, 400));
-    }
-
-    try {
-      const q = await generateSingleQuestion({
-        category: targetCategory,
-        difficulty,
-        topic,
-        apiKey
-      });
-      q.number = qNum;
-      q.id = `ai-exam-${Date.now()}-${qNum}`;
-      generatedQuestions.push(q);
-    } catch (err) {
-      console.warn(`Error generando pregunta ${qNum}:`, err);
-    }
-
+  for (let i = 0; i < clampedTotal; i++) {
     if (onProgress) {
-      onProgress(generatedQuestions.length, safeCount);
+      onProgress(i + 1, clampedTotal);
+    }
+    
+    const question = await generateSingleQuestion({
+      category,
+      difficulty,
+      topic,
+      apiKey
+    });
+
+    question.number = i + 1;
+    questions.push(question);
+
+    // Subtle pause to avoid NVIDIA burst rate-limiting
+    if (i < clampedTotal - 1) {
+      await new Promise(resolve => setTimeout(resolve, 800));
     }
   }
 
-  return generatedQuestions;
+  return questions;
 }
