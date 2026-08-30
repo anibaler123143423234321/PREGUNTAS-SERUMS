@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Stethoscope, Sparkles, ShieldCheck, Mail, Lock, User, ArrowRight, CheckCircle2, RefreshCw, AlertCircle, Award, Database } from 'lucide-react';
+import { Stethoscope, Sparkles, ShieldCheck, Mail, Lock, User, ArrowRight, CheckCircle2, RefreshCw, AlertCircle, Award, Database, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
+import { sanitizeInput, isValidEmail } from '../../utils/securitySanitizer';
+import { PulseRadarLoader, EcgHeartbeatLoader } from '../Common/AnimatedIcons';
 
 export function AuthGate() {
-  const { loginWithGoogle, loginWithEmail, registerWithEmail, loginAsMasterAdmin, loading, error: authError } = useAuth();
+  const { loginWithGoogle, loginWithEmail, registerWithEmail, loading, error: authError } = useAuth();
   const [authMode, setAuthMode] = useState('login'); // 'login' o 'register'
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [fullName, setFullName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [localError, setLocalError] = useState('');
@@ -17,8 +20,16 @@ export function AuthGate() {
     setLocalError('');
     setRegisterSuccess(false);
 
-    if (!email || !password) {
-      setLocalError('Por favor completa todos los campos.');
+    const cleanEmail = sanitizeInput(email).toLowerCase();
+    const cleanName = sanitizeInput(fullName, { maxLength: 80 });
+
+    if (!cleanEmail || !password) {
+      setLocalError('Por favor completa todos los campos requeridos.');
+      return;
+    }
+
+    if (!isValidEmail(cleanEmail)) {
+      setLocalError('Por favor ingresa un formato de correo electrónico válido.');
       return;
     }
 
@@ -30,12 +41,12 @@ export function AuthGate() {
     setIsSubmitting(true);
     try {
       if (authMode === 'register') {
-        const data = await registerWithEmail(email, password, fullName);
+        const data = await registerWithEmail(cleanEmail, password, cleanName);
         if (data?.user && !data.session) {
           setRegisterSuccess(true);
         }
       } else {
-        await loginWithEmail(email, password);
+        await loginWithEmail(cleanEmail, password);
       }
     } catch (err) {
       setLocalError(err.message || 'Error en la autenticación.');
@@ -226,14 +237,14 @@ export function AuthGate() {
             <div style={{ position: 'relative' }}>
               <Lock size={15} color="var(--text-muted)" style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)' }} />
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Mínimo 6 caracteres"
                 style={{
                   width: '100%',
-                  padding: '0.55rem 0.75rem 0.55rem 2.2rem',
+                  padding: '0.55rem 2.5rem 0.55rem 2.2rem',
                   background: 'var(--bg-surface)',
                   border: '1px solid var(--border-medium)',
                   borderRadius: 'var(--radius-sm)',
@@ -242,6 +253,27 @@ export function AuthGate() {
                   outline: 'none'
                 }}
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '0.75rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'transparent',
+                  border: 'none',
+                  color: 'var(--text-muted)',
+                  cursor: 'pointer',
+                  padding: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                title={showPassword ? 'Ocultar contraseña' : 'Ver contraseña'}
+              >
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
             </div>
           </div>
 
@@ -262,7 +294,7 @@ export function AuthGate() {
             }}
           >
             {isSubmitting ? (
-              <RefreshCw size={15} className="animate-spin" />
+              <PulseRadarLoader size={16} color="#ffffff" />
             ) : (
               <>
                 <span>{authMode === 'login' ? 'Ingresar a la Plataforma' : 'Crear Cuenta'}</span>

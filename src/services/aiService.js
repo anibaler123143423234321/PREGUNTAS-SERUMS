@@ -199,9 +199,9 @@ Genera DIRECTAMENTE el JSON completo con todas sus claves (question, options con
   let rawContent = '';
 
   if (provider === 'groq') {
-    // ⚡ Proveedor Groq Cloud (Ultra Rápido ~2s)
+    // ⚡ Proveedor Groq Cloud (Ultra Rápido ~2s con endpoint oficial directo)
     try {
-      const response = await fetch('/api/groq/chat/completions', {
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${activeKey}`,

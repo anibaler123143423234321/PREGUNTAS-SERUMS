@@ -2,6 +2,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Search, Filter, Sparkles, CheckCircle2, Bookmark, Eye, X, Cloud, RefreshCw } from 'lucide-react';
 import { CATEGORIES, EXAM_YEARS } from '../../data/categories';
 import { fetchCloudAiQuestions, isSupabaseConfigured } from '../../services/supabaseClient';
+import { sanitizeMedicalSearch } from '../../utils/securitySanitizer';
+import { PulseRadarLoader } from '../Common/AnimatedIcons';
 
 export function QuestionFinder({
   allQuestions,
@@ -33,7 +35,7 @@ export function QuestionFinder({
   const activeQuestionSource = selectedYear === 'cloud_ia' ? cloudQuestions : allQuestions;
 
   const filteredList = useMemo(() => {
-    const term = searchTerm.toLowerCase().trim();
+    const term = sanitizeMedicalSearch(searchTerm).toLowerCase().trim();
     return activeQuestionSource.filter((q) => {
       const matchYear = selectedYear === 'all' || selectedYear === 'cloud_ia' || q.year === selectedYear;
       const matchCat = selectedCategory === 'all' || q.category === selectedCategory;
@@ -65,7 +67,7 @@ export function QuestionFinder({
               type="text"
               placeholder="Buscar término clínico, norma técnica, fármaco (ej. dengue, anemia 2024, Zuspan, GeneXpert)..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => setSearchTerm(sanitizeMedicalSearch(e.target.value))}
               style={{ padding: '0.55rem 0.85rem 0.55rem 2.2rem', fontSize: '0.86rem' }}
             />
             {searchTerm && (

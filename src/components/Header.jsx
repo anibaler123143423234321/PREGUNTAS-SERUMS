@@ -4,8 +4,6 @@ import { EXAM_YEARS } from '../data/categories';
 import { AuthButton } from './Auth/AuthButton';
 
 export function Header({
-  selectedYear,
-  onSelectYear,
   theme,
   onToggleTheme,
   onOpenExport,
@@ -15,22 +13,6 @@ export function Header({
   isMobileMenuOpen,
   onToggleMobileMenu
 }) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  // Cerrar menu desplegable al hacer clic fuera
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const currentYearObj = EXAM_YEARS.find((y) => y.id === selectedYear) || EXAM_YEARS[1] || EXAM_YEARS[0];
-
   return (
     <header className="main-header" id="serums-main-header">
       <div className="header-inner">
@@ -52,56 +34,6 @@ export function Header({
 
         {/* Controls */}
         <div className="header-controls">
-          {/* Custom Exam Process Dropdown */}
-          <div className="custom-dropdown-container" ref={dropdownRef}>
-            <button
-              id="custom-exam-select-trigger"
-              className={`custom-dropdown-trigger ${isDropdownOpen ? 'open' : ''}`}
-              onClick={() => setIsDropdownOpen((prev) => !prev)}
-              aria-haspopup="listbox"
-              aria-expanded={isDropdownOpen}
-              title="Seleccionar proceso oficial"
-            >
-              <span className="selected-process-text">
-                {selectedYear === 'ai' ? 'Examen IA Personalizado' : currentYearObj.short || currentYearObj.name}
-              </span>
-              <ChevronDown size={15} className={`dropdown-chevron ${isDropdownOpen ? 'rotate' : ''}`} />
-            </button>
-
-            {isDropdownOpen && (
-              <div className="custom-dropdown-menu" role="listbox">
-                <div className="dropdown-menu-header">
-                  <span>PROCESO OFICIAL SERUMS</span>
-                </div>
-                <div className="dropdown-options-list">
-                  {EXAM_YEARS.map((y) => {
-                    const isSelected = selectedYear === y.id;
-                    return (
-                      <button
-                        key={y.id}
-                        className={`dropdown-option-item ${isSelected ? 'active' : ''}`}
-                        onClick={() => {
-                          onSelectYear(y.id);
-                          setIsDropdownOpen(false);
-                        }}
-                        role="option"
-                        aria-selected={isSelected}
-                      >
-                        <div className="option-info">
-                          <span className="option-name">{y.name}</span>
-                          <span className="option-count">
-                            {y.id === 'all' ? '500 preguntas' : '100 preguntas'}
-                          </span>
-                        </div>
-                        {isSelected && <Check size={16} className="option-check-icon" />}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-
           {/* Desktop Utilities */}
           <div className="desktop-controls-group">
             <AuthButton onOpenAuthModal={onOpenAuthModal} />

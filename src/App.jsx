@@ -23,6 +23,7 @@ import {
   syncExamHistoryToCloud
 } from './services/userSyncService';
 import { Stethoscope } from 'lucide-react';
+import { EcgHeartbeatLoader, PulseRadarLoader } from './components/Common/AnimatedIcons';
 
 export function App() {
   // Autenticación de Usuario (Supabase Auth / Google OAuth)
@@ -162,12 +163,16 @@ export function App() {
   // Pantalla de carga mientras se verifica la sesión en Supabase
   if (authLoading) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-main)', color: 'var(--primary)' }}>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(2, 132, 199, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.75rem auto' }}>
-            <Stethoscope size={28} className="animate-spin" />
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-main)', color: 'var(--primary)', padding: '1rem' }}>
+        <div style={{ textAlign: 'center', background: 'var(--bg-card)', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-lg)', padding: '2rem 2.5rem', boxShadow: '0 20px 40px rgba(0,0,0,0.25)', maxWidth: '380px', width: '100%' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+            <EcgHeartbeatLoader size={46} color="var(--primary)" />
           </div>
-          <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Cargando CODESOFT SERUMS 2027...</p>
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-main)', fontWeight: 800, margin: '0 0 0.4rem 0' }}>CODESOFT SERUMS 2027</p>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-secondary)', fontSize: '0.78rem' }}>
+            <PulseRadarLoader size={14} color="var(--primary)" />
+            <span>Verificando credenciales médicas...</span>
+          </div>
         </div>
       </div>
     );
@@ -194,11 +199,6 @@ export function App() {
   return (
     <div className="app-container">
       <Header
-        selectedYear={customAiExam ? 'ai' : selectedYear}
-        onSelectYear={(yr) => {
-          setCustomAiExam(null);
-          setSelectedYear(yr);
-        }}
         theme={theme}
         onToggleTheme={handleToggleTheme}
         onOpenExport={() => setShowExportModal(true)}
@@ -243,6 +243,11 @@ export function App() {
             onSaveExamHistory={handleSaveExamHistory}
             fontSize={fontSize}
             onSwitchToTutor={() => setActiveTab('tutor')}
+            selectedYear={selectedYear}
+            onSelectYear={(yr) => {
+              setCustomAiExam(null);
+              setSelectedYear(yr);
+            }}
           />
         )}
 
@@ -253,6 +258,11 @@ export function App() {
             onToggleSave={handleToggleSave}
             onRecordMistakes={handleRecordMistakes}
             fontSize={fontSize}
+            selectedYear={selectedYear}
+            onSelectYear={(yr) => {
+              setCustomAiExam(null);
+              setSelectedYear(yr);
+            }}
           />
         )}
 

@@ -130,35 +130,61 @@ CREATE POLICY "Los usuarios solo insertan en su propio historial" ON public.user
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 -- Insertar usuario administrador con correo confirmado (si no existe ya)
-INSERT INTO auth.users (
-    instance_id,
-    id,
-    aud,
-    role,
-    email,
-    encrypted_password,
-    email_confirmed_at,
-    raw_app_meta_data,
-    raw_user_meta_data,
-    created_at,
-    updated_at,
-    confirmation_token,
-    recovery_token
-)
-SELECT
-    '00000000-0000-0000-0000-000000000000',
-    gen_random_uuid(),
-    'authenticated',
-    'authenticated',
-    'admin@codesoft.pe',
-    crypt('AdminSerums2027!', gen_salt('bf')),
-    NOW(),
-    '{"provider":"email","providers":["email"],"role":"admin"}',
-    '{"full_name":"Dr. Administrador CODESOFT","role":"admin"}',
-    NOW(),
-    NOW(),
-    '',
-    ''
-WHERE NOT EXISTS (
-    SELECT 1 FROM auth.users WHERE email = 'admin@codesoft.pe'
-);
+DO $$
+DECLARE
+    new_admin_id UUID := gen_random_uuid();
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM auth.users WHERE email = 'admin@codesoft.pe') THEN
+        INSERT INTO auth.users (
+            instance_id,
+            id,
+            aud,
+            role,
+            email,
+            encrypted_password,
+            email_confirmed_at,
+            raw_app_meta_data,
+            raw_user_meta_data,
+            created_at,
+            updated_at,
+            confirmation_token,
+            recovery_token
+        ) VALUES (
+            '00000000-0000-0000-0000-000000000000',
+            new_admin_id,
+            'authenticated',
+            'authenticated',
+            'admin@codesoft.pe',
+            crypt('AdminSerums2027!', gen_salt('bf')),
+            NOW(),
+            '{"provider":"email","providers":["email"],"role":"admin"}',
+            '{"full_name":"Dr. Administrador CODESOFT","role":"admin"}',
+            NOW(),
+            NOW(),
+            '',
+            ''
+        );
+
+        -- Insertar identidad requerida por Supabase GoTrue
+        INSERT INTO auth.identities (
+            id,
+            user_id,
+            identity_data,
+            provider,
+            provider_id,
+            last_sign_in_at,
+            created_at,
+            updated_at
+        ) VALUES (
+            new_admin_id,
+            new_admin_id,
+            json_build_object('sub', new_admin_id::text, 'email', 'admin@codesoft.pe'),
+            'email',
+            new_admin_id::text,
+            NOW(),
+            NOW(),
+            NOW()
+        );
+    END IF;
+END $$;
+

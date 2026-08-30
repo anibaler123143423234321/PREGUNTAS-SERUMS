@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { Sparkles, BookOpen, Layers, RotateCcw, Shuffle, Bookmark, Flag } from 'lucide-react';
-import { CATEGORIES } from '../../data/categories';
+import { Sparkles, BookOpen, Layers, RotateCcw, Shuffle, Bookmark, Flag, ChevronDown } from 'lucide-react';
+import { CATEGORIES, EXAM_YEARS } from '../../data/categories';
 import { QuestionCard } from '../ExamSimulator/QuestionCard';
 
 export function TutorMode({
@@ -8,7 +8,9 @@ export function TutorMode({
   savedQuestions,
   onToggleSave,
   onRecordMistakes,
-  fontSize
+  fontSize,
+  selectedYear,
+  onSelectYear
 }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -73,14 +75,49 @@ export function TutorMode({
 
   return (
     <div className="tutor-mode-view" id="tutor-mode-view">
-      {/* Ultra-Compact Category Pills Strip (Responsive Wrap) */}
-      <div className="tutor-category-strip" style={{ marginBottom: '0.65rem', background: 'var(--bg-card)', padding: '0.45rem 0.65rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--primary)', fontWeight: 700, fontSize: '0.78rem', whiteSpace: 'nowrap', paddingRight: '0.3rem' }}>
-          <BookOpen size={15} />
-          <span>Tutor:</span>
-        </div>
+      {/* Top Strip with Exam Process & Specialty Pills */}
+      <div style={{ marginBottom: '0.85rem', background: 'var(--bg-card)', padding: '0.65rem 0.85rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-medium)', display: 'flex', flexDirection: 'column', gap: '0.5rem', boxShadow: 'var(--shadow-sm)' }}>
+        
+        {/* Row 1: Exam Process Selector */}
+        {onSelectYear && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap', paddingBottom: '0.45rem', borderBottom: '1px solid var(--border-subtle)' }}>
+            <span style={{ fontSize: '0.74rem', fontWeight: 800, color: 'var(--primary)', display: 'flex', alignItems: 'center', gap: '0.3rem', marginRight: '0.2rem' }}>
+              <Layers size={13} />
+              <span>Examen:</span>
+            </span>
+            {EXAM_YEARS.map((y) => {
+              const isSelected = selectedYear === y.id;
+              return (
+                <button
+                  key={y.id}
+                  type="button"
+                  onClick={() => onSelectYear(y.id)}
+                  style={{
+                    padding: '0.2rem 0.55rem',
+                    borderRadius: 'var(--radius-full)',
+                    fontSize: '0.72rem',
+                    fontWeight: isSelected ? 800 : 500,
+                    background: isSelected ? 'var(--primary)' : 'var(--bg-surface)',
+                    color: isSelected ? '#ffffff' : 'var(--text-secondary)',
+                    border: isSelected ? '1px solid var(--primary)' : '1px solid var(--border-subtle)',
+                    cursor: 'pointer',
+                    whiteSpace: 'nowrap',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  {y.short || y.name}
+                </button>
+              );
+            })}
+          </div>
+        )}
 
-        <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'wrap', alignItems: 'center' }}>
+        {/* Row 2: Category Pills */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'wrap' }}>
+          <span style={{ fontSize: '0.74rem', fontWeight: 800, color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '0.3rem', marginRight: '0.2rem' }}>
+            <BookOpen size={13} color="var(--primary)" />
+            <span>Área:</span>
+          </span>
           {Object.values(CATEGORIES).map((cat) => {
             const isSelected = selectedCategory === cat.id;
             return (
@@ -89,16 +126,16 @@ export function TutorMode({
                 id={`cat-pill-${cat.id}`}
                 onClick={() => handleCategoryChange(cat.id)}
                 style={{
-                  padding: '0.25rem 0.55rem',
+                  padding: '0.22rem 0.55rem',
                   borderRadius: 'var(--radius-full)',
-                  fontSize: '0.74rem',
-                  fontWeight: isSelected ? 700 : 500,
-                  background: isSelected ? 'var(--primary-gradient)' : 'var(--bg-surface)',
-                  color: isSelected ? '#ffffff' : 'var(--text-secondary)',
-                  border: isSelected ? '1px solid transparent' : '1px solid var(--border-subtle)',
+                  fontSize: '0.72rem',
+                  fontWeight: isSelected ? 800 : 500,
+                  background: isSelected ? 'var(--primary-light)' : 'var(--bg-surface)',
+                  color: isSelected ? 'var(--primary)' : 'var(--text-secondary)',
+                  border: isSelected ? '1px solid var(--primary)' : '1px solid var(--border-subtle)',
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
-                  transition: 'var(--transition)'
+                  transition: 'all 0.15s ease'
                 }}
               >
                 {cat.shortName}

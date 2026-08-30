@@ -1367,6 +1367,31 @@ kbd {
   animation: fadeIn 0.2s ease-out;
 }
 
+/* 2-Column AI Generator Layout on Desktop */
+.ai-generator-grid-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .ai-generator-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.ai-left-sidebar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 1rem;
+}
+
 .modal-content {
   background: var(--bg-card);
   border: 1px solid var(--border-medium);
