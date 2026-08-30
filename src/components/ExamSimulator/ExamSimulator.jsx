@@ -26,13 +26,13 @@ export function ExamSimulator({
   const [showResultsModal, setShowResultsModal] = useState(false);
   const [examResults, setExamResults] = useState(null);
 
-  // Timer initialized with selected duration
+  // Temporizador inicializado con la duracion seleccionada
   const timer = useTimer(selectedDuration, () => {
-    // Auto-finish on timer expiry
+    // Finalizacion automatica al expirar el tiempo
     handleFinishExam();
   });
 
-  // Start timer only when exam is explicitly started
+  // Iniciar temporizador al comenzar el examen
   const handleStartExam = () => {
     setIsExamStarted(true);
     setUserAnswers({});
@@ -42,7 +42,7 @@ export function ExamSimulator({
     timer.start();
   };
 
-  // Handle option selection
+  // Seleccionar opcion de respuesta
   const handleSelectOption = (letter) => {
     if (isReviewMode) return;
     const currentQ = questions[currentIndex];
@@ -54,7 +54,7 @@ export function ExamSimulator({
     }));
   };
 
-  // Toggle flag
+  // Alternar marca de pregunta dudosa
   const handleToggleFlag = () => {
     const currentQ = questions[currentIndex];
     if (!currentQ) return;
@@ -70,7 +70,7 @@ export function ExamSimulator({
     });
   };
 
-  // Navigation handlers
+  // Controladores de navegacion
   const handleNext = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex((prev) => prev + 1);
@@ -83,14 +83,14 @@ export function ExamSimulator({
     }
   };
 
-  // Finish exam and compute score
+  // Finalizar examen y calcular nota vigesimal
   const handleFinishExam = () => {
     timer.pause();
     const results = calculateScore(questions, userAnswers);
     setExamResults(results);
     setShowResultsModal(true);
 
-    // Record mistakes
+    // Registrar errores en el banco de fallos
     const failedQuestions = questions.filter((q) => {
       const ans = userAnswers[q.id];
       return ans && ans !== q.correctAnswer;
@@ -99,7 +99,7 @@ export function ExamSimulator({
       onRecordMistakes(failedQuestions);
     }
 
-    // Save to exam history
+    // Guardar en el historial de rendimiento
     if (onSaveExamHistory) {
       onSaveExamHistory({
         date: new Date().toISOString(),

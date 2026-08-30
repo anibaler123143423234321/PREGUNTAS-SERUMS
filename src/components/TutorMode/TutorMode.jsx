@@ -14,13 +14,13 @@ export function TutorMode({
   const [userAnswers, setUserAnswers] = useState({});
   const [flaggedQuestions, setFlaggedQuestions] = useState({});
 
-  // Filter questions based on selected specialty
+  // Filtrar preguntas segun la especialidad seleccionada
   const filteredQuestions = useMemo(() => {
     if (selectedCategory === 'all') return allQuestions;
     return allQuestions.filter((q) => q.category === selectedCategory);
   }, [allQuestions, selectedCategory]);
 
-  // Reset index if category changes
+  // Reiniciar indice cuando cambia la categoria
   const handleCategoryChange = (catId) => {
     setSelectedCategory(catId);
     setCurrentIndex(0);

@@ -1,0 +1,39 @@
+================================================================================
+CODESOFT SERUMS 2026 — CASO CLÍNICO OFICIAL DE EXAMEN
+================================================================================
+ÁREA / BLOQUE TEMÁTICO : SALUD_PUBLICA
+ORIGEN & MOTOR         : Generado con IA (Groq LPU (0.8s))
+FECHA DE GENERACIÓN    : 30/8/2026 6:55:00 a. m.
+
+--------------------------------------------------------------------------------
+ENUNCIADO / CASO CLÍNICO:
+--------------------------------------------------------------------------------
+Usted realiza su SERUMS en un Puesto de Salud I-1 de la DIRESA Loreto, en la comunidad de Nauta. Acude con el acompañante de un lactante prematuro de 2 meses de edad corregidos, nacido a las 32 semanas de gestación, peso actual 3.2 kg y talla 52 cm. El niño presenta palidez cutánea, irritabilidad y aumento de la frecuencia respiratoria (48 rpm). Signos vitales: PA 85/55 mmHg, FC 130 lpm, SatO₂ 94 % en aire ambiente. Laboratorio del EESS muestra hemoglobina 9.0 g/dL, VGM 78 fL y ferritina sérica 12 ng/mL. Según la Norma Técnica de Salud N° 213‑2024 (Anemia en lactantes), ¿cuál es el esquema de suplementación con hierro y manejo nutricional más adecuado para este lactante prematuro?<br/>
+
+--------------------------------------------------------------------------------
+ALTERNATIVAS DE RESPUESTA:
+--------------------------------------------------------------------------------
+A) Dar sulfato ferroso oral 3 mg/kg/día en una sola toma, iniciar inmediatamente al día de la consulta y suspender a los 6 meses de edad corregida; no se prescribe ácido fólico.
+B) Administrar sulfato ferroso oral 2 mg/kg/día en dos tomas, iniciar a las 4 semanas de edad corregida y continuar hasta los 12 meses corregidos; añadir ácido fólico 0.5 mg/día durante 3 meses y reforzar la lactancia materna exclusiva.
+C) Iniciar hierro intravenoso (ferric gluconate) 5 mg/kg/día desde la primera consulta y mantener durante 30 días, sin necesidad de ácido fólico ni cambios en la alimentación.
+D) Prescribir sulfato ferroso oral 2 mg/kg/día en una sola toma, iniciar a los 2 meses de edad cronológica y continuar hasta los 9 meses de edad cronológica, sin necesidad de ácido fólico ni reforzar la lactancia materna.
+
+--------------------------------------------------------------------------------
+RESPUESTA CORRECTA:
+--------------------------------------------------------------------------------
+CLAVE OFICIAL: [ B ] - Administrar sulfato ferroso oral 2 mg/kg/día en dos tomas, iniciar a las 4 semanas de edad corregida y continuar hasta los 12 meses corregidos; añadir ácido fólico 0.5 mg/día durante 3 meses y reforzar la lactancia materna exclusiva.
+
+--------------------------------------------------------------------------------
+JUSTIFICACIÓN CLÍNICA & NORMATIVA MINSA:
+--------------------------------------------------------------------------------
+Respuesta correcta: Opción B
+
+--------------------------------------------------------------------------------
+PERLA DE ALTO RENDIMIENTO SERUMS:
+--------------------------------------------------------------------------------
+Perla de estudio de alto rendimiento calibrada para el Examen SERUMS.
+
+REFERENCIAS NORMATIVAS: Norma Técnica de Salud MINSA
+================================================================================
+Plataforma Médica CODESOFT SERUMS 2026 • https://codesoft-serums.pe
+================================================================================

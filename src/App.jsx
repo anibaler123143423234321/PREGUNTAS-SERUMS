@@ -8,28 +8,30 @@ import { MistakeBank } from './components/MistakeBank/MistakeBank';
 import { AnalyticsDashboard } from './components/Analytics/AnalyticsDashboard';
 import { QuestionFinder } from './components/QuestionFinder/QuestionFinder';
 import { ExportModal } from './components/ExportModal/ExportModal';
+import { DocsModal } from './components/DocsModal/DocsModal';
 import { AiExamGenerator } from './components/AiExamGenerator/AiExamGenerator';
 import { AcademiesRanking } from './components/AcademiesRanking/AcademiesRanking';
 import { QUESTIONS_DATA } from './data/questionsData';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
 export function App() {
-  // Theme & Accessibility
+  // Tema y Accesibilidad
   const [theme, setTheme] = useLocalStorage('serums_theme', 'dark');
   const [fontSize, setFontSize] = useLocalStorage('serums_font_size', 1.05);
 
-  // App Navigation & Selection
+  // Navegacion y Seleccion de Modulos
   const [activeTab, setActiveTab] = useState('ai');
   const [selectedYear, setSelectedYear] = useState('2026-II');
   const [showExportModal, setShowExportModal] = useState(false);
+  const [showDocsModal, setShowDocsModal] = useState(false);
   const [customAiExam, setCustomAiExam] = useState(null);
 
-  // Persistent User Data
+  // Datos Persistentes del Medico
   const [savedQuestions, setSavedQuestions] = useLocalStorage('serums_saved_q', {});
   const [mistakes, setMistakes] = useLocalStorage('serums_mistakes', []);
   const [examHistory, setExamHistory] = useLocalStorage('serums_history', []);
 
-  // Update theme on HTML body
+  // Sincronizar atributo data-theme en el elemento raiz HTML
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
@@ -46,7 +48,7 @@ export function App() {
     setFontSize((prev) => Math.max(prev - 0.08, 0.85));
   };
 
-  // Toggle Saved / Bookmarked Question
+  // Alternar guardado de pregunta destacada
   const handleToggleSave = (question) => {
     setSavedQuestions((prev) => {
       const next = { ...prev };
@@ -107,6 +109,7 @@ export function App() {
         theme={theme}
         onToggleTheme={handleToggleTheme}
         onOpenExport={() => setShowExportModal(true)}
+        onOpenDocs={() => setShowDocsModal(true)}
         isMobileMenuOpen={isMobileMenuOpen}
         onToggleMobileMenu={() => setIsMobileMenuOpen((prev) => !prev)}
       />
@@ -199,6 +202,13 @@ export function App() {
         <ExportModal
           allQuestions={QUESTIONS_DATA}
           onClose={() => setShowExportModal(false)}
+        />
+      )}
+
+      {showDocsModal && (
+        <DocsModal
+          isOpen={showDocsModal}
+          onClose={() => setShowDocsModal(false)}
         />
       )}
     </div>

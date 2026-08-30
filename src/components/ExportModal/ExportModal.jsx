@@ -9,7 +9,7 @@ export function ExportModal({
   const [selectedYear, setSelectedYear] = useState('2026-II');
   const [showAnswers, setShowAnswers] = useState(false);
   const [showPearls, setShowPearls] = useState(false);
-  const [columnsLayout, setColumnsLayout] = useState('2'); // '1' or '2' columns
+  const [columnsLayout, setColumnsLayout] = useState('2'); // '1' o '2' columnas
 
   const printQuestions = allQuestions.filter((q) => {
     if (selectedYear === 'all') return true;

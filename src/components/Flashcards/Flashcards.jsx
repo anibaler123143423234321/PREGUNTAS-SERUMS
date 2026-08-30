@@ -13,7 +13,7 @@ export function Flashcards({ questions }) {
     hard: 0
   });
 
-  // Filter & shuffle deck
+  // Filtrar y barajar mazo de tarjetas
   const deck = useMemo(() => {
     let list = selectedCategory === 'all'
       ? [...questions]
@@ -25,7 +25,7 @@ export function Flashcards({ questions }) {
     return list;
   }, [questions, selectedCategory, shuffledSeed]);
 
-  // Reset index when category or shuffle changes
+  // Reiniciar indice cuando cambia la categoria o el orden aleatorio
   const handleCategoryChange = (catId) => {
     setSelectedCategory(catId);
     setCurrentIndex(0);
@@ -69,7 +69,7 @@ export function Flashcards({ questions }) {
     }
   };
 
-  // Keyboard navigation
+  // Navegacion con teclado fisico
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;

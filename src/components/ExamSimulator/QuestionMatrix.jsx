@@ -9,7 +9,7 @@ export function QuestionMatrix({
   flaggedQuestions,
   isReviewMode
 }) {
-  const [filter, setFilter] = useState('all'); // all, answered, pending, flagged
+  const [filter, setFilter] = useState('all'); // 'all' (todas), 'answered' (respondidas), 'pending' (pendientes), 'flagged' (marcadas)
 
   const filteredQuestions = questions.filter((q, idx) => {
     const isAnswered = !!userAnswers[q.id];

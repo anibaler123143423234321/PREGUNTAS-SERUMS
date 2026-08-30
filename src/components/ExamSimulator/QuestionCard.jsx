@@ -145,13 +145,13 @@ export function QuestionCard({
 
           {/* Fundamento Clínico & Descarte */}
           <div style={{ marginBottom: '0.85rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--primary)', fontWeight: 700, fontSize: '0.82rem', marginBottom: '0.3rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--primary)', fontWeight: 700, fontSize: '0.82rem', marginBottom: '0.35rem' }}>
               <CheckCircle2 size={16} />
-              <span>Fundamento Clínico de la Respuesta:</span>
+              <span>Justificación Clínica & Normativa MINSA:</span>
             </div>
-            <p style={{ fontSize: '0.84rem', color: 'var(--text-main)', margin: 0, lineHeight: 1.5 }}>
-              {question.explanation || question.pearl}
-            </p>
+            <div style={{ fontSize: '0.84rem', color: 'var(--text-main)', margin: 0, lineHeight: 1.6, whiteSpace: 'pre-line', background: 'var(--bg-card)', padding: '0.75rem 0.85rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+              {question.explanation || question.pearl || 'Justificación basada en las Normas Técnicas de Salud vigentes del MINSA.'}
+            </div>
           </div>
 
           {/* Perla Médica Clave */}

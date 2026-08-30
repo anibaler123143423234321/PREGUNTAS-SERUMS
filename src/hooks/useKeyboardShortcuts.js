@@ -11,12 +11,12 @@ export function useKeyboardShortcuts({
     if (!isEnabled) return;
 
     const handleKeyDown = (e) => {
-      // Don't trigger if typing in an input or textarea
+      // No activar si el usuario esta escribiendo en un input o textarea
       if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
 
       const key = e.key.toUpperCase();
 
-      // Options 1-4 or A-D
+      // Alternativas 1-4 o A-D
       if (['1', 'A'].includes(key) && onSelectOption) {
         e.preventDefault();
         onSelectOption('A');

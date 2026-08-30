@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Stethoscope, Moon, Sun, Printer, Menu, X, ChevronDown, Check } from 'lucide-react';
+import { Stethoscope, Moon, Sun, Printer, Menu, X, ChevronDown, Check, BookOpen } from 'lucide-react';
 import { EXAM_YEARS } from '../data/categories';
 
 export function Header({
@@ -8,13 +8,14 @@ export function Header({
   theme,
   onToggleTheme,
   onOpenExport,
+  onOpenDocs,
   isMobileMenuOpen,
   onToggleMobileMenu
 }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  // Close dropdown on click outside
+  // Cerrar menu desplegable al hacer clic fuera
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -100,6 +101,17 @@ export function Header({
 
           {/* Desktop Utilities */}
           <div className="desktop-controls-group">
+            <button
+              id="btn-open-docs"
+              className="icon-circle-btn"
+              onClick={onOpenDocs}
+              title="Centro de Documentación Técnica & Guías"
+              style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', width: 'auto', padding: '0 0.65rem', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 600 }}
+            >
+              <BookOpen size={15} color="var(--primary)" />
+              <span className="hide-on-mobile">Doc</span>
+            </button>
+
             <button
               id="btn-open-export"
               className="icon-circle-btn"

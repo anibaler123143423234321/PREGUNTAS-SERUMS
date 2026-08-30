@@ -11,7 +11,7 @@ export function MistakeBank({
   onToggleSave,
   fontSize
 }) {
-  const [activeSubTab, setActiveSubTab] = useState('mistakes'); // mistakes | saved
+  const [activeSubTab, setActiveSubTab] = useState('mistakes'); // 'mistakes' (errores) | 'saved' (guardadas)
   const [practiceMode, setPracticeMode] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState({});

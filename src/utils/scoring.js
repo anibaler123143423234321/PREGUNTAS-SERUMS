@@ -33,12 +33,12 @@ export function calculateScore(questions, userAnswers) {
   });
 
   const totalQuestions = questions.length;
-  // Vigesimal grade (0.00 to 20.00)
+  // Calificación vigesimal oficial peruana (0.00 a 20.00)
   const vigesimalGrade = totalQuestions > 0 ? (correctCount / totalQuestions) * 20 : 0;
   const percentage = totalQuestions > 0 ? (correctCount / totalQuestions) * 100 : 0;
   const isPassed = vigesimalGrade >= 11.0;
 
-  // Feedback level
+  // Nivel de retroalimentación pedagógica
   let feedback = {
     title: 'Resultado por Mejorar',
     badge: 'Requiere Refuerzo',

@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from 'react';
-import { Search, Filter, Sparkles, CheckCircle2, Bookmark, Eye, X } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Search, Filter, Sparkles, CheckCircle2, Bookmark, Eye, X, Cloud, RefreshCw } from 'lucide-react';
 import { CATEGORIES, EXAM_YEARS } from '../../data/categories';
+import { fetchCloudAiQuestions, isSupabaseConfigured } from '../../services/supabaseClient';
 
 export function QuestionFinder({
   allQuestions,
@@ -12,11 +13,29 @@ export function QuestionFinder({
   const [selectedYear, setSelectedYear] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [activeQuestionModal, setActiveQuestionModal] = useState(null);
+  const [cloudQuestions, setCloudQuestions] = useState([]);
+  const [isLoadingCloud, setIsLoadingCloud] = useState(false);
+
+  // Cargar preguntas de Supabase Cloud cuando se selecciona el filtro
+  useEffect(() => {
+    if (selectedYear === 'cloud_ia' && isSupabaseConfigured()) {
+      setIsLoadingCloud(true);
+      fetchCloudAiQuestions({ category: selectedCategory, limit: 100 })
+        .then((items) => {
+          setCloudQuestions(items);
+        })
+        .finally(() => {
+          setIsLoadingCloud(false);
+        });
+    }
+  }, [selectedYear, selectedCategory]);
+
+  const activeQuestionSource = selectedYear === 'cloud_ia' ? cloudQuestions : allQuestions;
 
   const filteredList = useMemo(() => {
     const term = searchTerm.toLowerCase().trim();
-    return allQuestions.filter((q) => {
-      const matchYear = selectedYear === 'all' || q.year === selectedYear;
+    return activeQuestionSource.filter((q) => {
+      const matchYear = selectedYear === 'all' || selectedYear === 'cloud_ia' || q.year === selectedYear;
       const matchCat = selectedCategory === 'all' || q.category === selectedCategory;
 
       if (!matchYear || !matchCat) return false;
@@ -32,7 +51,7 @@ export function QuestionFinder({
 
       return fullText.includes(term);
     });
-  }, [allQuestions, searchTerm, selectedYear, selectedCategory]);
+  }, [activeQuestionSource, searchTerm, selectedYear, selectedCategory]);
 
   return (
     <div className="question-finder-view" id="question-finder-view">

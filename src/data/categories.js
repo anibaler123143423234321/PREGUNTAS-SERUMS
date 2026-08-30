@@ -87,5 +87,6 @@ export const EXAM_YEARS = [
   { id: '2025-II', name: 'SERUMS 2025-II (100 preguntas)', short: '2025-II' },
   { id: '2025-I', name: 'SERUMS 2025-I (100 preguntas)', short: '2025-I' },
   { id: '2024-II', name: 'SERUMS 2024-II (100 preguntas)', short: '2024-II' },
+  { id: 'cloud_ia', name: '☁️ Banco IA en la Nube (Supabase)', short: '☁️ Banco IA Cloud' },
   { id: 'all', name: 'Todos los Procesos (500 preguntas)', short: 'Todos' }
 ];
