@@ -31,13 +31,14 @@ export function AiExamGenerator({
   const [apiKey, setApiKey] = useLocalStorage('nvidia_custom_api_key', import.meta.env.VITE_NVIDIA_API_KEY || '');
   const [showKeyConfig, setShowKeyConfig] = useState(false);
 
-  // Single Question Mode State
+  // Single Question Mode State (with Infinite Continuous Generation & History)
   const [singleCategory, setSingleCategory] = useState('all');
   const [singleDifficulty, setSingleDifficulty] = useState('standard');
   const [customTopic, setCustomTopic] = useState('');
   const [isLoadingSingle, setIsLoadingSingle] = useState(false);
-  const [currentSingleQ, setCurrentSingleQ] = useState(null);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [questionsHistory, setQuestionsHistory] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [userAnswersMap, setUserAnswersMap] = useState({});
   const [singleError, setSingleError] = useState('');
 
   // Mini-Exam State (Max 2 questions to strictly protect NVIDIA credits)
@@ -71,12 +72,10 @@ export function AiExamGenerator({
     };
   }, [isLoadingSingle, isGeneratingMini]);
 
-  // Handle single question generation
-  const handleGenerateSingle = async () => {
+  // Handle single question generation (generates and appends to session history)
+  const handleGenerateNextQuestion = async () => {
     setIsLoadingSingle(true);
     setSingleError('');
-    setSelectedOption(null);
-    setMiniExamQuestions([]);
     try {
       const q = await generateSingleQuestion({
         category: singleCategory,
@@ -84,7 +83,11 @@ export function AiExamGenerator({
         topic: customTopic,
         apiKey
       });
-      setCurrentSingleQ(q);
+      setQuestionsHistory((prev) => {
+        const nextList = [...prev, q];
+        setCurrentIndex(nextList.length - 1);
+        return nextList;
+      });
     } catch (err) {
       setSingleError(err.message || 'Error al generar la pregunta con NVIDIA AI.');
     } finally {
@@ -92,11 +95,25 @@ export function AiExamGenerator({
     }
   };
 
+  const handleNext = () => {
+    if (currentIndex < questionsHistory.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+    } else {
+      // Generate the next AI question seamlessly
+      handleGenerateNextQuestion();
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+    }
+  };
+
   // Handle safe Mini Reto generation (Strictly 2 questions to protect free credits)
   const handleGenerateMiniChallenge = async () => {
     setIsGeneratingMini(true);
     setSingleError('');
-    setCurrentSingleQ(null);
     try {
       const questions = await generateExamBatch({
         totalQuestions: 2,
@@ -126,7 +143,7 @@ export function AiExamGenerator({
         <div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', padding: '0.15rem 0.5rem', background: 'rgba(139, 92, 246, 0.2)', color: '#a78bfa', borderRadius: 'var(--radius-full)', fontSize: '0.7rem', fontWeight: 700, marginBottom: '0.2rem' }}>
             <Cpu size={13} />
-            <span>NVIDIA NIM AI • LLaMA 3.2 11B (Ahorro de Créditos Activo)</span>
+            <span>NVIDIA AI • LLaMA 3.2</span>
           </div>
           <h2 style={{ fontSize: '1.2rem', marginBottom: '0.15rem', fontWeight: 800 }}>
             Generador Clínico On-Demand con IA
@@ -282,7 +299,7 @@ export function AiExamGenerator({
           <button
             id="btn-generate-ai-single"
             className="btn-primary"
-            onClick={handleGenerateSingle}
+            onClick={handleGenerateNextQuestion}
             disabled={isLoadingSingle || isGeneratingMini}
             style={{ padding: '0.65rem 1.4rem', fontSize: '0.88rem', fontWeight: 700 }}
           >
@@ -294,7 +311,7 @@ export function AiExamGenerator({
             ) : (
               <>
                 <Sparkles size={16} />
-                <span>{currentSingleQ ? 'Generar Otra Pregunta' : 'Generar Pregunta Inédita'}</span>
+                <span>{questionsHistory.length > 0 ? 'Generar Otra Pregunta' : 'Generar Pregunta Inédita'}</span>
               </>
             )}
           </button>
@@ -332,23 +349,31 @@ export function AiExamGenerator({
         )}
       </div>
 
-      {/* Generated Question Display */}
-      {currentSingleQ && !isLoadingSingle && (
+      {/* Generated Question Display with Continuous Generation */}
+      {questionsHistory.length > 0 && questionsHistory[currentIndex] && (
         <div style={{ animation: 'fadeIn 0.3s ease-in-out' }}>
           <QuestionCard
-            question={currentSingleQ}
-            currentIndex={0}
-            totalQuestions={1}
-            selectedOption={selectedOption}
-            onSelectOption={(letter) => setSelectedOption(letter)}
-            onNext={handleGenerateSingle}
-            onPrev={() => {}}
+            question={questionsHistory[currentIndex]}
+            currentIndex={currentIndex}
+            totalQuestions={questionsHistory.length}
+            selectedOption={userAnswersMap[questionsHistory[currentIndex].id]}
+            onSelectOption={(letter) => {
+              setUserAnswersMap((prev) => ({
+                ...prev,
+                [questionsHistory[currentIndex].id]: letter
+              }));
+            }}
+            onNext={handleNext}
+            onPrev={handlePrev}
             isFlagged={false}
             onToggleFlag={() => {}}
-            isSaved={!!savedQuestions[currentSingleQ.id]}
-            onToggleSave={() => onToggleSave(currentSingleQ)}
+            isSaved={!!savedQuestions[questionsHistory[currentIndex].id]}
+            onToggleSave={() => onToggleSave(questionsHistory[currentIndex])}
             fontSize={fontSize}
             showInstantFeedback={true}
+            allowInfiniteNext={true}
+            nextButtonLabel={currentIndex === questionsHistory.length - 1 ? 'Siguiente Pregunta IA ✨' : 'Siguiente'}
+            isLoadingNext={isLoadingSingle}
           />
         </div>
       )}

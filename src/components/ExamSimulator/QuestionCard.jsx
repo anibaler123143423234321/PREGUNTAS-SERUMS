@@ -16,13 +16,16 @@ export function QuestionCard({
   onToggleSave,
   fontSize,
   isReviewMode,
-  showInstantFeedback = false
+  showInstantFeedback = false,
+  allowInfiniteNext = false,
+  nextButtonLabel = 'Siguiente',
+  isLoadingNext = false
 }) {
   if (!question) return null;
 
   const category = CATEGORIES[question.category] || CATEGORIES.all;
   const isFirst = currentIndex === 0;
-  const isLast = currentIndex === totalQuestions - 1;
+  const isLast = allowInfiniteNext ? false : (currentIndex === totalQuestions - 1);
 
   const isAnswered = selectedOption !== undefined && selectedOption !== null;
   const isCorrect = isAnswered && selectedOption === question.correctAnswer;
@@ -199,11 +202,26 @@ export function QuestionCard({
           id="btn-next-question"
           className="btn-primary"
           onClick={onNext}
-          disabled={isLast}
-          style={{ opacity: isLast ? 0.4 : 1, cursor: isLast ? 'not-allowed' : 'pointer' }}
+          disabled={isLast || isLoadingNext}
+          style={{
+            opacity: (isLast || isLoadingNext) ? 0.5 : 1,
+            cursor: (isLast || isLoadingNext) ? 'not-allowed' : 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.4rem'
+          }}
         >
-          <span>Siguiente</span>
-          <ChevronRight size={18} />
+          {isLoadingNext ? (
+            <>
+              <Sparkles size={16} className="animate-spin" />
+              <span>Generando...</span>
+            </>
+          ) : (
+            <>
+              <span>{nextButtonLabel}</span>
+              <ChevronRight size={18} />
+            </>
+          )}
         </button>
       </footer>
     </article>

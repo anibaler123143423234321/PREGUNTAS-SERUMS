@@ -106,19 +106,49 @@ function parseResilientAiJson(rawContent, defaultCategory = 'salud_publica') {
   throw new Error('La IA generó una respuesta incompleta. Por favor, intenta generar nuevamente.');
 }
 
+function shuffleOptionsAndAnswer(options, correctAnswer) {
+  const letters = ['A', 'B', 'C', 'D'];
+  const correctText = options[correctAnswer] || options['A'];
+  
+  const entries = letters.map(l => ({ letter: l, text: options[l] || `Opción ${l}` }));
+  
+  // Fisher-Yates shuffle
+  for (let i = entries.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [entries[j], entries[i]] = [entries[i], entries[j]];
+  }
+
+  const newOptions = {};
+  let newCorrectAnswer = 'A';
+  letters.forEach((l, idx) => {
+    newOptions[l] = entries[idx].text;
+    if (entries[idx].text === correctText) {
+      newCorrectAnswer = l;
+    }
+  });
+
+  return { options: newOptions, correctAnswer: newCorrectAnswer };
+}
+
 function sanitizeParsedObject(parsed, defaultCategory) {
+  const baseOptions = parsed.options || {
+    A: 'Opción A',
+    B: 'Opción B',
+    C: 'Opción C',
+    D: 'Opción D'
+  };
+  const baseCorrectAnswer = parsed.correctAnswer || 'A';
+  
+  // Shuffle options to ensure uniform distribution across A, B, C, D
+  const { options: shuffledOptions, correctAnswer: shuffledAnswer } = shuffleOptionsAndAnswer(baseOptions, baseCorrectAnswer);
+
   return {
     question: parsed.question,
-    options: parsed.options || {
-      A: 'Opción A',
-      B: 'Opción B',
-      C: 'Opción C',
-      D: 'Opción D'
-    },
-    correctAnswer: parsed.correctAnswer || 'A',
+    options: shuffledOptions,
+    correctAnswer: shuffledAnswer,
     category: parsed.category || defaultCategory,
     whyThisQuestion: parsed.whyThisQuestion || 'Evalúa el razonamiento clínico y la aplicación de la Norma Técnica en el primer nivel de atención.',
-    explanation: parsed.explanation || `Respuesta correcta: Opción ${parsed.correctAnswer || 'A'}`,
+    explanation: parsed.explanation || `Respuesta correcta: Opción ${shuffledAnswer}`,
     pearl: parsed.pearl || 'Perla de estudio de alto rendimiento calibrada para el Examen SERUMS.',
     references: parsed.references || 'Norma Técnica de Salud MINSA'
   };
@@ -146,7 +176,7 @@ export async function generateSingleQuestion({
 
   const difficultyDesc = AI_PROMPTS.difficultyDescriptions[difficulty] || difficulty;
   const systemPrompt = AI_PROMPTS.systemPrompt;
-  const userPrompt = `Genera 1 pregunta inédita alineada al Temario Oficial SERUMS 2026-II ${promptTopic} (Nivel de Dificultad: ${difficulty} - ${difficultyDesc}).`;
+  const userPrompt = `Formula 1 pregunta clínica oficial de alta dificultad para el Examen Nacional SERUMS de Medicina del Perú 2026-II, contextualizada en el primer nivel de atención del MINSA (EESS I-1 a I-4 de DIRESA/GERESA en el Perú) ${promptTopic} (Nivel: ${difficulty} - ${difficultyDesc}).`;
 
   let response;
   try {
