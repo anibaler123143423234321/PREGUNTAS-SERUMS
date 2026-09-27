@@ -590,6 +590,33 @@ kbd {
   gap: 0.35rem;
 }
 
+.career-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 34px;
+  padding: 0 0.7rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.career-chip:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 420px) {
+  .career-chip-label {
+    display: none;
+  }
+}
+
 @media (max-width: 640px) {
   .desktop-controls-group {
     display: none;

@@ -29,10 +29,10 @@ export function ExportModal({
           <div>
             <h2 style={{ fontSize: '1.35rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800 }}>
               <Printer size={22} color="var(--primary)" />
-              Exportar e Imprimir Examen SERUMS Oficial
+              Exportar e Imprimir Examen SERUMS
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-              Genera un cuadernillo oficial de 100 preguntas listo para imprimir o guardar en PDF de alta fidelidad.
+              Genera un cuadernillo de 100 preguntas de un proceso oficial, listo para imprimir o guardar en PDF.
             </p>
           </div>
           <button className="tool-icon-btn" onClick={onClose} aria-label="Cerrar modal">

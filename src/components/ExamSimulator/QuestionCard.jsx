@@ -1,6 +1,35 @@
-import React from 'react';
-import { Flag, Bookmark, Sparkles, HelpCircle, ChevronLeft, ChevronRight, CheckCircle2, XCircle, Target, BookOpen } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Flag, Bookmark, Sparkles, ChevronLeft, ChevronRight, CheckCircle2, XCircle, Target, BookOpen, Bot, RefreshCw } from 'lucide-react';
 import { CATEGORIES } from '../../data/categories';
+import { explainOfficialQuestion } from '../../services/aiService';
+import { useCareer } from '../../context/CareerContext';
+
+// Explicaciones IA de preguntas oficiales, guardadas en el navegador para no repetir llamadas
+const EXPLANATION_CACHE_KEY = 'serums_ai_explanations';
+const MAX_CACHED_EXPLANATIONS = 500;
+
+function readCachedExplanation(questionId) {
+  try {
+    const cache = JSON.parse(localStorage.getItem(EXPLANATION_CACHE_KEY) || '{}');
+    return cache[questionId] || '';
+  } catch {
+    return '';
+  }
+}
+
+function cacheExplanation(questionId, text) {
+  try {
+    const cache = JSON.parse(localStorage.getItem(EXPLANATION_CACHE_KEY) || '{}');
+    cache[questionId] = text;
+    const ids = Object.keys(cache);
+    if (ids.length > MAX_CACHED_EXPLANATIONS) {
+      ids.slice(0, ids.length - MAX_CACHED_EXPLANATIONS).forEach((id) => delete cache[id]);
+    }
+    localStorage.setItem(EXPLANATION_CACHE_KEY, JSON.stringify(cache));
+  } catch {
+    // localStorage lleno o no disponible: la explicación solo se muestra en pantalla
+  }
+}
 
 export function QuestionCard({
   question,
@@ -21,7 +50,36 @@ export function QuestionCard({
   nextButtonLabel = 'Siguiente',
   isLoadingNext = false
 }) {
+  const career = useCareer();
+  const [aiExplanation, setAiExplanation] = useState('');
+  const [isExplaining, setIsExplaining] = useState(false);
+  const [explainError, setExplainError] = useState('');
+
+  useEffect(() => {
+    setAiExplanation(question ? readCachedExplanation(question.id) : '');
+    setExplainError('');
+    setIsExplaining(false);
+  }, [question?.id]);
+
   if (!question) return null;
+
+  // Las preguntas oficiales solo traen la clave; las generadas con IA ya incluyen su explicación
+  const isOfficialQuestion = !question.whyThisQuestion && !String(question.id).startsWith('ai-gen');
+
+  const handleExplainWithAi = async () => {
+    const questionId = question.id;
+    setIsExplaining(true);
+    setExplainError('');
+    try {
+      const text = await explainOfficialQuestion({ question, careerId: question.career || career.id });
+      cacheExplanation(questionId, text);
+      setAiExplanation(text);
+    } catch (err) {
+      setExplainError(err.message || 'No se pudo generar la explicación.');
+    } finally {
+      setIsExplaining(false);
+    }
+  };
 
   const category = CATEGORIES[question.category] || CATEGORIES.all;
   const isFirst = currentIndex === 0;
@@ -147,19 +205,53 @@ export function QuestionCard({
           <div style={{ marginBottom: '0.85rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--primary)', fontWeight: 700, fontSize: '0.82rem', marginBottom: '0.35rem' }}>
               <CheckCircle2 size={16} />
-              <span>Justificación Clínica & Normativa MINSA:</span>
+              <span>{isOfficialQuestion ? 'Clave oficial MINSA:' : 'Justificación Clínica & Normativa MINSA:'}</span>
             </div>
             <div style={{ fontSize: '0.84rem', color: 'var(--text-main)', margin: 0, lineHeight: 1.6, whiteSpace: 'pre-line', background: 'var(--bg-card)', padding: '0.75rem 0.85rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
               {question.explanation || question.pearl || 'Justificación basada en las Normas Técnicas de Salud vigentes del MINSA.'}
             </div>
           </div>
 
+          {/* Explicación con IA para preguntas oficiales */}
+          {isOfficialQuestion && (
+            <div style={{ marginBottom: '0.85rem' }}>
+              {aiExplanation ? (
+                <div style={{ padding: '0.75rem 0.85rem', background: 'rgba(139, 92, 246, 0.08)', border: '1px solid rgba(139, 92, 246, 0.25)', borderRadius: 'var(--radius-sm)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#a78bfa', fontWeight: 700, fontSize: '0.8rem', marginBottom: '0.35rem' }}>
+                    <Bot size={15} />
+                    <span>Explicación con IA</span>
+                  </div>
+                  <div style={{ fontSize: '0.83rem', color: 'var(--text-main)', lineHeight: 1.55, whiteSpace: 'pre-line' }}>
+                    {aiExplanation}
+                  </div>
+                  <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', margin: '0.5rem 0 0 0' }}>
+                    Generada con IA a partir de la clave oficial del MINSA. Puede contener errores: contrástala con la norma técnica vigente.
+                  </p>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  className="action-btn-sm"
+                  onClick={handleExplainWithAi}
+                  disabled={isExplaining}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', padding: '0.45rem 0.8rem', background: 'rgba(139, 92, 246, 0.1)', borderColor: 'rgba(139, 92, 246, 0.35)', color: '#a78bfa', fontWeight: 700 }}
+                >
+                  {isExplaining ? <RefreshCw size={14} className="animate-spin" /> : <Bot size={14} />}
+                  <span>{isExplaining ? 'Explicando...' : 'Explicar con IA por qué es la respuesta correcta'}</span>
+                </button>
+              )}
+              {explainError && (
+                <p style={{ fontSize: '0.76rem', color: 'var(--danger)', margin: '0.45rem 0 0 0' }}>{explainError}</p>
+              )}
+            </div>
+          )}
+
           {/* Perla Médica Clave */}
           {question.pearl && question.pearl !== question.explanation && (
             <div style={{ marginBottom: question.references ? '0.85rem' : '0', padding: '0.65rem 0.85rem', background: 'rgba(245, 158, 11, 0.08)', border: '1px solid rgba(245, 158, 11, 0.25)', borderRadius: 'var(--radius-sm)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#f59e0b', fontWeight: 700, fontSize: '0.8rem', marginBottom: '0.25rem' }}>
                 <Sparkles size={15} />
-                <span>Perla Médica SERUMS de Alto Rendimiento:</span>
+                <span>Perla SERUMS de Alto Rendimiento:</span>
               </div>
               <p style={{ fontSize: '0.82rem', color: 'var(--text-main)', margin: 0, lineHeight: 1.45 }}>
                 {question.pearl}
@@ -172,7 +264,7 @@ export function QuestionCard({
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.4rem', padding: '0.5rem 0.75rem', background: 'rgba(6, 182, 212, 0.08)', border: '1px solid rgba(6, 182, 212, 0.25)', borderRadius: 'var(--radius-sm)', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
               <BookOpen size={14} color="#06b6d4" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
-                <strong style={{ color: '#06b6d4' }}>Referencia Normativa Oficial: </strong>
+                <strong style={{ color: '#06b6d4' }}>Referencia normativa: </strong>
                 <span>{question.references}</span>
               </div>
             </div>

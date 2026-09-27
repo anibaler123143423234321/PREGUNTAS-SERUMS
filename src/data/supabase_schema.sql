@@ -36,10 +36,25 @@ ALTER TABLE public.preguntas_ia DROP COLUMN IF EXISTS full_json;
 CREATE INDEX IF NOT EXISTS idx_preguntas_ia_category ON public.preguntas_ia(category);
 CREATE INDEX IF NOT EXISTS idx_preguntas_ia_created_at ON public.preguntas_ia(created_at DESC);
 
+-- Autor de cada pregunta (se completa solo con el usuario que la inserta)
+ALTER TABLE public.preguntas_ia ADD COLUMN IF NOT EXISTS created_by UUID DEFAULT auth.uid() REFERENCES auth.users(id) ON DELETE SET NULL;
+ALTER TABLE public.preguntas_ia ADD COLUMN IF NOT EXISTS career VARCHAR(50) DEFAULT 'medicina';
+
 ALTER TABLE public.preguntas_ia ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Permitir lectura publica de preguntas" ON public.preguntas_ia FOR SELECT USING (true);
-CREATE POLICY "Permitir insercion con clave anon" ON public.preguntas_ia FOR INSERT WITH CHECK (true);
-CREATE POLICY "Permitir actualizacion con clave anon" ON public.preguntas_ia FOR UPDATE USING (true);
+-- Políticas antiguas: permitían que CUALQUIERA (sin iniciar sesión) insertara o sobrescribiera preguntas
+DROP POLICY IF EXISTS "Permitir insercion con clave anon" ON public.preguntas_ia;
+DROP POLICY IF EXISTS "Permitir actualizacion con clave anon" ON public.preguntas_ia;
+DROP POLICY IF EXISTS "Permitir lectura publica de preguntas" ON public.preguntas_ia;
+DROP POLICY IF EXISTS "Usuarios autenticados leen preguntas" ON public.preguntas_ia;
+DROP POLICY IF EXISTS "Usuarios autenticados insertan sus preguntas" ON public.preguntas_ia;
+DROP POLICY IF EXISTS "Usuarios actualizan solo sus preguntas" ON public.preguntas_ia;
+
+CREATE POLICY "Usuarios autenticados leen preguntas" ON public.preguntas_ia
+    FOR SELECT TO authenticated USING (true);
+CREATE POLICY "Usuarios autenticados insertan sus preguntas" ON public.preguntas_ia
+    FOR INSERT TO authenticated WITH CHECK (created_by = auth.uid());
+CREATE POLICY "Usuarios actualizan solo sus preguntas" ON public.preguntas_ia
+    FOR UPDATE TO authenticated USING (created_by = auth.uid()) WITH CHECK (created_by = auth.uid());
 
 
 -- --------------------------------------------------------------------------
@@ -58,8 +73,11 @@ CREATE TABLE IF NOT EXISTS public.user_responses (
 );
 
 ALTER TABLE public.user_responses ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Los usuarios solo leen sus propias respuestas" ON public.user_responses;
 CREATE POLICY "Los usuarios solo leen sus propias respuestas" ON public.user_responses FOR SELECT USING (auth.uid() = user_id);
+DROP POLICY IF EXISTS "Los usuarios solo insertan sus propias respuestas" ON public.user_responses;
 CREATE POLICY "Los usuarios solo insertan sus propias respuestas" ON public.user_responses FOR INSERT WITH CHECK (auth.uid() = user_id);
+DROP POLICY IF EXISTS "Los usuarios solo actualizan sus propias respuestas" ON public.user_responses;
 CREATE POLICY "Los usuarios solo actualizan sus propias respuestas" ON public.user_responses FOR UPDATE USING (auth.uid() = user_id);
 
 
@@ -80,8 +98,11 @@ CREATE TABLE IF NOT EXISTS public.user_mistakes (
 );
 
 ALTER TABLE public.user_mistakes ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Los usuarios solo leen sus propios fallos" ON public.user_mistakes;
 CREATE POLICY "Los usuarios solo leen sus propios fallos" ON public.user_mistakes FOR SELECT USING (auth.uid() = user_id);
+DROP POLICY IF EXISTS "Los usuarios solo insertan sus propios fallos" ON public.user_mistakes;
 CREATE POLICY "Los usuarios solo insertan sus propios fallos" ON public.user_mistakes FOR INSERT WITH CHECK (auth.uid() = user_id);
+DROP POLICY IF EXISTS "Los usuarios solo eliminan sus propios fallos" ON public.user_mistakes;
 CREATE POLICY "Los usuarios solo eliminan sus propios fallos" ON public.user_mistakes FOR DELETE USING (auth.uid() = user_id);
 
 
@@ -98,8 +119,11 @@ CREATE TABLE IF NOT EXISTS public.user_saved_questions (
 );
 
 ALTER TABLE public.user_saved_questions ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Los usuarios solo leen sus preguntas guardadas" ON public.user_saved_questions;
 CREATE POLICY "Los usuarios solo leen sus preguntas guardadas" ON public.user_saved_questions FOR SELECT USING (auth.uid() = user_id);
+DROP POLICY IF EXISTS "Los usuarios solo insertan sus preguntas guardadas" ON public.user_saved_questions;
 CREATE POLICY "Los usuarios solo insertan sus preguntas guardadas" ON public.user_saved_questions FOR INSERT WITH CHECK (auth.uid() = user_id);
+DROP POLICY IF EXISTS "Los usuarios solo eliminan sus preguntas guardadas" ON public.user_saved_questions;
 CREATE POLICY "Los usuarios solo eliminan sus preguntas guardadas" ON public.user_saved_questions FOR DELETE USING (auth.uid() = user_id);
 
 
@@ -118,73 +142,20 @@ CREATE TABLE IF NOT EXISTS public.user_exam_history (
 );
 
 ALTER TABLE public.user_exam_history ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Los usuarios solo leen su propio historial" ON public.user_exam_history;
 CREATE POLICY "Los usuarios solo leen su propio historial" ON public.user_exam_history FOR SELECT USING (auth.uid() = user_id);
+DROP POLICY IF EXISTS "Los usuarios solo insertan en su propio historial" ON public.user_exam_history;
 CREATE POLICY "Los usuarios solo insertan en su propio historial" ON public.user_exam_history FOR INSERT WITH CHECK (auth.uid() = user_id);
 
 
 -- --------------------------------------------------------------------------
--- 6. USUARIO ADMINISTRADOR MAESTRO (ACCESO DIRECTO SIN GOOGLE)
--- Correo: admin@codesoft.pe  |  Contraseña: AdminSerums2027!
+-- 6. ADMINISTRADORES
+-- No se crea ningún usuario con contraseña fija en este script (la versión anterior
+-- dejaba admin@codesoft.pe / contraseña pública en el repositorio).
+-- Si ejecutaste esa versión, borra ese usuario en Authentication > Users.
+--
+-- Para dar rol de administrador a una cuenta ya registrada:
+--   UPDATE auth.users
+--      SET raw_app_meta_data = raw_app_meta_data || '{"role":"admin"}'
+--    WHERE email = 'tu-correo@ejemplo.com';
 -- --------------------------------------------------------------------------
--- Habilitar extensión pgcrypto para cifrado seguro de contraseñas
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
-
--- Insertar usuario administrador con correo confirmado (si no existe ya)
-DO $$
-DECLARE
-    new_admin_id UUID := gen_random_uuid();
-BEGIN
-    IF NOT EXISTS (SELECT 1 FROM auth.users WHERE email = 'admin@codesoft.pe') THEN
-        INSERT INTO auth.users (
-            instance_id,
-            id,
-            aud,
-            role,
-            email,
-            encrypted_password,
-            email_confirmed_at,
-            raw_app_meta_data,
-            raw_user_meta_data,
-            created_at,
-            updated_at,
-            confirmation_token,
-            recovery_token
-        ) VALUES (
-            '00000000-0000-0000-0000-000000000000',
-            new_admin_id,
-            'authenticated',
-            'authenticated',
-            'admin@codesoft.pe',
-            crypt('AdminSerums2027!', gen_salt('bf')),
-            NOW(),
-            '{"provider":"email","providers":["email"],"role":"admin"}',
-            '{"full_name":"Dr. Administrador CODESOFT","role":"admin"}',
-            NOW(),
-            NOW(),
-            '',
-            ''
-        );
-
-        -- Insertar identidad requerida por Supabase GoTrue
-        INSERT INTO auth.identities (
-            id,
-            user_id,
-            identity_data,
-            provider,
-            provider_id,
-            last_sign_in_at,
-            created_at,
-            updated_at
-        ) VALUES (
-            new_admin_id,
-            new_admin_id,
-            json_build_object('sub', new_admin_id::text, 'email', 'admin@codesoft.pe'),
-            'email',
-            new_admin_id::text,
-            NOW(),
-            NOW(),
-            NOW()
-        );
-    END IF;
-END $$;
-

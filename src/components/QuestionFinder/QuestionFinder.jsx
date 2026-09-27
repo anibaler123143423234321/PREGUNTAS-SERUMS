@@ -9,7 +9,8 @@ export function QuestionFinder({
   allQuestions,
   savedQuestions,
   onToggleSave,
-  fontSize
+  fontSize,
+  careerId = 'medicina'
 }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedYear, setSelectedYear] = useState('all');
@@ -22,7 +23,7 @@ export function QuestionFinder({
   useEffect(() => {
     if (selectedYear === 'cloud_ia' && isSupabaseConfigured()) {
       setIsLoadingCloud(true);
-      fetchCloudAiQuestions({ category: selectedCategory, limit: 100 })
+      fetchCloudAiQuestions({ category: selectedCategory, careerId, limit: 100 })
         .then((items) => {
           setCloudQuestions(items);
         })
@@ -30,7 +31,7 @@ export function QuestionFinder({
           setIsLoadingCloud(false);
         });
     }
-  }, [selectedYear, selectedCategory]);
+  }, [selectedYear, selectedCategory, careerId]);
 
   const activeQuestionSource = selectedYear === 'cloud_ia' ? cloudQuestions : allQuestions;
 

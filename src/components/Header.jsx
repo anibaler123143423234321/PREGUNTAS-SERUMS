@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Stethoscope, Moon, Sun, Printer, Menu, X, ChevronDown, Check, BookOpen } from 'lucide-react';
-import { EXAM_YEARS } from '../data/categories';
+import React from 'react';
+import { Stethoscope, Moon, Sun, Printer, Menu, X, ChevronDown, BookOpen } from 'lucide-react';
 import { AuthButton } from './Auth/AuthButton';
 
 export function Header({
@@ -11,7 +10,10 @@ export function Header({
   isDocsActive = false,
   onOpenAuthModal,
   isMobileMenuOpen,
-  onToggleMobileMenu
+  onToggleMobileMenu,
+  career,
+  onOpenCareerSelector,
+  canExport = true
 }) {
   return (
     <header className="main-header" id="serums-main-header">
@@ -27,16 +29,31 @@ export function Header({
               <span className="brand-badge">SERUMS 2027</span>
             </div>
             <p className="brand-subtitle">
-              Plataforma Médica • Examen Nacional SERUMS (MINSA)
+              Preparación SERUMS • basada en exámenes oficiales del MINSA
             </p>
           </div>
         </div>
 
         {/* Controls */}
         <div className="header-controls">
+          {/* Carrera SERUMS activa (visible también en móvil) */}
+          {career && (
+            <button
+              id="btn-change-career"
+              type="button"
+              className="career-chip"
+              onClick={onOpenCareerSelector}
+              title="Cambiar de carrera"
+            >
+              <span aria-hidden="true">{career.emoji}</span>
+              <span className="career-chip-label">{career.shortName}</span>
+              <ChevronDown size={13} />
+            </button>
+          )}
+
           {/* Desktop Utilities */}
           <div className="desktop-controls-group">
-            <AuthButton onOpenAuthModal={onOpenAuthModal} />
+            <AuthButton onOpenAuthModal={onOpenAuthModal} career={career} onOpenCareerSelector={onOpenCareerSelector} />
 
             <button
               id="btn-open-docs"
@@ -62,14 +79,16 @@ export function Header({
               <span className="hide-on-mobile">{isDocsActive ? 'Cerrar Doc' : 'Doc'}</span>
             </button>
 
-            <button
-              id="btn-open-export"
-              className="icon-circle-btn"
-              onClick={onOpenExport}
-              title="Imprimir / Exportar Examen"
-            >
-              <Printer size={16} />
-            </button>
+            {canExport && (
+              <button
+                id="btn-open-export"
+                className="icon-circle-btn"
+                onClick={onOpenExport}
+                title="Imprimir / Exportar Examen"
+              >
+                <Printer size={16} />
+              </button>
+            )}
           </div>
 
           {/* Theme Toggle Button */}

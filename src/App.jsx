@@ -13,7 +13,11 @@ import { AuthModal } from './components/Auth/AuthModal';
 import { AuthGate } from './components/Auth/AuthGate';
 import { AiExamGenerator } from './components/AiExamGenerator/AiExamGenerator';
 import { AcademiesRanking } from './components/AcademiesRanking/AcademiesRanking';
+import { CareerSelector, NoOfficialBank } from './components/CareerSelector/CareerSelector';
 import { QUESTIONS_DATA } from './data/questionsData';
+import { CAREER_LIST, getCareer } from './data/careers';
+import { CareerContext } from './context/CareerContext';
+import { updateUserCareer } from './services/authService';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { useAuth } from './hooks/useAuth';
 import {
@@ -41,6 +45,11 @@ export function App() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [customAiExam, setCustomAiExam] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showCareerSelector, setShowCareerSelector] = useState(false);
+
+  // Carrera SERUMS del usuario (define qué banco de preguntas y qué prompts de IA se usan)
+  const [careerId, setCareerId] = useLocalStorage('serums_career', null);
+  const career = getCareer(careerId);
 
   // Datos Persistentes del Medico
   const [savedQuestions, setSavedQuestions] = useLocalStorage('serums_saved_q', {});
@@ -78,6 +87,23 @@ export function App() {
       });
     }
   }, [user?.id]);
+
+  // Recuperar la carrera guardada en el perfil (p. ej. al entrar desde otro dispositivo)
+  useEffect(() => {
+    const profileCareer = user?.user_metadata?.career;
+    if (!career && getCareer(profileCareer)) {
+      setCareerId(profileCareer);
+    }
+  }, [user, career]);
+
+  const handleSelectCareer = (newCareerId) => {
+    setCareerId(newCareerId);
+    setShowCareerSelector(false);
+    setCustomAiExam(null);
+    if (user?.id && user?.user_metadata?.career !== newCareerId) {
+      updateUserCareer(newCareerId);
+    }
+  };
 
   const handleToggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
@@ -151,19 +177,36 @@ export function App() {
     setActiveTab('exam');
   };
 
+  // Preguntas oficiales disponibles por carrera
+  const bankCounts = useMemo(() => {
+    const counts = {};
+    CAREER_LIST.forEach((c) => { counts[c.id] = 0; });
+    QUESTIONS_DATA.forEach((q) => {
+      const qCareer = q.career || 'medicina';
+      counts[qCareer] = (counts[qCareer] || 0) + 1;
+    });
+    return counts;
+  }, []);
+
+  const careerQuestions = useMemo(
+    () => QUESTIONS_DATA.filter((q) => (q.career || 'medicina') === careerId),
+    [careerId]
+  );
+  const hasOfficialBank = careerQuestions.length > 0;
+
   // Filter questions for the selected exam process
   const activeQuestions = useMemo(() => {
     if (customAiExam && customAiExam.length > 0) {
       return customAiExam;
     }
-    if (selectedYear === 'all') return QUESTIONS_DATA;
-    return QUESTIONS_DATA.filter((q) => q.year === selectedYear);
-  }, [selectedYear, customAiExam]);
+    if (selectedYear === 'all') return careerQuestions;
+    return careerQuestions.filter((q) => q.year === selectedYear);
+  }, [selectedYear, customAiExam, careerQuestions]);
 
   // Pantalla de carga mientras se verifica la sesión en Supabase
   if (authLoading) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-main)', color: 'var(--primary)', padding: '1rem' }}>
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-app)', color: 'var(--primary)', padding: '1rem' }}>
         <div style={{ textAlign: 'center', background: 'var(--bg-card)', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-lg)', padding: '2rem 2.5rem', boxShadow: '0 20px 40px rgba(0,0,0,0.25)', maxWidth: '380px', width: '100%' }}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
             <EcgHeartbeatLoader size={46} color="var(--primary)" />
@@ -183,6 +226,11 @@ export function App() {
     return <AuthGate />;
   }
 
+  // Primer ingreso: elegir la carrera antes de mostrar preguntas
+  if (!career) {
+    return <CareerSelector currentCareerId={careerId} onSelect={handleSelectCareer} bankCounts={bankCounts} />;
+  }
+
   const handleToggleDocs = () => {
     if (activeTab === 'docs') {
       setActiveTab(lastActiveTab || 'ai');
@@ -196,7 +244,20 @@ export function App() {
     setActiveTab(lastActiveTab || 'ai');
   };
 
+  const goToTab = (tab) => {
+    if (tab !== 'exam') setCustomAiExam(null);
+    setActiveTab(tab);
+    setLastActiveTab(tab);
+    setIsMobileMenuOpen(false);
+  };
+
+  // Simulacro, tutor, flashcards y buscador necesitan cuadernillos oficiales de la carrera
+  const needsOfficialBank = ['exam', 'tutor', 'flashcards', 'search'].includes(activeTab)
+    && !hasOfficialBank
+    && !(activeTab === 'exam' && customAiExam && customAiExam.length > 0);
+
   return (
+    <CareerContext.Provider value={career}>
     <div className="app-container">
       <Header
         theme={theme}
@@ -207,24 +268,33 @@ export function App() {
         onOpenAuthModal={() => setShowAuthModal(true)}
         isMobileMenuOpen={isMobileMenuOpen}
         onToggleMobileMenu={() => setIsMobileMenuOpen((prev) => !prev)}
+        career={career}
+        onOpenCareerSelector={() => setShowCareerSelector(true)}
+        canExport={hasOfficialBank}
       />
 
       <NavigationBar
         activeTab={activeTab}
-        onSelectTab={(tab) => {
-          if (tab !== 'exam') setCustomAiExam(null);
-          setActiveTab(tab);
-          setLastActiveTab(tab);
-          setIsMobileMenuOpen(false);
-        }}
+        onSelectTab={goToTab}
         mistakesCount={mistakes.length}
         savedCount={Object.keys(savedQuestions).length}
         isMobileMenuOpen={isMobileMenuOpen}
         onCloseMobileMenu={() => setIsMobileMenuOpen(false)}
         onOpenMobileMenu={() => setIsMobileMenuOpen(true)}
+        bankCount={careerQuestions.length}
+        career={career}
+        onOpenCareerSelector={() => setShowCareerSelector(true)}
       />
 
       <div className="content-wrapper">
+        {needsOfficialBank && (
+          <NoOfficialBank
+            career={career}
+            onGoToAi={() => goToTab('ai')}
+            onChangeCareer={() => setShowCareerSelector(true)}
+          />
+        )}
+
         {activeTab === 'docs' && (
           <DocsModal
             isOpen={true}
@@ -233,7 +303,7 @@ export function App() {
           />
         )}
 
-        {activeTab === 'exam' && (
+        {activeTab === 'exam' && !needsOfficialBank && (
           <ExamSimulator
             key={customAiExam ? 'custom-ai-exam' : selectedYear}
             questions={activeQuestions}
@@ -251,7 +321,7 @@ export function App() {
           />
         )}
 
-        {activeTab === 'tutor' && (
+        {activeTab === 'tutor' && !needsOfficialBank && (
           <TutorMode
             allQuestions={activeQuestions}
             savedQuestions={savedQuestions}
@@ -276,7 +346,7 @@ export function App() {
           />
         )}
 
-        {activeTab === 'flashcards' && (
+        {activeTab === 'flashcards' && !needsOfficialBank && (
           <Flashcards questions={activeQuestions} />
         )}
 
@@ -299,9 +369,10 @@ export function App() {
           />
         )}
 
-        {activeTab === 'search' && (
+        {activeTab === 'search' && !needsOfficialBank && (
           <QuestionFinder
-            allQuestions={QUESTIONS_DATA}
+            allQuestions={careerQuestions}
+            careerId={careerId}
             savedQuestions={savedQuestions}
             onToggleSave={handleToggleSave}
             fontSize={fontSize}
@@ -313,9 +384,9 @@ export function App() {
         )}
       </div>
 
-      {showExportModal && (
+      {showExportModal && hasOfficialBank && (
         <ExportModal
-          allQuestions={QUESTIONS_DATA}
+          allQuestions={careerQuestions}
           onClose={() => setShowExportModal(false)}
         />
       )}
@@ -326,7 +397,17 @@ export function App() {
           onClose={() => setShowAuthModal(false)}
         />
       )}
+
+      {showCareerSelector && (
+        <CareerSelector
+          currentCareerId={careerId}
+          onSelect={handleSelectCareer}
+          onClose={() => setShowCareerSelector(false)}
+          bankCounts={bankCounts}
+        />
+      )}
     </div>
+    </CareerContext.Provider>
   );
 }
 

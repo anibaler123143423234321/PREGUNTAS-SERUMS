@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { X, BookOpen, Cpu, Database, Award, MapPin, ExternalLink, ShieldCheck, Zap, Copy, Check } from 'lucide-react';
+// El SQL mostrado es el mismo archivo que se ejecuta en Supabase (evita copias desactualizadas)
+import sqlSchema from '../../data/supabase_schema.sql?raw';
 
 export function DocsModal({ isOpen, onClose, previousTabName = '' }) {
   const [activeTab, setActiveTab] = useState('ai_limits');
@@ -24,40 +26,6 @@ export function DocsModal({ isOpen, onClose, previousTabName = '' }) {
     setCopiedSql(true);
     setTimeout(() => setCopiedSql(false), 2000);
   };
-
-  const sqlSchema = `-- TABLA OFICIAL EN SUPABASE: preguntas_ia
-CREATE TABLE IF NOT EXISTS public.preguntas_ia (
-    id TEXT PRIMARY KEY,
-    question TEXT NOT NULL,
-    option_a TEXT NOT NULL,
-    option_b TEXT NOT NULL,
-    option_c TEXT NOT NULL,
-    option_d TEXT NOT NULL,
-    correct_answer VARCHAR(5) NOT NULL,
-    category VARCHAR(50) DEFAULT 'salud_publica',
-    difficulty VARCHAR(50) DEFAULT 'standard',
-    year TEXT DEFAULT 'Generado con IA (Groq LPU)',
-    why_this_question TEXT,
-    explanation TEXT,
-    pearl TEXT,
-    "references" TEXT,
-    created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- Actualizar columnas si ya tenías la tabla creada:
-ALTER TABLE public.preguntas_ia ADD COLUMN IF NOT EXISTS option_a TEXT;
-ALTER TABLE public.preguntas_ia ADD COLUMN IF NOT EXISTS option_b TEXT;
-ALTER TABLE public.preguntas_ia ADD COLUMN IF NOT EXISTS option_c TEXT;
-ALTER TABLE public.preguntas_ia ADD COLUMN IF NOT EXISTS option_d TEXT;
-ALTER TABLE public.preguntas_ia ADD COLUMN IF NOT EXISTS difficulty VARCHAR(50) DEFAULT 'standard';
-ALTER TABLE public.preguntas_ia DROP COLUMN IF EXISTS options;
-ALTER TABLE public.preguntas_ia DROP COLUMN IF EXISTS full_json;
-
--- Habilitar Políticas RLS
-ALTER TABLE public.preguntas_ia ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Permitir lectura publica de preguntas" ON public.preguntas_ia FOR SELECT USING (true);
-CREATE POLICY "Permitir insercion con clave anon" ON public.preguntas_ia FOR INSERT WITH CHECK (true);
-CREATE POLICY "Permitir actualizacion con clave anon" ON public.preguntas_ia FOR UPDATE USING (true);`;
 
   return (
     <div className="modal-overlay" style={{ zIndex: 1100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }} onClick={onClose}>
@@ -85,7 +53,7 @@ CREATE POLICY "Permitir actualizacion con clave anon" ON public.preguntas_ia FOR
             </div>
             <div>
               <h3 style={{ fontSize: '1.1rem', fontWeight: 800, margin: 0 }}>Centro de Documentación Técnica</h3>
-              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: 0 }}>Guía oficial de Motores de IA, Cuotas, Supabase Cloud y Normativa SERUMS 2027</p>
+              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: 0 }}>Guía de Motores de IA, Cuotas, Supabase Cloud y Normativa SERUMS</p>
             </div>
           </div>
           <button
@@ -290,10 +258,13 @@ CREATE POLICY "Permitir actualizacion con clave anon" ON public.preguntas_ia FOR
               </pre>
 
               <div style={{ background: 'rgba(2, 132, 199, 0.05)', padding: '0.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(2, 132, 199, 0.2)' }}>
-                <h5 style={{ fontSize: '0.8rem', fontWeight: 700, margin: '0 0 0.25rem 0', color: 'var(--primary)' }}>Variables en .env:</h5>
+                <h5 style={{ fontSize: '0.8rem', fontWeight: 700, margin: '0 0 0.25rem 0', color: 'var(--primary)' }}>Variables de entorno (Netlify / .env):</h5>
                 <code style={{ fontSize: '0.74rem', display: 'block' }}>VITE_SUPABASE_URL=https://sohwmpvtxnqyifsiomxo.supabase.co</code>
                 <code style={{ fontSize: '0.74rem', display: 'block' }}>VITE_SUPABASE_ANON_KEY=sb_publishable_...</code>
-                <code style={{ fontSize: '0.74rem', display: 'block' }}>VITE_GROQ_API_KEY=gsk_...</code>
+                <code style={{ fontSize: '0.74rem', display: 'block' }}>GROQ_API_KEY=gsk_...  (sin prefijo VITE_: solo la usa la función de servidor)</code>
+                <p style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', margin: '0.4rem 0 0 0' }}>
+                  Toda variable con prefijo VITE_ queda visible en el JavaScript público. Nunca pongas claves de IA con ese prefijo.
+                </p>
               </div>
             </div>
           )}
@@ -440,7 +411,7 @@ CREATE POLICY "Permitir actualizacion con clave anon" ON public.preguntas_ia FOR
 
         {/* Footer */}
         <div style={{ padding: '0.75rem 1.25rem', borderTop: '1px solid var(--border-subtle)', background: 'var(--bg-surface)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
-          <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>CODESOFT SERUMS 2027 • Plataforma Médica Oficial</span>
+          <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>CODESOFT SERUMS • Plataforma de preparación (no oficial)</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <button
               onClick={onClose}

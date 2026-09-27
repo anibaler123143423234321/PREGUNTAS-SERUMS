@@ -122,3 +122,16 @@ export function onAuthStateChange(callback) {
     return () => {};
   }
 }
+
+/**
+ * Guardar la carrera SERUMS elegida en el perfil del usuario (sincroniza entre dispositivos)
+ */
+export async function updateUserCareer(careerId) {
+  const client = getSupabaseClient();
+  if (!client) return;
+
+  const { error } = await client.auth.updateUser({ data: { career: careerId } });
+  if (error) {
+    console.warn('No se pudo guardar la carrera en el perfil:', error.message);
+  }
+}

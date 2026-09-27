@@ -78,7 +78,7 @@ export function AuthGate() {
           CODESOFT <span style={{ color: 'var(--primary)' }}>SERUMS 2027</span>
         </h1>
         <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
-          Plataforma de Simulación & Evaluación Médica Oficial del MINSA (Ley 23330)
+          Preparación para la evaluación SERUMS con exámenes oficiales del MINSA · Plataforma independiente, no afiliada al MINSA
         </p>
       </div>
 

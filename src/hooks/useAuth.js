@@ -6,6 +6,13 @@ let globalUser = null;
 let globalLoading = true;
 const authListeners = new Set();
 
+// Sesiones antiguas del "admin local" (eliminado por inseguro) no deben seguir abiertas
+try {
+  localStorage.removeItem('serums_local_admin_session');
+} catch {
+  // localStorage no disponible
+}
+
 function notifyAuthListeners(newUser, newLoading) {
   globalUser = newUser;
   globalLoading = newLoading;
@@ -31,24 +38,7 @@ export function useAuth() {
     };
     authListeners.add(listener);
 
-    // 2. Verificar si hay sesión de Administrador local
-    const isLocalAdmin = localStorage.getItem('serums_local_admin_session') === 'true';
-    if (isLocalAdmin) {
-      const adminUser = {
-        id: '00000000-0000-0000-0000-000000000001',
-        email: 'admin@codesoft.pe',
-        user_metadata: {
-          full_name: 'Dr. Administrador CODESOFT',
-          role: 'admin'
-        }
-      };
-      notifyAuthListeners(adminUser, false);
-      return () => {
-        authListeners.delete(listener);
-      };
-    }
-
-    // 3. Verificar sesión en Supabase
+    // 2. Verificar sesión en Supabase
     getCurrentUser().then((currentUser) => {
       notifyAuthListeners(currentUser, false);
     }).catch((err) => {
@@ -56,7 +46,7 @@ export function useAuth() {
       notifyAuthListeners(null, false);
     });
 
-    // 4. Suscribirse a cambios de sesión de Supabase
+    // 3. Suscribirse a cambios de sesión de Supabase
     const unsubscribe = onAuthStateChange((authUser) => {
       notifyAuthListeners(authUser, false);
     });
@@ -80,25 +70,9 @@ export function useAuth() {
   const loginWithEmail = async (email, password) => {
     setError(null);
     const cleanEmail = (email || '').trim().toLowerCase();
-    const cleanPass = (password || '').trim();
-
-    // 1. Reconocimiento prioritario para el Administrador Maestro (Acceso garantizado 100%)
-    if (cleanEmail === 'admin@codesoft.pe' && cleanPass === 'AdminSerums2027!') {
-      const masterAdminUser = {
-        id: '00000000-0000-0000-0000-000000000001',
-        email: 'admin@codesoft.pe',
-        user_metadata: {
-          full_name: 'Dr. Administrador CODESOFT',
-          role: 'admin'
-        }
-      };
-      localStorage.setItem('serums_local_admin_session', 'true');
-      notifyAuthListeners(masterAdminUser, false);
-      return { user: masterAdminUser };
-    }
 
     try {
-      const data = await signInWithEmail(cleanEmail, cleanPass);
+      const data = await signInWithEmail(cleanEmail, password);
       if (data?.user) {
         notifyAuthListeners(data.user, false);
         return data;
@@ -123,25 +97,9 @@ export function useAuth() {
     }
   };
 
-  const loginAsMasterAdmin = async () => {
-    setError(null);
-    const masterAdminUser = {
-      id: '00000000-0000-0000-0000-000000000001',
-      email: 'admin@codesoft.pe',
-      user_metadata: {
-        full_name: 'Dr. Administrador CODESOFT',
-        role: 'admin'
-      }
-    };
-    localStorage.setItem('serums_local_admin_session', 'true');
-    notifyAuthListeners(masterAdminUser, false);
-    return { user: masterAdminUser };
-  };
-
   const logout = async () => {
     setError(null);
     try {
-      localStorage.removeItem('serums_local_admin_session');
       await signOutUser();
     } catch (err) {
       console.warn('Aviso al cerrar sesión en Supabase:', err);
@@ -157,9 +115,10 @@ export function useAuth() {
     loginWithGoogle,
     loginWithEmail,
     registerWithEmail,
-    loginAsMasterAdmin,
     logout,
     isAuthenticated: Boolean(user),
-    isAdmin: user?.user_metadata?.role === 'admin' || user?.email === 'admin@codesoft.pe'
+    // app_metadata solo lo puede escribir el servidor (Supabase Dashboard / service_role);
+    // user_metadata lo edita el propio usuario, por eso no sirve para otorgar permisos.
+    isAdmin: user?.app_metadata?.role === 'admin'
   };
 }

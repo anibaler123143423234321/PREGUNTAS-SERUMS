@@ -2,6 +2,10 @@
   publish = "dist"
   command = "npm run build"
 
+# Funciones de servidor (la clave GROQ_API_KEY vive aquí, nunca en el navegador)
+[functions]
+  directory = "netlify/functions"
+
 # Proxy for NVIDIA API in production Netlify (MUST be first before the SPA fallback)
 [[redirects]]
   from = "/api/nvidia/*"

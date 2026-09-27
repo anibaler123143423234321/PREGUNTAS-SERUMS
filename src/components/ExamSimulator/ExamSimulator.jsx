@@ -110,7 +110,7 @@ export function ExamSimulator({
         percentage: results.percentage,
         correctCount: results.correctCount,
         totalQuestions: questions.length,
-        timeSpentSeconds: 7200 - timer.secondsLeft
+        timeSpentSeconds: selectedDuration - timer.secondsLeft
       });
     }
   };
@@ -123,7 +123,7 @@ export function ExamSimulator({
     setShowResultsModal(false);
     setExamResults(null);
     setCurrentIndex(0);
-    timer.reset(7200);
+    timer.reset(selectedDuration);
     timer.start();
   };
 
@@ -159,14 +159,14 @@ export function ExamSimulator({
           <div style={{ textAlign: 'center', marginBottom: '1.35rem' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.2rem 0.75rem', background: 'var(--primary-light)', color: 'var(--primary)', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 800, marginBottom: '0.5rem' }}>
               <Sparkles size={14} />
-              <span>EVALUACIÓN OFICIAL MINSA (LEY 23330)</span>
+              <span>CUADERNILLOS OFICIALES MINSA · CLAVES VERIFICADAS</span>
             </div>
 
             <h2 style={{ fontSize: '1.45rem', marginBottom: '0.35rem', letterSpacing: '-0.02em', fontWeight: 800, color: 'var(--text-main)' }}>
-              Simulador Oficial de Exámenes SERUMS
+              Simulacro de Exámenes SERUMS
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.84rem', maxWidth: '580px', margin: '0 auto', lineHeight: 1.45 }}>
-              Selecciona el proceso oficial que deseas rendir. Cronómetro activo con retroalimentación y cálculo de nota al finalizar.
+              Rinde un examen real de procesos anteriores con cronómetro, retroalimentación y cálculo de nota al finalizar.
             </p>
           </div>
 
@@ -241,7 +241,7 @@ export function ExamSimulator({
                   <span>Escala 0 a 20</span>
                 </div>
                 <p style={{ fontSize: '0.76rem', color: 'var(--text-secondary)', marginTop: '0.15rem' }}>
-                  {(20 / (questions.length || 100)).toFixed(2)} pts c/u • Aprobatorio: 11.00.
+                  {(20 / (questions.length || 100)).toFixed(2)} pts c/u • Referencia: 11.00.
                 </p>
               </div>
 
@@ -313,7 +313,7 @@ export function ExamSimulator({
             >
               <Play size={18} />
               <span>
-                Comenzar Simulacro • {currentExamObj.name} ({questions.length} Preguntas)
+                Comenzar Simulacro • {currentExamObj.short} ({questions.length} preguntas)
               </span>
             </button>
           </div>

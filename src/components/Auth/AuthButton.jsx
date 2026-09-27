@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { LogOut, User, CheckCircle2, ChevronDown, Sparkles } from 'lucide-react';
+import { LogOut, CheckCircle2, ChevronDown, Sparkles, GraduationCap } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 
-export function AuthButton({ onOpenAuthModal }) {
+export function AuthButton({ onOpenAuthModal, career, onOpenCareerSelector }) {
   const { user, isAuthenticated, isAdmin, logout, loading } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const menuRef = useRef(null);
@@ -75,7 +75,7 @@ export function AuthButton({ onOpenAuthModal }) {
 
   const userMetadata = user.user_metadata || {};
   const avatarUrl = userMetadata.avatar_url || userMetadata.picture;
-  const fullName = userMetadata.full_name || userMetadata.name || user.email?.split('@')[0] || 'Médico SERUMS';
+  const fullName = userMetadata.full_name || userMetadata.name || user.email?.split('@')[0] || 'Postulante SERUMS';
   const email = user.email || '';
 
   return (
@@ -135,9 +135,36 @@ export function AuthButton({ onOpenAuthModal }) {
               {email}
             </div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem', marginTop: '0.35rem', background: isAdmin ? 'rgba(139, 92, 246, 0.2)' : 'rgba(2, 132, 199, 0.15)', color: isAdmin ? '#a78bfa' : 'var(--primary)', padding: '0.15rem 0.4rem', borderRadius: '4px', fontSize: '0.66rem', fontWeight: 700 }}>
-              <Sparkles size={10} /> {isAdmin ? 'Administrador Maestro 🛡️' : 'Médico Postulante 2027'}
+              <Sparkles size={10} /> {isAdmin ? 'Administrador 🛡️' : `${career?.title || 'Profesional'} · Postulante SERUMS`}
             </div>
           </div>
+
+          {onOpenCareerSelector && (
+            <button
+              onClick={() => {
+                setDropdownOpen(false);
+                onOpenCareerSelector();
+              }}
+              style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.4rem 0.5rem',
+                background: 'transparent',
+                border: 'none',
+                borderRadius: 'var(--radius-xs)',
+                color: 'var(--text-main)',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                textAlign: 'left'
+              }}
+            >
+              <GraduationCap size={14} />
+              <span>Cambiar carrera ({career?.shortName || '—'})</span>
+            </button>
+          )}
 
           <button
             onClick={() => {

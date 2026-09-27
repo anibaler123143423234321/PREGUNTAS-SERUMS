@@ -1,5 +1,6 @@
 import React from 'react';
-import { Timer, BookOpen, Layers, AlertTriangle, BarChart3, Search, Sparkles, X, ChevronRight, Award } from 'lucide-react';
+import { Timer, BookOpen, Layers, AlertTriangle, BarChart3, Search, Sparkles, X, ChevronRight, Award, GraduationCap, LogOut } from 'lucide-react';
+import { useAuth } from '../hooks/useAuth';
 
 export function NavigationBar({
   activeTab,
@@ -7,16 +8,20 @@ export function NavigationBar({
   mistakesCount = 0,
   savedCount = 0,
   isMobileMenuOpen = false,
-  onCloseMobileMenu = () => {}
+  onCloseMobileMenu = () => {},
+  bankCount = 0,
+  career = null,
+  onOpenCareerSelector = () => {}
 }) {
+  const { isAuthenticated, logout } = useAuth();
   const mainTabs = [
-    { id: 'ai', label: 'IA Groq', fullLabel: 'Generador IA (Groq LPU)', icon: Sparkles, count: 'PRO', isHighlight: true },
-    { id: 'exam', label: 'Simulacro', fullLabel: 'Simulacro Oficial', icon: Timer, count: null },
+    { id: 'ai', label: 'Generador IA', fullLabel: 'Generador IA', icon: Sparkles, count: 'PRO', isHighlight: true },
+    { id: 'exam', label: 'Simulacro', fullLabel: 'Simulacro', icon: Timer, count: null },
     { id: 'tutor', label: 'Tutor', fullLabel: 'Modo Tutor / Estudio', icon: BookOpen, count: null },
     { id: 'flashcards', label: 'Flashcards', fullLabel: 'Flashcards 3D', icon: Layers, count: null },
     { id: 'mistakes', label: 'Errores', fullLabel: 'Banco de Errores', icon: AlertTriangle, count: mistakesCount, isDanger: mistakesCount > 0 },
     { id: 'analytics', label: 'Desempeño', fullLabel: 'Analytics & Desempeño', icon: BarChart3, count: null },
-    { id: 'search', label: 'Buscador', fullLabel: 'Buscador Global (500)', icon: Search, count: null },
+    { id: 'search', label: 'Buscador', fullLabel: bankCount > 0 ? `Buscador (${bankCount})` : 'Buscador', icon: Search, count: null },
     { id: 'academies', label: 'Academias', fullLabel: 'Academias', icon: Award, count: null }
   ];
 
@@ -59,7 +64,7 @@ export function NavigationBar({
             <div className="drawer-header">
               <div className="drawer-title-group">
                 <h3>Módulos de Entrenamiento</h3>
-                <p>Examen Nacional SERUMS 2026</p>
+                <p>{career ? `${career.emoji} ${career.name} • SERUMS` : 'Evaluación SERUMS'}</p>
               </div>
               <button className="drawer-close-btn" onClick={onCloseMobileMenu} aria-label="Cerrar menú">
                 <X size={20} />
@@ -67,6 +72,21 @@ export function NavigationBar({
             </div>
 
             <div className="drawer-items-list">
+              <button
+                className="drawer-menu-item"
+                onClick={() => {
+                  onCloseMobileMenu();
+                  onOpenCareerSelector();
+                }}
+              >
+                <div className="item-icon-box">
+                  <GraduationCap size={18} />
+                </div>
+                <div className="item-text-box">
+                  <span className="item-title">Cambiar carrera</span>
+                </div>
+                <ChevronRight size={16} className="item-arrow" />
+              </button>
               {mainTabs.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
@@ -94,6 +114,23 @@ export function NavigationBar({
                   </button>
                 );
               })}
+
+              {isAuthenticated && (
+                <button
+                  className="drawer-menu-item"
+                  onClick={() => {
+                    onCloseMobileMenu();
+                    logout();
+                  }}
+                >
+                  <div className="item-icon-box" style={{ color: 'var(--danger)' }}>
+                    <LogOut size={18} />
+                  </div>
+                  <div className="item-text-box">
+                    <span className="item-title" style={{ color: 'var(--danger)' }}>Cerrar sesión</span>
+                  </div>
+                </button>
+              )}
             </div>
           </div>
         </div>

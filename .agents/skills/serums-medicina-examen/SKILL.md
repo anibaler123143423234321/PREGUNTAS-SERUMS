@@ -110,7 +110,7 @@ Este skill proporciona el marco teórico, clínico, epidemiológico, normativo y
 | :--- | :--- | :---: | :---: | :---: | :---: |
 | **Groq Cloud (LPU)** | `openai/gpt-oss-120b` | **30 RPM** | **1,000 RPD** | 8,000 TPM | **~2.5s** |
 | **Groq Cloud (LPU)** | `qwen/qwen3.8-27b` | **30 RPM** | **1,000 RPD** | 8,000 TPM | **~1.8s** |
-| **Google Gemini** | `gemini-1.5-flash` | **15 RPM** | **1,500 RPD** | 1,000,000 TPM | **~3.2s** |
+| **Google Gemini** | `gemini-3.8-flash` | **15 RPM** | **1,500 RPD** | 1,000,000 TPM | **~3.2s** |
 | **NVIDIA NIM** | `meta/llama-3.2-11b-vision-instruct` | **10 RPM** | **1,000 créditos** | Variable | **~24s** |
 
 ### Reglas Técnicas de Inferencia en Groq:

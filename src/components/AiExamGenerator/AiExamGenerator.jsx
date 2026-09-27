@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Sparkles, Cpu, RefreshCw, Key, Layers, CheckCircle2, Bookmark, Zap, Lightbulb, Clock, Target, ShieldCheck, Flame, Play, Tag, Database, Cloud, Check, AlertCircle, FileText, Image, Trash2, X, Download } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import { CATEGORIES } from '../../data/categories';
-import { generateSingleQuestion, generateExamBatch } from '../../services/aiService';
+import { generateSingleQuestion, generateExamBatch, getAiProviderLabel } from '../../services/aiService';
 import { SERUMS_PEARLS_BY_CATEGORY, HIGH_YIELD_TOPIC_PILLS } from '../../data/serumsPearls';
 import {
   saveAiQuestionToCloud,
@@ -16,6 +16,10 @@ import { DocsModal } from '../DocsModal/DocsModal';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { EcgHeartbeatLoader, NeuralAiLoader, PulseRadarLoader, CloudSyncAnimated } from '../Common/AnimatedIcons';
 import { sanitizeInput } from '../../utils/securitySanitizer';
+import { useCareer } from '../../context/CareerContext';
+
+// Áreas generales que aplican a todas las carreras (las demás son clínicas de Medicina)
+const SHARED_CATEGORY_IDS = ['all', 'salud_publica', 'gestion_aps', 'etica_legal'];
 
 const DIFFICULTY_OPTIONS = [
   { id: 'standard', label: 'Estándar MINSA', short: 'Estándar', icon: Target },
@@ -30,16 +34,11 @@ export function AiExamGenerator({
   onToggleSave,
   fontSize
 }) {
-  const defaultAiKey = import.meta.env.VITE_GROQ_API_KEY || import.meta.env.VITE_NVIDIA_API_KEY || '';
-  const [apiKey, setApiKey] = useLocalStorage('serums_ai_active_api_key', defaultAiKey);
+  const career = useCareer();
+  const isMedicine = career.id === 'medicina';
 
-  // Auto-actualizar automáticamente a Groq LPU si la clave guardada en localStorage es la antigua o está vacía
-  useEffect(() => {
-    const groqKey = import.meta.env.VITE_GROQ_API_KEY;
-    if (groqKey && (!apiKey || apiKey.startsWith('nvapi-'))) {
-      setApiKey(groqKey);
-    }
-  }, []);
+  // Clave propia opcional (solo se guarda en este navegador). Sin clave se usa la IA del servidor.
+  const [apiKey, setApiKey] = useLocalStorage('serums_ai_active_api_key', '');
   const [showKeyConfig, setShowKeyConfig] = useState(false);
   const [showDocs, setShowDocs] = useState(false);
   const [isExportingPng, setIsExportingPng] = useState(false);
@@ -63,6 +62,14 @@ export function AiExamGenerator({
   const [currentIndex, setCurrentIndex] = useLocalStorage('serums_ai_current_idx', 0);
   const [userAnswersMap, setUserAnswersMap] = useLocalStorage('serums_ai_user_answers', {});
   const [singleError, setSingleError] = useState('');
+
+  // Áreas y temas rápidos según la carrera
+  const visibleCategories = useMemo(
+    () => Object.values(CATEGORIES).filter((c) => isMedicine || SHARED_CATEGORY_IDS.includes(c.id)),
+    [isMedicine]
+  );
+  const activeCategory = visibleCategories.some((c) => c.id === singleCategory) ? singleCategory : 'all';
+  const topicPills = isMedicine ? HIGH_YIELD_TOPIC_PILLS.slice(0, 6) : career.topics;
 
   // Reiniciar historial de preguntas IA
   const handleClearAiSession = () => {
@@ -100,8 +107,8 @@ export function AiExamGenerator({
 
   // Dynamic Categorized Pearls for Waiting Screen
   const activePearlsList = useMemo(() => {
-    return SERUMS_PEARLS_BY_CATEGORY[singleCategory] || SERUMS_PEARLS_BY_CATEGORY.all;
-  }, [singleCategory]);
+    return SERUMS_PEARLS_BY_CATEGORY[activeCategory] || SERUMS_PEARLS_BY_CATEGORY.all;
+  }, [activeCategory]);
 
   // Timer & Tip Rotation for Waiting Experience (Randomized start)
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
@@ -140,10 +147,11 @@ export function AiExamGenerator({
     setCloudSyncStatus(null);
     try {
       const q = await generateSingleQuestion({
-        category: singleCategory,
+        category: activeCategory,
         difficulty: singleDifficulty,
         topic: customTopic,
-        apiKey
+        apiKey,
+        careerId: career.id
       });
       setQuestionsHistory((prev) => {
         const nextList = [...prev, q];
@@ -162,7 +170,7 @@ export function AiExamGenerator({
         }
       }
     } catch (err) {
-      setSingleError(err.message || 'Error al generar la pregunta con NVIDIA AI.');
+      setSingleError(err.message || 'Error al generar la pregunta con IA.');
     } finally {
       setIsLoadingSingle(false);
     }
@@ -188,7 +196,7 @@ export function AiExamGenerator({
     if (!question) return;
     const opt = question.options || {};
     const txtContent = `================================================================================
-CODESOFT SERUMS 2026 — CASO CLÍNICO OFICIAL DE EXAMEN
+CODESOFT SERUMS — PREGUNTA DE PRÁCTICA GENERADA CON IA (${career.name.toUpperCase()})
 ================================================================================
 ÁREA / BLOQUE TEMÁTICO : ${question.category ? question.category.toUpperCase() : 'SALUD PÚBLICA'}
 ORIGEN & MOTOR         : ${question.year || 'Generado con IA (Groq LPU)'}
@@ -210,7 +218,7 @@ D) ${opt.D || ''}
 --------------------------------------------------------------------------------
 RESPUESTA CORRECTA:
 --------------------------------------------------------------------------------
-CLAVE OFICIAL: [ ${question.correctAnswer} ] - ${opt[question.correctAnswer] || ''}
+CLAVE: [ ${question.correctAnswer} ] - ${opt[question.correctAnswer] || ''}
 
 --------------------------------------------------------------------------------
 JUSTIFICACIÓN CLÍNICA & NORMATIVA MINSA:
@@ -224,7 +232,7 @@ ${question.pearl || 'Sin perla disponible.'}
 
 REFERENCIAS NORMATIVAS: ${question.references || 'Normas Técnicas de Salud MINSA'}
 ================================================================================
-Plataforma Médica CODESOFT SERUMS 2026 • https://codesoft-serums.pe
+CODESOFT SERUMS • Pregunta generada con IA: verifica siempre con la NTS vigente
 ================================================================================
 `;
     const blob = new Blob([txtContent], { type: 'text/plain;charset=utf-8' });
@@ -276,10 +284,11 @@ Plataforma Médica CODESOFT SERUMS 2026 • https://codesoft-serums.pe
     try {
       const questions = await generateExamBatch({
         totalQuestions: 2,
-        category: singleCategory,
+        category: activeCategory,
         difficulty: singleDifficulty,
         topic: customTopic,
-        apiKey
+        apiKey,
+        careerId: career.id
       });
       if (questions.length > 0) {
         setMiniExamQuestions(questions);
@@ -319,7 +328,7 @@ Plataforma Médica CODESOFT SERUMS 2026 • https://codesoft-serums.pe
           <div style={{ marginBottom: '1rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
               <label style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-main)' }}>
-                1. Clave de Motor de IA (Groq Cloud recomendada):
+                1. Clave propia de IA (opcional — si la dejas vacía se usa la IA del servidor):
               </label>
               <a
                 href="https://console.groq.com/keys"
@@ -420,22 +429,16 @@ Plataforma Médica CODESOFT SERUMS 2026 • https://codesoft-serums.pe
                   alignItems: 'center',
                   gap: '0.3rem',
                   padding: '0.2rem 0.55rem',
-                  background: apiKey?.startsWith('gsk_') ? 'rgba(16, 185, 129, 0.15)' : 'rgba(139, 92, 246, 0.15)',
-                  color: apiKey?.startsWith('gsk_') ? '#10b981' : '#a78bfa',
-                  border: apiKey?.startsWith('gsk_') ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid rgba(139, 92, 246, 0.3)',
+                  background: !apiKey || apiKey.startsWith('gsk_') ? 'rgba(16, 185, 129, 0.15)' : 'rgba(139, 92, 246, 0.15)',
+                  color: !apiKey || apiKey.startsWith('gsk_') ? '#10b981' : '#a78bfa',
+                  border: !apiKey || apiKey.startsWith('gsk_') ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid rgba(139, 92, 246, 0.3)',
                   borderRadius: 'var(--radius-full)',
                   fontSize: '0.7rem',
                   fontWeight: 800
                 }}
               >
                 <Zap size={12} className="animate-pulse" />
-                <span>
-                  {apiKey?.startsWith('gsk_')
-                    ? 'Groq LPU (~1.5s)'
-                    : apiKey?.startsWith('AIzaSy')
-                    ? 'Gemini Flash'
-                    : 'NVIDIA AI'}
-                </span>
+                <span>{getAiProviderLabel(apiKey || '')}</span>
               </div>
 
               <button
@@ -466,7 +469,7 @@ Plataforma Médica CODESOFT SERUMS 2026 • https://codesoft-serums.pe
               Panel de Simulación IA
             </h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', margin: 0, lineHeight: 1.35 }}>
-              Calibrado con el Temario SERUMS 2027 y Normativa MINSA.
+              {career.emoji} Adaptado a {career.name} y a la normativa MINSA.
             </p>
           </div>
 
@@ -477,8 +480,8 @@ Plataforma Médica CODESOFT SERUMS 2026 • https://codesoft-serums.pe
               <span>1. Área Temática:</span>
             </label>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.3rem' }}>
-              {Object.values(CATEGORIES).map((c) => {
-                const isSelected = singleCategory === c.id;
+              {visibleCategories.map((c) => {
+                const isSelected = activeCategory === c.id;
                 return (
                   <button
                     key={c.id}
@@ -562,16 +565,16 @@ Plataforma Médica CODESOFT SERUMS 2026 • https://codesoft-serums.pe
             </div>
             <input
               type="text"
-              placeholder="ej. Dengue signos alarma, Zuspan, NTS Anemia..."
+              placeholder={isMedicine ? 'ej. Dengue signos alarma, Zuspan, NTS Anemia...' : `ej. ${career.topics.slice(0, 2).map((t) => t.label).join(', ')}...`}
               value={customTopic}
-              onChange={(e) => setCustomTopic(sanitizeInput(e.target.value, { maxLength: 80 }))}
+              onChange={(e) => setCustomTopic(e.target.value.slice(0, 80))}
               disabled={isLoadingSingle || isGeneratingMini}
               style={{ width: '100%', padding: '0.45rem 0.65rem', background: 'var(--bg-surface)', border: '1px solid var(--border-medium)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)', fontSize: '0.78rem', outline: 'none', marginBottom: '0.45rem' }}
             />
 
             {/* Quick Pills */}
             <div style={{ display: 'flex', gap: '0.25rem', flexWrap: 'wrap' }}>
-              {HIGH_YIELD_TOPIC_PILLS.slice(0, 6).map((p, pIdx) => {
+              {topicPills.map((p, pIdx) => {
                 const isPillActive = customTopic === p.topic;
                 return (
                   <button
@@ -676,7 +679,7 @@ Plataforma Médica CODESOFT SERUMS 2026 • https://codesoft-serums.pe
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)', fontWeight: 800, fontSize: '0.92rem' }}>
                   <Zap size={20} className="animate-pulse" />
-                  <span>Groq LPU procesando caso clínico con Normativa MINSA...</span>
+                  <span>La IA está redactando tu pregunta de {career.shortName}...</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--text-secondary)', fontSize: '0.8rem', background: 'var(--bg-surface)', padding: '0.25rem 0.65rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', fontWeight: 700 }}>
                   <Clock size={14} color="var(--primary)" />
@@ -719,7 +722,7 @@ Plataforma Médica CODESOFT SERUMS 2026 • https://codesoft-serums.pe
                   </strong>
                   <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.45 }}>
                     {singleError.includes('<!DOCTYPE') || singleError.includes('404') || singleError.includes('Page not found')
-                      ? 'Fallo temporal de conexión con el servidor. Presiona "Reintentar Ahora" para generar con Groq LPU.'
+                      ? 'Fallo temporal de conexión con el servidor de IA. Presiona "Reintentar Ahora".'
                       : singleError}
                   </p>
                 </div>
@@ -895,10 +898,10 @@ Plataforma Médica CODESOFT SERUMS 2026 • https://codesoft-serums.pe
                 </div>
 
                 <h3 style={{ fontSize: '1.35rem', fontWeight: 800, margin: '0 0 0.5rem 0', color: 'var(--text-main)' }}>
-                  Laboratorio Clínico SERUMS 2027
+                  Generador IA · {career.name}
                 </h3>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', maxWidth: '520px', lineHeight: 1.5, margin: '0 0 1.75rem 0' }}>
-                  Selecciona la especialidad médica en el panel izquierdo y haz clic en <strong>"Generar Pregunta Inédita"</strong> para simular casos reales de Establecimientos I-1 a I-4.
+                  Elige el área en el panel izquierdo y haz clic en <strong>"Generar Pregunta Inédita"</strong> para practicar con situaciones reales de establecimientos I-1 a I-4. Las preguntas generadas con IA pueden contener errores: contrástalas con la NTS vigente.
                 </p>
 
                 {/* 3 Feature Highlights */}

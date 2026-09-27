@@ -92,14 +92,24 @@ export async function saveAiQuestionToCloud(question) {
     explanation: question.explanation || '',
     pearl: question.pearl || '',
     references: question.references || '',
+    career: question.career || 'medicina',
     created_at: new Date().toISOString()
   };
 
   try {
-    const { data, error } = await client
+    let { data, error } = await client
       .from('preguntas_ia')
       .upsert(payload, { onConflict: 'id' })
       .select();
+
+    // Bases creadas con el esquema anterior no tienen la columna "career": reintentar sin ella
+    if (error && /career/i.test(error.message || '')) {
+      const { career, ...legacyPayload } = payload;
+      ({ data, error } = await client
+        .from('preguntas_ia')
+        .upsert(legacyPayload, { onConflict: 'id' })
+        .select());
+    }
 
     if (error) {
       console.warn('No se pudo guardar en Supabase:', error.message);
@@ -114,7 +124,7 @@ export async function saveAiQuestionToCloud(question) {
 }
 
 // Obtener preguntas guardadas en la nube
-export async function fetchCloudAiQuestions({ category = 'all', limit = 50, offset = 0 } = {}) {
+export async function fetchCloudAiQuestions({ category = 'all', careerId = null, limit = 50, offset = 0 } = {}) {
   const client = getSupabaseClient();
   if (!client) return [];
 
@@ -135,8 +145,11 @@ export async function fetchCloudAiQuestions({ category = 'all', limit = 50, offs
       return [];
     }
 
-    return (data || []).map((row) => ({
+    return (data || [])
+      .filter((row) => !careerId || (row.career || 'medicina') === careerId)
+      .map((row) => ({
       id: row.id,
+      career: row.career || 'medicina',
       question: row.question,
       options: {
         A: row.option_a || 'Opción A',
