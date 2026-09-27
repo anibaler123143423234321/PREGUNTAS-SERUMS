@@ -4,9 +4,9 @@ import { CAREERS } from '../data/careers';
 import { getSupabaseClient } from './supabaseClient';
 import { sanitizeInput } from '../utils/securitySanitizer';
 
-// Las claves de IA NUNCA se leen de variables VITE_*: Vite las incrusta en el JavaScript público.
-// Cada usuario puede pegar su propia clave (se guarda solo en su navegador) o, si no tiene,
-// se usa la función de servidor /.netlify/functions/ai-generate con la clave privada del sitio.
+// Clave por defecto desde variables de entorno (.env / Netlify). El usuario puede pegar otra en "⚙️ Claves".
+// Si no hay ninguna, se usa la función de servidor /.netlify/functions/ai-generate.
+const DEFAULT_API_KEY = import.meta.env.VITE_GROQ_API_KEY || import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.VITE_NVIDIA_API_KEY || '';
 const AI_KEY_STORAGE = 'serums_ai_active_api_key';
 const SERVER_AI_ENDPOINT = '/.netlify/functions/ai-generate';
 const NVIDIA_MODEL = 'meta/llama-3.2-11b-vision-instruct';
@@ -16,9 +16,9 @@ const GEMINI_MODEL = 'gemini-3.8-flash'; // gemini-1.5-flash fue retirado por Go
 export function getStoredAiKey() {
   try {
     const raw = localStorage.getItem(AI_KEY_STORAGE);
-    return raw ? String(JSON.parse(raw) || '').trim() : '';
+    return (raw ? String(JSON.parse(raw) || '').trim() : '') || DEFAULT_API_KEY;
   } catch {
-    return '';
+    return DEFAULT_API_KEY;
   }
 }
 
@@ -195,7 +195,7 @@ async function readErrorDetail(response) {
 
 // Envía un prompt al proveedor que corresponda y devuelve el texto de la respuesta.
 async function requestCompletion({ systemPrompt, userPrompt, apiKey, maxTokens = 2000, json = true, temperature = 0.2 }) {
-  const activeKey = (apiKey || '').trim();
+  const activeKey = (apiKey || DEFAULT_API_KEY).trim();
 
   if (!activeKey) {
     // Sin clave propia: función de servidor (requiere sesión iniciada en Supabase)
@@ -376,7 +376,7 @@ Genera DIRECTAMENTE el JSON completo con todas sus claves (question, options con
 
   return {
     id: `ai-gen-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-    year: `Generado con IA (${getAiProviderLabel(apiKey || '')})`,
+    year: `Generado con IA (${getAiProviderLabel(apiKey || DEFAULT_API_KEY)})`,
     career: career.id,
     number: 1,
     question: parsed.question,

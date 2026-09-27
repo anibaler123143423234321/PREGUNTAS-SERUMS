@@ -261,10 +261,7 @@ export function DocsModal({ isOpen, onClose, previousTabName = '' }) {
                 <h5 style={{ fontSize: '0.8rem', fontWeight: 700, margin: '0 0 0.25rem 0', color: 'var(--primary)' }}>Variables de entorno (Netlify / .env):</h5>
                 <code style={{ fontSize: '0.74rem', display: 'block' }}>VITE_SUPABASE_URL=https://sohwmpvtxnqyifsiomxo.supabase.co</code>
                 <code style={{ fontSize: '0.74rem', display: 'block' }}>VITE_SUPABASE_ANON_KEY=sb_publishable_...</code>
-                <code style={{ fontSize: '0.74rem', display: 'block' }}>GROQ_API_KEY=gsk_...  (sin prefijo VITE_: solo la usa la función de servidor)</code>
-                <p style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', margin: '0.4rem 0 0 0' }}>
-                  Toda variable con prefijo VITE_ queda visible en el JavaScript público. Nunca pongas claves de IA con ese prefijo.
-                </p>
+                <code style={{ fontSize: '0.74rem', display: 'block' }}>VITE_GROQ_API_KEY=gsk_...</code>
               </div>
             </div>
           )}

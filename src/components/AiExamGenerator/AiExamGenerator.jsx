@@ -37,8 +37,16 @@ export function AiExamGenerator({
   const career = useCareer();
   const isMedicine = career.id === 'medicina';
 
-  // Clave propia opcional (solo se guarda en este navegador). Sin clave se usa la IA del servidor.
-  const [apiKey, setApiKey] = useLocalStorage('serums_ai_active_api_key', '');
+  const defaultAiKey = import.meta.env.VITE_GROQ_API_KEY || import.meta.env.VITE_NVIDIA_API_KEY || '';
+  const [apiKey, setApiKey] = useLocalStorage('serums_ai_active_api_key', defaultAiKey);
+
+  // Auto-actualizar automáticamente a Groq LPU si la clave guardada en localStorage es la antigua o está vacía
+  useEffect(() => {
+    const groqKey = import.meta.env.VITE_GROQ_API_KEY;
+    if (groqKey && (!apiKey || apiKey.startsWith('nvapi-'))) {
+      setApiKey(groqKey);
+    }
+  }, []);
   const [showKeyConfig, setShowKeyConfig] = useState(false);
   const [showDocs, setShowDocs] = useState(false);
   const [isExportingPng, setIsExportingPng] = useState(false);
@@ -328,7 +336,7 @@ CODESOFT SERUMS • Pregunta generada con IA: verifica siempre con la NTS vigent
           <div style={{ marginBottom: '1rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
               <label style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-main)' }}>
-                1. Clave propia de IA (opcional — si la dejas vacía se usa la IA del servidor):
+                1. Clave de Motor de IA (Groq Cloud recomendada):
               </label>
               <a
                 href="https://console.groq.com/keys"

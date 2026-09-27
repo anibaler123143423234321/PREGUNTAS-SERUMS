@@ -12,7 +12,6 @@
 - **Groq LPU (`openai/gpt-oss-120b`)**: Motor ultra-rápido prioritario (~2.5s). Límite de 1,000 req/día y 30 RPM en Free Tier. Usar `max_tokens: 2000` para evitar truncamiento de tokens de razonamiento.
 - **NVIDIA NIM (`meta/llama-3.2-11b-vision-instruct`)**: Motor de respaldo. (Nota: los modelos 3.1-8b y 3.3-70b fueron dados de baja con código 410).
 - **Google Gemini (`gemini-3.8-flash`)**: Motor alternativo (`gemini-1.5-flash` fue retirado).
-- **Claves**: prohibido leer claves de IA desde variables `VITE_*` (quedan públicas en el bundle). Sin clave del usuario se usa `netlify/functions/ai-generate.mjs` con `GROQ_API_KEY` del servidor.
 
 ## 4. Base de Datos Supabase Cloud
 - Esquema relacional estricto con columnas independientes (`option_a`, `option_b`, `option_c`, `option_d`, `why_this_question`, `explanation`, `pearl`, `"references"`).

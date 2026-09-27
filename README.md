@@ -27,11 +27,10 @@ node scripts/buildQuestionsData.js
 
    | Variable | Uso |
    | --- | --- |
-   | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` | Públicas por diseño; la seguridad la dan las políticas RLS |
-   | `GROQ_API_KEY` | Privada. La usa solo `netlify/functions/ai-generate.mjs` |
+   | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` | Conexión a Supabase; la seguridad la dan las políticas RLS |
+   | `VITE_GROQ_API_KEY` (o `VITE_NVIDIA_API_KEY` / `VITE_GEMINI_API_KEY`) | Clave por defecto del generador IA |
 
-   **Nunca** pongas claves de IA con prefijo `VITE_`, porque Vite las incrusta en el JavaScript público.
-3. **IA sin configurar el servidor:** cada usuario puede pegar su propia clave gratuita de Groq en "⚙️ Claves". Esa clave se guarda solo en su navegador.
+3. Cada usuario también puede pegar otra clave en "⚙️ Claves"; se guarda solo en su navegador.
 
 ## Agregar exámenes oficiales de otra carrera
 
